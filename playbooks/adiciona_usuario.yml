@@ -1,0 +1,21 @@
+---
+- hosts: all
+  tasks:
+    - name: adicionar usuario admin 
+      user: name=admin 
+            state=present 
+            shell=/bin/bash 
+            comment=Administrador
+            password=$1$UuqIOrRR$hwCeIO7jNW7q7tMegqQz2.
+            createhome=yes
+            groups=wheel
+##
+    - name: adicionar usuario suporte
+      user: name=suporte 
+            state=present 
+            shell=/bin/bash 
+            comment=Suporte
+            password=$1$UuqIOrRR$hwCeIO7jNW7q7tMegqQz2.
+            createhome=yes
+            groups=admin,docker,git,jenkins,postgres,puppet,puppetdb,rundeck,wheel
+...
