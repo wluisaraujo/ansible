@@ -1,5 +1,8 @@
 ---
+# Playbook para criar usuário
+# 15/01/2018 
 - hosts: all
+  remote_user: root
   tasks:
     - name: adicionar usuario admin 
       user: name=admin 
@@ -9,13 +12,4 @@
             password=$1$UuqIOrRR$hwCeIO7jNW7q7tMegqQz2.
             createhome=yes
             groups=wheel
-##
-    - name: adicionar usuario suporte
-      user: name=suporte 
-            state=present 
-            shell=/bin/bash 
-            comment=Suporte
-            password=$1$UuqIOrRR$hwCeIO7jNW7q7tMegqQz2.
-            createhome=yes
-            groups=admin,docker,git,jenkins,postgres,puppet,puppetdb,rundeck,wheel
 ...
