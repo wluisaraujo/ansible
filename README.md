@@ -12,17 +12,20 @@ Nodes:
 	dc-server	[VM: 	    MS Windows   ]
 
 Requerimentos:
+
 	ansible (2.4.2.0)
 	docker-ce
 
 
 Cenário:
+
 	Instalar um ambiente de infraestrutura utilizando serviços:
-		firewall
 		dns
 		mailserver
-		proxyserver
+		database
+		
 
 Informações de Projeto:
+
 	Status: Desenvolvimento
 
