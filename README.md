@@ -1,10 +1,8 @@
 # iac-ansible
 Infrastructure as Code with Ansible
 
-#
-Ansible Lab
-
-LAB: utilizando ansible para gerenciar configurações de três (3) nodes.
+# LAB 
+Utilizando ansible para gerenciar configurações de três (4) nodes.
 
 Nodes: 
 
@@ -14,13 +12,11 @@ Nodes:
 	dc-server	[VM: 	    MS Windows   ]
 
 Requerimentos:
-
 	ansible (2.4.2.0)
 	docker-ce
 
 
-Cenario:
-
+Cenário:
 	Instalar um ambiente de infraestrutura utilizando serviços:
 		firewall
 		dns
@@ -28,6 +24,5 @@ Cenario:
 		proxyserver
 
 Informações de Projeto:
-
 	Status: Desenvolvimento
 
