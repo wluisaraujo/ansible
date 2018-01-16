@@ -1,0 +1,14 @@
+---
+#
+#
+- hosts: localhost
+  remote_user: root
+  tasks:
+    - name: Copia Aquivo
+      copy: src=/etc/ansible/files/data.db
+            dest=/opt/data.db
+            owner=root
+            group=root
+            mode=640
+  
+

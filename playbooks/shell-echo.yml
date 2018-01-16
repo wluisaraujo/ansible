@@ -1,0 +1,8 @@
+---
+# Playbook para executar shell
+# 15/01/2018 
+- hosts: localhost
+  remote_user: root
+  tasks:
+  - name: "teste de echo"
+    shell: echo teste
