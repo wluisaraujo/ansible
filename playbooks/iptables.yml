@@ -1,0 +1,13 @@
+---
+# Playbook para adicionar regras no iptables
+# 15/01/2018 
+- hosts: localhost
+  remote_user: root
+  tasks:
+          - iptables:
+                  chain: INPUT
+                  source: 8.8.8.8
+                  jump: DROP
+...
+
+## ReadMe on: http://docs.ansible.com/ansible/latest/iptables_module.html
