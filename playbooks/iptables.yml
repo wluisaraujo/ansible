@@ -1,6 +1,6 @@
 ---
 # Playbook para adicionar regras no iptables
-# 15/01/2018 
+# 24/01/2018 
 - hosts: localhost
   remote_user: root
   tasks:

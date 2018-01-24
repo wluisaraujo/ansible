@@ -1,0 +1,14 @@
+---
+# Playbook para definir timezone
+# 24/01/2018 
+- hosts: docker
+  remote_user: root
+
+  tasks:
+  - name: set timezone 
+    timezone: 
+    name: America/Sao_Paulo
+...
+
+## Read-me
+## http://docs.ansible.com/ansible/latest/timezone_module.html
