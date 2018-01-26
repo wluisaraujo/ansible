@@ -4,6 +4,7 @@
 ### Metodo 1 - vmware_inventory.py
 ### Fonte 
 	- https://github.com/ansible/ansible/blob/devel/contrib/inventory/vmware_inventory.py
+
 ### -------------------
 
 ### Metodo 2 - query.py
@@ -14,5 +15,13 @@
 
 ### Fonte:
 https://github.com/RaymiiOrg/ansible-vmware
+
 ### -------------------
 
+
+### Metodo 3 - VMware vSphere Connector Module for Python
+
+### Fonte 
+	- https://code.vmware.com/samples/795/vmware-vsphere-connector-module-for-python
+
+### -------------------
