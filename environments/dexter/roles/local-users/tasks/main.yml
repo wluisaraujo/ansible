@@ -7,11 +7,11 @@
         (ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian")
 
-#- name: Configurações de sudo para ambiente Linux
-#  import_tasks: sudo.yml
-#  when: (ansible_os_family == "CentOS") or
-#        (ansible_os_family == "RedHat") or
-#        (ansible_os_family == "Debian")
+- name: Configurações de sudo para ambiente Linux
+  import_tasks: sudo.yml
+  when: (ansible_os_family == "CentOS") or
+        (ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")
 
 - name: Configuracao de usuarios locais para ambientes Linux
   import_tasks: base-linux.yml
