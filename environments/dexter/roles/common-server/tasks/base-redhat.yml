@@ -3,7 +3,7 @@
 - name: Instalar pacotes base (OS base Redhat/CentOS)
   yum: name={{item}} state=installed 
   with_items:
-                - bash-completion
+          - bash-completion
           - bzip2
           - ccze
           - bind-utils

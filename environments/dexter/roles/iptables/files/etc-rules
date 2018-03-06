@@ -40,8 +40,8 @@ iptables -t filter -A INPUT -p tcp -m multiport -s $LAN --sport 20,21,80,443 -d 
 iptables -t filter -A OUTPUT -p tcp -m multiport -s $FWLAN1,$FWLAN2  -d $LAN --dport 20,21,80,443 -j ACCEPT
 
 # 6- Liberar Acesso SSH da Máquina Interna para o Firewall
-iptables -t filter -A INPUT  -p tcp -s $MAQINTERNA  -d $FWLAN1 --dport 22 -j ACCEPT
-iptables -t filter -A OUTPUT -p tcp  -s $FWLAN1 --sport 22 -d $MAQINTERNA -j ACCEPT
+iptables -t filter -A INPUT  -p tcp -s $LAN  -d $LAN --dport 22 -j ACCEPT
+iptables -t filter -A OUTPUT -p tcp -s $LAN --sport 22 -d $LAN -j ACCEPT
 
 # 7 - Liberar "MASCARAMENTO" de Pacotes da Rede Interna para a Internet
 iptables -t nat -A POSTROUTING -s $LAN ! -d $LAN -j MASQUERADE

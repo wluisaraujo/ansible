@@ -1,7 +1,7 @@
 ---
 # tasks file for baseline-server
 
-- name:  Copia arquivoss Base
+- name:  Copia arquivos Base Linux
   import_tasks: files.yml
   when: (ansible_os_family == "Debian") or
         (ansible_os_family == "RedHat") or
@@ -15,3 +15,4 @@
   import_tasks: base-redhat.yml
   when: (ansible_os_family == "RedHat") or
         (ansible_os_family == "Debian") 
+...
