@@ -8,3 +8,4 @@
   register: postfix_packages_installed
   notify:
           - Start Postfix
+...
