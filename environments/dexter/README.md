@@ -30,18 +30,20 @@
 <b>Cenário:</b>
 
 	Gerenciar um ambiente de infraestrutura utilizando serviços:
-		01) Firewall com iptables
-		02) DHCP com isc-dhcp
-		03) DNS com bind9 
-		04) WebServer com apache
-		05) MailServer com postfix
-		06) Database com mariadb
-		07) Catalogo de informações com open-ldap
-		08) Storage com raid/mdadm e lvm
-		09) FileServer com nfs e smb
-		10) Web Proxy com squid
-		11) Network com Open-VPN
-		12) FTP com vsftpd
+		-  Firewall com iptables
+		-  DHCP com isc-dhcp
+		-  DNS com bind9 
+		-  WebServer com apache
+		-  MailServer com postfix
+		-  Database com mariadb
+		-  Catalogo de informações com open-ldap
+		-  Storage com raid/mdadm e lvm
+		-  FileServer com nfs e smb
+		-  Web Proxy com squid
+		-  Network com Open-VPN
+		-  FTP com vsftpd
+		-  LogServer com rsyslog
+		-  Ntp Server 
 		
 <b>Informações de Projeto:</b>
 

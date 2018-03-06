@@ -1,6 +1,0 @@
----
-- name: Instala servidor de Postgres da empresa Dexter Courier
-  apt: pkg=postgresql state=installed update_cache=true
-  register: postgresql_installed
-  notify:
-    - Start PostgreSQL
