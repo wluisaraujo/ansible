@@ -1,8 +1,12 @@
-# iac-ansible
-Infrastructure as Code with Ansible
+# Infrastructure as Code with Ansible
 
-# LAB 
-Utilizando ansible para gerenciar configurações de três (4) nodes.
+<b> Apresentação </b>
+
+  Administrar uma infraestrutura de DataCenter com a solução ansible para automação.
+
+
+# Infraestrutura 
+Utilizando ansible para gerenciar configurações de servidores Linux (Debian/CentOs/Ubuntu), MS Windows nodes.
 
 Nodes: 
 
@@ -16,16 +20,21 @@ Requerimentos:
 	ansible (2.4.2.0)
 	docker-ce
 
-
 Cenário:
 
-	Instalar um ambiente de infraestrutura utilizando serviços:
+	Gerenciar um ambiente de infraestrutura utilizando serviços:
+		iptables
+		isc-dhcp
 		dns
+		webserver
 		mailserver
 		database
+		ldapserver
+		storage
+		file server
+		proxy
+		open-vpn
 		
-
 Informações de Projeto:
 
 	Status: Desenvolvimento
-
