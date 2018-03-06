@@ -1,0 +1,34 @@
+---
+# tasks file for ntp-server
+- name: Instala serviço do NTP (OS base Debian)
+  when: ansible_os_family == "Debian"
+  
+  apt: pkg={{item}} state=installed update_cache=true 
+  with_items: 
+          - ntp
+          - ntpdate
+  
+  register: ntp_installed
+  notify:
+    - Start ntpd
+
+- name: Instala serviço do ntp (OS base CentOS or RedHat)
+  when: (ansible_os_family == "CentOS") or
+        (ansible_os_family == "RedHat")
+  
+  yum: pkg={{item}} state=installed
+  with_items: 
+          - ntp
+          - ntpdate
+  
+  register: ntp_installed
+  notify:
+    - Start ntpd
+
+- name: Define o arquivo de configuracao do servidor ntp
+  when: ntp_installed|success
+  
+  copy: src=etc-ntp.conf dest=/etc/ntp.conf owner=root group=root mode=0644
+  notify:
+    - Restart ntpd
+...

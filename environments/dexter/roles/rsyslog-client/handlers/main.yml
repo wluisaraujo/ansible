@@ -1,0 +1,30 @@
+---
+### handlers file for rsyslog-client
+- name: Start rsyslog
+  when: ansible_os_family == "Debian" 
+  service: name=rsyslog state=started enable=yes
+  
+- name: Stop rsyslog
+  when: ansible_os_family == "Debian" 
+  service: name=rsyslog state=stoped
+  
+- name: Restart rsyslog
+  when: ansible_os_family == "Debian"
+  service: name=rsyslog state=restarted 
+
+## Base Redhat/CentOS
+- name: Start rsyslog
+  when: (ansible_os_family == "CentOS") or
+        (ansible_os_family == "RedHat")
+  service: name=rsyslog state=started enable=yes
+  
+- name: Stop rsyslog
+  when: (ansible_os_family == "CentOS") or
+        (ansible_os_family == "RedHat")
+  service: name=rsyslog state=stoped
+  
+- name: Restart rsyslog
+  when: (ansible_os_family == "CentOS") or
+        (ansible_os_family == "RedHat")
+  service: name=rsyslog state=restarted 
+...

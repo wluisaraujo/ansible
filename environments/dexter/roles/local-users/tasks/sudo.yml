@@ -1,0 +1,17 @@
+---
+# tasks file for local-users
+- name: Instalar sudo (OS Base Debian)
+  apt: pkg=sudo state=installed update_cache=true
+  when: ansible_os_family == "Debian"
+  register: sudo_installed
+
+- name: Instala sudo (OS Base CentOS)
+  yum: pkg=sudo state=installed
+  when: (ansible_os_family == "CentOS") or
+        (ansible_os_family == "RedHat")
+  register: sudo_installed
+
+- name: Define o arquivo de configuracao 
+  when: sudo_installed|success
+  copy: src=etc-sudoers dest=/etc/sudoers owner=root group=root mode=0440
+...

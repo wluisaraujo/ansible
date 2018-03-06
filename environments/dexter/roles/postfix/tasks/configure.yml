@@ -1,0 +1,6 @@
+---
+- name: Define o arquivo de configuração do Postfix
+  when: postfix_packages_installed|success
+  template: src=main.cf.j2 dest=/etc/postfix/main.cf owner=root group=root mode=0644
+  notify:
+          - Reload Postfix

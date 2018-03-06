@@ -1,0 +1,7 @@
+---
+- hosts: windows 
+  win_group_membership:
+    name: Users
+    members:
+      - washington.daraujo
+    state: present

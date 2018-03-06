@@ -1,0 +1,6 @@
+--- 
+- hosts: security
+  remote_user: root
+  roles: 
+         - ntp
+...

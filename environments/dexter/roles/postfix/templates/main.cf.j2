@@ -1,0 +1,40 @@
+## /etc/postfix/main.cf
+## 2017/10/11
+
+smtpd_banner	= MTA Server - {{ ansible_hostname }}
+biff 		= no
+
+inet_interfaces	= all
+inet_protocols 	= all
+
+myhostname	= {{ ansible_fqdn }}
+
+myorigin	= /etc/mailname
+
+mydestination 	= {{ ansible_domain }}, smtp.{{ ansible_domain }}, {{ ansible_fqdn }}, webmail.{{ ansible_domain }}, pop.{{ ansible_domain }}, imap.{{ ansible_domain }}, localhost
+
+mynetworks 	= {{ ansible_default_ipv4.address }}, 127.0.0.1
+
+relayhost	=
+
+alias_maps = hash:/etc/aliases
+alias_database= hash:/etc/aliases
+
+home_mailbox = Maildir/
+
+mailbox_size_limit = 0
+
+message_size_limit = 25000000
+
+
+append_dot_mydomain = no
+delay_warning_time  = 4h
+readme_directory    = no
+smtpd_tls_cert_file = /etc/ssl/cets/ssl-cert-snakeoil.pem	
+smtpd_tls_key_file  = /etc/ssl/private/ssl-cert-snakeoil.key
+smtpd_use_tls	= yes 
+smtpd_tls_session_cache_database  = brtree:${data_directory}/smtpd_scache
+smtp_tls_session_cache_database  = brtree:${data_directory}/smtp_scache
+smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
+recpient_delimiter = +
+

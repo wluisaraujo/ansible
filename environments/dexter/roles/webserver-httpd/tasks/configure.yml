@@ -1,0 +1,57 @@
+---
+# tasks file for webserver-httpd
+
+- name: Define os arquivos de configuracao do Apache
+  when: http_installed|success
+  copy: src=httpd.conf dest=/etc/httpd/conf owner=root group=root mode=0644
+  notify:
+          - Reload httpd
+
+- name: Define o diretorio de configuracao do VirtualHost
+  when: http_installed|success
+  file: path=/etc/httpd/sites 
+        state=directory 
+        mode=0755 
+        recurse=yes
+
+
+- name: Define o DocumentRoot de backup
+  when: http_installed|success
+  file: path=/var/www/html/backup 
+        owner=apache 
+        group=apache 
+        state=directory 
+        mode=0755 
+        recurse=yes
+
+- name: Define o DocumentRoot de intranet
+  when: http_installed|success
+  file: path=/var/www/html/intranet 
+        owner=apache 
+        group=apache 
+        state=directory 
+        mode=0755
+        recurse=yes
+
+- name: Define o DocumentRoot de squidanalyzer
+  when: http_installed|success
+  file: path=/var/www/html/squidanalyzer 
+        owner=apache 
+        group=apache 
+        state=directory 
+        mode=0755
+        recurse=yes
+
+- name: Define os arquivos de configuracao de VirtualHost
+  when: http_installed|success
+  copy: src={{item}} 
+        dest=/etc/httpd/sites 
+        mode=0644
+        
+  with_items:
+          - backup.conf
+          - intranet.conf
+          - webmail.conf
+  notify:
+          - Restart httpd
+...

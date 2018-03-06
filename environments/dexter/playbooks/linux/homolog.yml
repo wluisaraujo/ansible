@@ -1,0 +1,5 @@
+--- 
+- hosts: security
+  roles: 
+        - local-users
+...

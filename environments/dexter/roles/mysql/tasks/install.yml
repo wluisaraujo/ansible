@@ -1,0 +1,6 @@
+---
+- name: Instala servidor de MySQL da empresa Dexter Courier
+  apt: pkg=mariadb-server state=installed update_cache=true
+  register: mysql_installed
+  notify:
+    - Start MySQL

@@ -1,0 +1,21 @@
+---
+# tasks file for baseline-server
+
+- name: Instalar pacotes base (OS base Debian)
+  apt: name={{item}} state=installed update_cache=true
+  with_items:
+          - bash-completion
+          - bzip2
+          - ccze
+          - dnsutils
+          - htop
+          - mlocate
+          - nfs-common
+          - sudo
+          - scren
+          - tzdata
+          - unzip
+          - nmap
+          - tcpdump
+          - vim
+...

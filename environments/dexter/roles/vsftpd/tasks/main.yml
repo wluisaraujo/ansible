@@ -1,0 +1,15 @@
+---
+# tasks file for vsftpd
+
+- name: Instala servidor FTP
+  yum: pkg=vsftpd state=installed
+  register: vsftpd_installed
+  notify:
+          - Start Vsftpd
+          
+- name: Define o arquivo de configuracao VSFTP
+  when: vsftpd_installed|success
+  copy: src=vsftpd.conf dest=/etc/vsftpd/vsftpd.conf owner=root group=root mode=0644
+  notify:
+          - Restart Vsftpd
+...

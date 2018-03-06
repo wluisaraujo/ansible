@@ -1,0 +1,11 @@
+---
+### Playbook 
+### 22/02/2018
+###
+
+- hosts: security
+  remote_user: root
+  roles:
+          - iptables
+          - rsyslog-client
+...

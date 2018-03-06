@@ -1,0 +1,6 @@
+---
+# tasks file for baseline-server
+
+- name: Configurar arquivo /etc/hosts para o servidor de Testes da empresa Dexter
+  copy: src=etc-hosts dest=/etc/hosts owner=root group=root mode=0644
+...

@@ -1,0 +1,11 @@
+---
+# tasks file for local-users
+- name: Configurando usuário "Suporte"
+  user: name=suporte 
+        state=present 
+        shell=/bin/bash 
+        comment="Analista de Suporte"
+        password=$1$XplcWy1D$DgTZQDOdpr41R8vKYlgLa.
+        createhome=yes
+        groups=wheel
+...

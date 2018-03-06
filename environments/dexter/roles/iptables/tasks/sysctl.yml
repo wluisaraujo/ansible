@@ -1,0 +1,8 @@
+---
+# tasks file for iptables
+# Set ip forwarding on in /proc and do not reload the sysctl file
+- sysctl:
+    name: net.ipv4.ip_forward
+    value: 1
+    sysctl_set: yes
+...

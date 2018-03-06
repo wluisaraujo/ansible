@@ -1,0 +1,19 @@
+---
+# handlers file for bind
+
+- name: Start Bind
+  when: ansible_os_family == "Debian" 
+  service: name=bind9 state=started
+      
+- name: Stop Bind
+  when: ansible_os_family == "Debian" 
+  service: name=bind9 state=stoped      
+
+- name: Reload Bind
+  when: ansible_os_family == "Debian" 
+  service: name=bind9 state=reloaded
+      
+- name: Restart Bind
+  when: ansible_os_family == "Debian"  
+  service: name=bind9 state=restarted
+...

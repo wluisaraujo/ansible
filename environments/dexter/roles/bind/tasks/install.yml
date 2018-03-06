@@ -1,0 +1,15 @@
+---
+# tasks file for bind
+
+- name: Instala servidor Bind9 (OS base Debian)
+  when: ansible_os_family == "Debian"
+  
+  apt: pkg={{item}} state=installed update_cache=true 
+  with_items: 
+          - bind9
+          - bind9utils
+  
+  register: bind_installed
+  notify:
+    - Start Bind
+...

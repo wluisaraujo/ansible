@@ -1,0 +1,10 @@
+---
+### Playbook 
+### 19/02/2018
+###
+
+- hosts: webserverinterno
+  remote_user: root
+  roles:
+          - webserver-httpd
+...

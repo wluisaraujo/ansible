@@ -1,0 +1,30 @@
+---
+# handlers file for ntp-server
+- name: Start ntpd
+  when: ansible_os_family == "Debian" 
+  service: name=ntp state=started enable=yes
+  
+- name: Stop ntpd
+  when: ansible_os_family == "Debian" 
+  service: name=ntp state=stoped
+  
+- name: Restart ntpd
+  when: ansible_os_family == "Debian"
+  service: name=ntp state=restarted 
+
+## Base Redhat/CentOS
+- name: Start ntpd
+  when: (ansible_os_family == "CentOS") or
+        (ansible_os_family == "RedHat")
+  service: name=ntpd state=started enable=yes
+  
+- name: Stop ntpd
+  when: (ansible_os_family == "CentOS") or
+        (ansible_os_family == "RedHat")
+  service: name=ntpd state=stoped
+  
+- name: Restart ntpd
+  when: (ansible_os_family == "CentOS") or
+        (ansible_os_family == "RedHat")
+  service: name=ntpd state=restarted 
+...

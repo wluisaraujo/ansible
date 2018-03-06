@@ -1,0 +1,13 @@
+$TTL 86400                      ; default para todos os registros sem TTL 
+@       IN      SOA     ns1.dexter.com.br.  root.dexter.com.br. ( 
+                2018022201      ; serial 
+                8h              ; refresh 
+                1h              ; retry 
+                3d              ; expire 
+                3h )            ; negative caching ttl 
+; 
+@               IN              NS      ns1.dexter.com.br. 
+ns1             IN              A       192.168.200.30
+
+30              IN              PTR     audit.dexter.com.br.
+131             IN              PTR     mail.dexter.com.br.

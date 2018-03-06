@@ -1,0 +1,22 @@
+---
+#
+- name: Define os arquivos de configuracao do Bind
+  when: bind_installed|success
+  
+  copy: src={{item}} dest=/etc/bind/ owner=root group=bind mode=0644
+  with_items:
+          - named.conf.local
+          - named.conf.options
+  notify:
+          - Start Bind
+
+- name: Define os arquivos de registro de Zona
+  when: bind_installed|success
+  
+  copy: src={{item}} dest=/var/cache/bind/ owner=bind group=bind mode=0644
+  with_items:
+          - db.dexter
+          - rev.dexter
+  notify:
+          - Restart Bind
+...

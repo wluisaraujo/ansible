@@ -1,0 +1,20 @@
+---
+# tasks file for baseline-server
+- name: Instalar pacotes base (OS base Redhat/CentOS)
+  yum: name={{item}} state=installed 
+  with_items:
+                - bash-completion
+          - bzip2
+          - ccze
+          - bind-utils
+          - epel-release
+          - htop
+          - mlocate
+          - nfs-utils
+          - nmap
+          - sudo
+          - screen
+          - tzdata
+          - unzip
+          - vim
+...

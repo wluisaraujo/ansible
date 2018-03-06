@@ -1,0 +1,15 @@
+---
+# tasks file for iptables
+
+
+- name: Definindo parametro para systcl.conf
+  import_tasks: sysctl.yml
+  when: (ansible_os_family == "CentOS") or
+        (ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")
+
+- name: Criando arquivos de configuracao
+  import_tasks: files.yml
+  when: (ansible_os_family == "CentOS") or
+        (ansible_os_family == "RedHat") or
+        (ansible_os_family == "Debian")

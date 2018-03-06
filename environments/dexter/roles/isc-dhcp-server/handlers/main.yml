@@ -1,0 +1,14 @@
+---
+# handlers file for isc-dhcp-server
+- name: Start dhcp-server
+  when: ansible_os_family == "Debian"
+  service: name=isc-dhcp-server state=started enabled=yes
+  
+- name: Stop dhcp-server
+  when: ansible_os_family == "Debian"
+  service: name=isc-dhcp-server state=stoped
+  
+- name: Restart dhcp-server
+  when: ansible_os_family == "Debian"
+  service: name=isc-dhcp-server state=restarted  
+...

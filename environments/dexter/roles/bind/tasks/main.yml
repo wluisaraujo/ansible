@@ -1,0 +1,11 @@
+---
+# defaults file for bind
+
+- name:  Instala pacotes Base (OS base Debian)
+  when: (ansible_os_family == "Debian")
+  import_tasks: install.yml
+  
+- name:  Configura o Serviço Bind (Os base Debian)
+  when: (ansible_os_family == "Debian")
+  import_tasks: configure.yml 
+...

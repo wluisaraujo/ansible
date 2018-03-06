@@ -1,0 +1,23 @@
+---
+- name: Cria banco de dados roundcubemail para Aplicacao RoundCube
+  become_user: postgres
+  postgresql_db: name=roundcubemail
+  register: roundcube_db_create
+- name: Adiciona usuario roundcube para Aplicacao RoundCube
+  become_user: postgres
+  postgresql_user: db=roundcubemail name=roundcube password=4linux role_attr_flags=SUPERUSER
+  when: roundcube_db_create|success
+  register: roundcube_user_create
+- name: Copia base inicial para o banco roundcubemail
+  copy: src=postgres.initial.sql dest=/var/lib/postgresql/postgres.initial.sql owner=postgres group=postgres mode=0644
+  when: (roundcube_db_create|success and roundcube_user_create|success)
+  register: roundcube_initial_base_create
+- name: Cria tabelas para o banco roundcubemail
+  become_user: postgres
+  shell: psql roundcubemail < postgres.initial.sql
+  when: (roundcube_db_create|success and roundcube_initial_base_create|success)
+  register: roundcube_tables_create
+- name: Configura privilégios do usuário roundcube no banco roundcubemail
+  become_user: postgres
+  postgresql_privs: database=roundcubemail privs=ALL type=database role=roundcube
+  when: (roundcube_user_create|success and roundcube_tables_create|success)

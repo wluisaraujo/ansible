@@ -1,0 +1,13 @@
+---
+# tasks file for iptables
+
+- name: Define o arquivo de regras
+  copy: src=etc-rules dest=/etc/rules owner=root group=root mode=0444
+  register: rules
+
+- name: Define o arquivo inicalizacao de servico (Firewall)
+  when: rules|success
+  copy: src=etc-initd-firewall dest=/etc/init.d/firewall owner=root group=root mode=0555
+  notify: 
+    - Restart iptables
+...

@@ -1,0 +1,12 @@
+---
+### Playbook 
+### 22/02/2018
+###
+
+- hosts: all
+  remote_user: root
+  roles:
+          - local_users
+          - ntp-client
+          - rsyslog-client
+...
