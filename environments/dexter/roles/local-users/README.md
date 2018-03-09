@@ -31,4 +31,4 @@ GPL-3.0
 
 Author Information
 ------------------
-* [LUSAR](linkedin.com/in/wluisaraujo)
+* [LUSAR](http://linkedin.com/in/wluisaraujo)
