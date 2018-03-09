@@ -1,16 +1,19 @@
 ---
-# tasks file for local-users
+# tasks file base-windows for local-users
+
 - name: Configurando usuário no ambiente Windows
+  become: true
   win_user:
           name: suporte
           fullname: Analista de Suporte
           description: suporte@dexter.com.br
           password: 4linux
           state: present
+          account_disabled: false
+          account_locked: false
           password_never_expires: true
           groups:
                   - Users
                   - Administrators
           when: ansible_os_family == "Windows"
 ...
-
