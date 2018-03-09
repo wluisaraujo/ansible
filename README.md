@@ -1,28 +1,21 @@
-# Infrastructure as Code with Ansible
+# IaC: Infrastructure as Code with Ansible
 
-<b> Apresentação </b>
+## Apresentação
 
   Administrar uma infraestrutura de DataCenter com a solução ansible para automação.
+-----------
 
-
-# Infraestrutura 
-Utilizando ansible para gerenciar configurações de servidores Linux (Debian/CentOs/Ubuntu), MS Windows nodes.
-
-<b>Nodes:</b> 
-
-	backend		[Container: CentOS Linux ]
-	middleware	[Container: Debian Linux ]
-	frontend	[Container: Ubuntu Linux ]
-	dc-server	[VM: 	    MS Windows   ]
-
-<b>Requerimentos:</b>
+## Requerimentos
 
 	ansible (2.4.2.0)
 	docker-ce
+	VirtualBox (5x)
 
-<b>Cenário:</b>
+## Ambiente 
 
-	Gerenciar um ambiente de infraestrutura utilizando serviços:
+Utilizando ansible para gerenciar configurações de servidores Linux (Debian/CentOs/Ubuntu), MS Windows nodes.
+
+Gerenciar um ambiente de infraestrutura utilizando serviços:
 		iptables
 		isc-dhcp
 		dns
@@ -34,7 +27,19 @@ Utilizando ansible para gerenciar configurações de servidores Linux (Debian/Ce
 		file server
 		proxy
 		open-vpn
+-----------
+
+## Nodes Inventory 
+
+	backend		[Container: CentOS Linux ]
+	middleware	[Container: Debian Linux ]
+	frontend	[Container: Ubuntu Linux ]
+	dc-server	[VM: 	    MS Windows   ]
+-----------
+
+
 		
-<b>Informações de Projeto:</b>
+## Informações de Projeto:
 
 	Status: Desenvolvimento
+-----------
