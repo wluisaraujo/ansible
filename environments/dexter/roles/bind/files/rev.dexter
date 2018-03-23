@@ -1,5 +1,5 @@
 $TTL 86400                      ; default para todos os registros sem TTL 
-@       IN      SOA     ns1.dexter.com.br.  root.dexter.com.br. ( 
+@       	IN      	SOA     ns1.dexter.com.br.  root.dexter.com.br. ( 
                 2018030601      ; serial 
                 8h              ; refresh 
                 1h              ; retry 

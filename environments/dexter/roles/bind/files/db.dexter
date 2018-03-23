@@ -1,5 +1,5 @@
 $TTL 86400      		; Tempo em Segundos que o Cache ira permanecer nos DNS do Mundo 
-@       IN      SOA     ns1.dexter.com.br.  root.dexter.com.br. (
+@       	IN      SOA     ns1.dexter.com.br.  root.dexter.com.br. (
                 2018030601      ; serial 
                 8h              ; refresh 
                 1h              ; retry 
