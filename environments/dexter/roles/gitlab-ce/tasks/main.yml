@@ -1,7 +1,7 @@
 ---
 # tasks file for gitlab-ce
 - name:  Instala o Gitlab CE (OS Base Debian)
-  import_tasks: base-debian.yml
+  import_tasks: base-ubuntu.yml
   when: (ansible_os_family == "Debian")
 
 - name:  Instala o Gitlab CE (OS Base RedHat)
