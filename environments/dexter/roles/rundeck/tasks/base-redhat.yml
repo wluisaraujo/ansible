@@ -1,0 +1,13 @@
+---
+# tasks file for rundeck
+- name: Instalando dependencias
+  yum: name=java
+
+- name: Configurando repositorio
+  yum:
+    name: http://repo.rundeck.org/latest.rpm
+    state: present
+
+- name: Instalando Rundeck
+  yum: name=rundeck state=latest
+...
