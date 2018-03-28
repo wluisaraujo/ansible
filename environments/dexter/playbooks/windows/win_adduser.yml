@@ -1,9 +1,9 @@
 - name: Adicionando Usuários no Windows
   hosts: windows
   tasks:
-    - name: adicionando user washington.daraujo
+    - name: adicionando user w.luis.araujo
       win_user: 
-        name: washington.daraujo
+        name: w.luis.araujo
         fullname: Washington Luis Araujo
         description: w.luis.araujo@gmail.com
         password: a1b2c3@

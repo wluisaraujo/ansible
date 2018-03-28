@@ -3,5 +3,5 @@
   win_group_membership:
     name: Users
     members:
-      - washington.daraujo
+      - w.luis.araujo
     state: present

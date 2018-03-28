@@ -4,13 +4,9 @@
 
 - name: Definindo parametro para systcl.conf
   import_tasks: sysctl.yml
-  when: (ansible_os_family == "CentOS") or
-        (ansible_os_family == "RedHat") or
-        (ansible_os_family == "Debian")
+  when: (ansible_system == "Linux") 
 
 - name: Criando arquivos de configuracao
   import_tasks: files.yml
-  when: (ansible_os_family == "CentOS") or
-        (ansible_os_family == "RedHat") or
-        (ansible_os_family == "Debian")
+  when: (ansible_system == "Linux") 
 ...

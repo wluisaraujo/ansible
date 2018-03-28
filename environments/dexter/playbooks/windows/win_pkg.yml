@@ -1,9 +1,9 @@
 ---
-- hosts: vmpuppetest
+- hosts: windows
   remote_user: Administrator
   tasks:
     win_package:  
-      path: \\puppet\repo\windows\stinger64.exe
+      path: \\server\repo\windows\7zip.exe
       state: present
 ...
 

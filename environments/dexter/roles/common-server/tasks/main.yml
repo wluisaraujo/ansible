@@ -3,9 +3,7 @@
 
 - name:  Copia arquivos Base Linux
   import_tasks: files.yml
-  when: (ansible_os_family == "Debian") or
-        (ansible_os_family == "RedHat") or
-        (ansible_os_family == "Debian") 
+  when: (ansible_system == "Linux") 
 
 - name:  Instala pacotes Base (OS base Debian)
   import_tasks: base-debian.yml
