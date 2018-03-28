@@ -10,8 +10,8 @@
 
 - name: Baixando script de repositorios do Gitlab 
   get_url:
-    url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
-    destination: /tmp/script.deb.sh
+          url: https://packages.gitlab.com/install/repositories/gitlab/gitlab-ce/script.deb.sh
+          dest: /tmp/script.deb.sh
 
 - name: Executando script de repositorio
   command: bash /tmp/script.deb.sh 
