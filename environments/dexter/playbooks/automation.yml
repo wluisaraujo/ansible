@@ -1,0 +1,13 @@
+---
+### Playbook 
+### 28/03/2018
+
+- hosts: automation
+  remote_user: root
+  roles:
+          - docker-ce
+          - gitlab-ce
+          - jenkins
+          - puppet-ce
+          - rundeck
+...

@@ -4,6 +4,8 @@
 [dexter]
 ## Audit 		- OS Debian 
 192.168.200.30	ansible_connection=ssh ansible_user=root ansible_password=4linux		
+## Automation 		- OS Ubuntu 
+192.168.200.2	ansible_connection=ssh ansible_user=root ansible_password=4linux		
 ## Datacenter 		- OS Debian
 192.168.200.131	ansible_connection=ssh ansible_user=root ansible_password=4linux 	
 ## Desktop Linux 	- OS Debian 

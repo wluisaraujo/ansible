@@ -12,6 +12,8 @@
 
 <b>Nodes:</b> 
 
+	Audit		[VM: Debian Linux ]
+	Automation	[VM: Debian Linux ]
 	DataCenter	[VM: Debian Linux ]
 	DesktopWindows	[VM: MS Windows]
 	FileServer	[VM: CentOS Linux ]
