@@ -11,6 +11,5 @@
 
 - name:  Instala pacotes Base (OS base Debian)
   import_tasks: base-redhat.yml
-  when: (ansible_os_family == "RedHat") or
-        (ansible_os_family == "Debian") 
+  when: (ansible_os_family == "RedHat")
 ...

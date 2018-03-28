@@ -6,6 +6,7 @@
           - bash-completion
           - bzip2
           - ccze
+          - curl
           - bind-utils
           - epel-release
           - htop
@@ -17,4 +18,5 @@
           - tzdata
           - unzip
           - vim
+          - wget
 ...

@@ -7,15 +7,17 @@
           - bash-completion
           - bzip2
           - ccze
+          - curl
           - dnsutils
           - htop
           - mlocate
           - nfs-common
-          - sudo
+          - nmap
           - scren
+          - sudo
+          - tcpdump
           - tzdata
           - unzip
-          - nmap
-          - tcpdump
           - vim
+          - wget
 ...
