@@ -1,7 +1,7 @@
 ---
 # tasks file for baseline-server
 - name: Instalar pacotes base (OS base Redhat/CentOS)
-  yum: name={{item}} state=installed 
+  yum: name={{item}} state=latest 
   with_items:
           - bash-completion
           - bzip2

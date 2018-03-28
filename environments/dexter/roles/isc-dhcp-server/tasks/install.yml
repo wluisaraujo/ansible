@@ -2,7 +2,7 @@
 ### tasks file for isc-dhcp-server
 
 - name: Instala servidor de DHCP (OS base Debian) 
-  apt: pkg=isc-dhcp-server state=installed update_cache=true
+  apt: pkg=isc-dhcp-server state=latest update_cache=true
   when: ansible_os_family == "Debian"
   register: dhcp_installed
   notify:

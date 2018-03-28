@@ -4,7 +4,7 @@
 - name: Instala serviço do NTP (OS base Debian)
   when: ansible_os_family == "Debian"
   
-  apt: pkg={{item}} state=installed update_cache=true 
+  apt: pkg={{item}} state=latest update_cache=true 
   with_items: 
           - ntp
           - ntpdate
@@ -16,7 +16,7 @@
 - name: Instala serviço do ntp (OS base CentOS or RedHat)
   when: (ansible_os_family == "RedHat")
   
-  yum: pkg={{item}} state=installed
+  yum: pkg={{item}} state=latest
   with_items: 
           - ntp
           - ntpdate
