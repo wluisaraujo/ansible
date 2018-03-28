@@ -4,17 +4,20 @@
   yum: name={{item}} state=latest 
   with_items:
           - bash-completion
+          - bind-utils
           - bzip2
           - ccze
           - curl
-          - bind-utils
           - epel-release
           - htop
+          - lsof
           - mlocate
           - nfs-utils
           - nmap
-          - sudo
           - screen
+          - sudo
+          - tcpdump
+          - tree
           - tzdata
           - unzip
           - vim

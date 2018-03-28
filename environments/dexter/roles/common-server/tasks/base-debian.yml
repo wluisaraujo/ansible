@@ -10,12 +10,14 @@
           - curl
           - dnsutils
           - htop
+          - lsof
           - mlocate
           - nfs-common
           - nmap
           - scren
           - sudo
           - tcpdump
+          - tree
           - tzdata
           - unzip
           - vim
