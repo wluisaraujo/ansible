@@ -1,2 +1,10 @@
 ---
 # tasks file for puppet-ce
+- name:  Instala o Puppet CE (OS Base Debian)
+  import_tasks: base-debian.yml
+  when: (ansible_os_family == "Debian")
+
+- name:  Instala o Puppet CE (OS Base RedHat)
+  import_tasks: base-redhat.yml
+  when: (ansible_os_family == "RedHat")
+...
