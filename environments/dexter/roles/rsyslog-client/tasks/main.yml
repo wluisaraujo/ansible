@@ -10,8 +10,7 @@
 
 - name: Instala serviço do rsyslog (OS base CentOS/RedHat) 
   yum: pkg=rsyslog state=installed
-  when: (ansible_os_family == "CentOS") or
-        (ansible_os_family == "RedHat")
+  when: (ansible_os_family == "RedHat")
   register: rsyslog_installed
   notify:
     - Start rsyslog
