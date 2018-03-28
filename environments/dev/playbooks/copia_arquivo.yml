@@ -1,6 +1,5 @@
 ---
 #
-#
 - hosts: localhost
   remote_user: root
   tasks:
@@ -10,5 +9,4 @@
             owner=root
             group=root
             mode=640
-  
-
+...
