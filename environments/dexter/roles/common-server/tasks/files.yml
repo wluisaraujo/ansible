@@ -1,6 +1,9 @@
 ---
 # tasks file for baseline-server
 
-- name: Configurar arquivo /etc/hosts para o servidor de Testes da empresa Dexter
+- name: Configurar arquivo /etc/hosts
   copy: src=etc-hosts dest=/etc/hosts owner=root group=root mode=0644
+
+- name: Configurar arquivo /etc/resolv.conf
+  copy: src=etc-resolv.conf dest=/etc/resolv.conf owner=root group=root mode=0644
 ...
