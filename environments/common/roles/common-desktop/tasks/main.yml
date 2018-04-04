@@ -1,0 +1,19 @@
+---
+# tasks file for common-desktop
+
+- name:  Copia arquivos Base Linux
+  import_tasks: files.yml
+  when: (ansible_system == "Linux") 
+
+- name:  Configuracoes de Usuario
+  import_tasks: user.yml
+  when: (ansible_system == "Linux") 
+
+- name:  Instala pacotes Base (OS base Debian)
+  import_tasks: base-ubuntu.yml
+  when: (ansible_os_family == "Debian")
+
+- name:  Instala pacotes Base (OS base RedHat)
+  import_tasks: base-fedora.yml
+  when: (ansible_os_family == "RedHat")
+...

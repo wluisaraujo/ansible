@@ -1,0 +1,7 @@
+--- 
+# Configurações de localhost
+- hosts: localhost
+  remote_user: root
+  roles: 
+         - common-desktop
+...

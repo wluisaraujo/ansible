@@ -1,0 +1,9 @@
+/var/log/ansible.log {
+    daily
+    size 3M
+    rotate 5
+    create 0666 root root
+    compress
+    delaycompress
+}
+
