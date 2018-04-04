@@ -1,6 +1,0 @@
-/var/log/tcpwrappers.log {
-  daily
-  compress
-  delaycompress
-  rotate 5
-}
