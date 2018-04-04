@@ -1,4 +1,0 @@
----
-# vars file for local-users
-users_sudo_group: sudo
-...
