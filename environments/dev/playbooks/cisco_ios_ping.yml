@@ -1,0 +1,6 @@
+--- 
+- hosts: network
+  tasks:
+    - name: test linux connection
+      ios_ping:
+...
