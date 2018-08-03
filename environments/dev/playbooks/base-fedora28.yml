@@ -63,4 +63,5 @@
                     - nfs-utils
                     - nmap
                     - ntfs-3g
+            when: (ansible_distribution == "Fedora")
 ...
