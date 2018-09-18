@@ -1,3 +1,13 @@
-## 06/Mar/2018
-[localhost]
-127.0.0.1 ansible_connection=local
+## 
+## 2018/09/18
+
+#[localhost]
+#127.0.0.1 ansible_connection=local
+
+[exemplo]
+frontend.exemplo.local	ansible_host=192.168.130.251
+backend.exemplo.local	ansible_host=192.168.130.250
+
+#[exemplo:vars]
+#ansible_ssh_user=admin
+#ansible_become_pass=4linux

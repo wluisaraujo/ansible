@@ -6,16 +6,15 @@
 - hosts: all
   become: true
   roles: 
-  - common-server
+    - iac-ansible-common-server 
 
-- hosts: backend.exemplo.local
-  become: true
-  roles: 
-  - postgresql
+#- hosts: backend.exemplo.local
+#  become: true
+#  roles: 
+#  - postgresql
 
-- hosts: frontend.exemplo.local
-  become: true
-  roles: 
-  - rundeck
-
+#- hosts: frontend.exemplo.local
+#  become: true
+#  roles: 
+#  - rundeck
 ...
