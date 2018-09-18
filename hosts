@@ -7,7 +7,3 @@
 [exemplo]
 frontend.exemplo.local	ansible_host=192.168.130.251
 backend.exemplo.local	ansible_host=192.168.130.250
-
-#[exemplo:vars]
-#ansible_ssh_user=admin
-#ansible_become_pass=4linux
