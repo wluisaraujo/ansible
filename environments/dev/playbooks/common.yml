@@ -1,0 +1,21 @@
+--- 
+## Common Hosts
+## w.luis.araujo@gmail.com
+## 2018/09/18 
+
+- hosts: all
+  become: true
+  roles: 
+  - common-server
+
+- hosts: backend.exemplo.local
+  become: true
+  roles: 
+  - postgresql
+
+- hosts: frontend.exemplo.local
+  become: true
+  roles: 
+  - rundeck
+
+...

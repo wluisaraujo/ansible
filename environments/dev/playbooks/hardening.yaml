@@ -1,0 +1,8 @@
+---
+- name: Playbook Best Practices
+  hosts: teste_snmpd
+  roles:
+    - compliance
+
+#  tags:
+#    - snmpd
