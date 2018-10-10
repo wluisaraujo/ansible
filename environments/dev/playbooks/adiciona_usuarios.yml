@@ -1,18 +1,21 @@
 ---
 # Playbook para criar usuários a partir de variavel
-# 15/01/2018 
+# 09/10/2018 
 - hosts: all
-  remote_user: root
-  vars:
-          - usuario: admin
-          - usuario: suporte
-          - usuario: monitoramento
+  become: true
   tasks:
-  - name: Adiciona o usuario {{ usuario }}
-    user: name={{ usuario }}
-          state=present
-          shell=/bin/bash
-          password="$1$OPnOjj0W$4AAHFYV./sT0o5hxSx1RN."
-          createhome=true
-          home="/home/{{ usuario }}"
-...
+  - name: "Adiciona o usuarios da Operacao Técnica"
+    user: 
+      state: present
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      createhome: true
+      home: "/home/{{ item.name }}"
+      shell: /bin/bash
+      groups: wheel
+      update_password: always
+      comment: "{{ item.comm }}"
+    with_items:
+            - { name: 'lusar', password: '$1$c87r7pZM$h0.AESfGspwRN/s2aLB7I/', comm: 'w.luis.araujo@gmail.com' }
+            - { name: 'suporte', password: '$1$i6Gqka6/$fSCOGYPN7rOgZukXvQdLG.', comm: 'suporte@dexter.com.br' }
+            - { name: 'helpdesk', password: '$1$bW3T.Czu$QaXty7zEyEr1l7jYsPbUQ.', comm: 'helpdesk@dexter.com.br' }
