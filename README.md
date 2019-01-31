@@ -47,15 +47,6 @@ Gerenciar um ambiente de infraestrutura utilizando serviços:
 * proxy
 * open-vpn
 
-## Nodes Inventory 
------------
-
-* backend		[Container: CentOS Linux ]
-* middleware	[Container: Debian Linux ]
-* frontend	[Container: Ubuntu Linux ]
-* dc-server	[VM: 	    MS Windows   ]
-
-
 ## Integração
   - Interface Web
   - Ansible Tower
@@ -64,11 +55,6 @@ Gerenciar um ambiente de infraestrutura utilizando serviços:
   - Jenkins
   - Project ARA
 		
-## Informações de Projeto:
------------
-
-* Status: Desenvolvimento
-
 ## Refrências
 -----------
 
