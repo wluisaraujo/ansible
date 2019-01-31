@@ -75,13 +75,13 @@ Gerenciar um ambiente de infraestrutura utilizando serviços:
 * http://blog.4linux.com.br/
 * http://ansible-br.org
 * http://devdocs.io/ansible/
-* https://doauto.blog/?s=ansible[https://doauto.blog/?s=ansible]
+* https://doauto.blog/?s=ansible
 * https://churrops.io/category/devops/ansible
 * https://medium.com/@ricardson
 * http://blog.4linux.com.br
 * https://www.digitalocean.com
 * https://giovannireisnunes.wordpress.com
-* https://www.cyberciti.biz[https://www.cyberciti.biz/faq/how-to-set-and-use-sudo-password-for-ansible-vault/]
+* https://www.cyberciti.biz/faq/how-to-set-and-use-sudo-password-for-ansible-vault/
 
 
 ## Author
