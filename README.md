@@ -69,7 +69,6 @@ Gerenciar um ambiente de infraestrutura utilizando serviços:
 * https://giovannireisnunes.wordpress.com
 * https://www.cyberciti.biz/faq/how-to-set-and-use-sudo-password-for-ansible-vault/
 
-
 ## Author
 -----------
 * [LUSAR](http://linkedin.com/in/wluisaraujo)
