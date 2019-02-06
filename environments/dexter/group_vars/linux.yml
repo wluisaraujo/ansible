@@ -1,3 +1,6 @@
+---
 ansible_user: root
-ansible_password: 4linux
 ansible_connection: ssh
+ansible_ssh_user: root
+ansible_ssh_password: 4linux
+...

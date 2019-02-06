@@ -10,9 +10,9 @@
     Faz Gerência de Configuração;
     Aplica-se com idempotência;
     Aplica-se a Convergência;
-    Mantêm o estado desejado
-    Faz Provisionamento
-    Integra-se há Orquestração 
+    Mantêm o estado desejado;
+    Faz Provisionamento;
+    Integra-se há Orquestração;
 
 ## Introdução
 - Guia Rápido
