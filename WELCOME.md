@@ -7,6 +7,12 @@ ansible -c local -m ping
 ansible -c local -m ping localhost 
 ansible -c local -m ping localhost  -u -b -k -K
 
+
+## YAML
+
+https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
+
+
 ## Inventario
 
 /etc/ansible/hosts
