@@ -1,12 +1,16 @@
 ## Primeiros Passos
 
 ansible --help
-ansible-doc --help
-ansible-playbook --help
-ansible -c local -m ping
-ansible -c local -m ping localhost 
-ansible -c local -m ping localhost  -u -b -k -K
 
+ansible-doc --help
+
+ansible-playbook --help
+
+ansible -c local -m ping
+
+ansible -c local -m ping localhost 
+
+ansible -c local -m ping localhost  -u -b -k -K
 
 ## YAML
 
@@ -16,9 +20,12 @@ https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
 ## Inventario
 
 /etc/ansible/hosts
-GRUPOS
-CHILDREN
-VARS
+
+[GRUPO]
+
+[GRUPO:children]
+
+[GRUPO:vars]
 
 ## Configuracao
 
