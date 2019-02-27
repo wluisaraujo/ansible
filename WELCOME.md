@@ -81,12 +81,17 @@ https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
   $ ansible local -m apt -a 'name=htop state=present'
 
 ## Playbooks (yaml)
-´´´
-  ---
-    hosts: *
-    tasks: 
+<em>
+  
+  | ---
+  |
+  |  hosts: *
+  |  
+  |  tasks: 
+  |  
+  |    - name: 
   ...  
-´´´
+</em>
 
 
 tasks
