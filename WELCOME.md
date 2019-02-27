@@ -1,3 +1,51 @@
+## O que é ansible ?
+
+## Como funciona?
+
+- Server Less
+  
+- conexão via ssh
+  
+- Orquestrador ou Gerencia de Configurações?
+
+## Instalação:
+
+* Mac OS X:
+
+   $ sudo easy_install pip
+   
+   $ sudo pip install ansible
+
+* CentOS/Fedora:
+
+   $ sudo yum install ansible
+
+* Ubuntu:
+
+   $ sudo apt-get install software-properties-common
+   
+   $ sudo apt-add-repository ppa:ansible/ansible
+   
+   $ sudo apt-get update
+   
+   $ sudo apt-get install ansible
+
+## Configuracao
+
+   $ cd /etc/ansible 
+
+   $ more /etc/ansible/ansible.cfg
+
+## Inventario
+
+/etc/ansible/hosts
+
+[GRUPO]
+
+[GRUPO:children]
+
+[GRUPO:vars]
+
 ## Primeiros Passos
 
   $ ansible --help
@@ -17,21 +65,6 @@
 https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
 
 
-## Inventario
-
-/etc/ansible/hosts
-
-[GRUPO]
-
-[GRUPO:children]
-
-[GRUPO:vars]
-
-## Configuracao
-
-/etc/ansible/ansible.cfg
-
-
 ## Check Syntax
 
   $ ansible --check
@@ -48,6 +81,13 @@ https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
   $ ansible local -m apt -a 'name=htop state=present'
 
 ## Playbooks (yaml)
+´´´
+  ---
+    hosts: *
+    tasks: 
+  ...  
+´´´
+
 
 tasks
 
@@ -74,6 +114,9 @@ handlers
 
 ## Roles
 
-## Docs
+
+## Fonte e Referencia  
+
+https://www.youtube.com/watch?v=lqmuUuzA39Q
 
 https://docs.ansible.com/ansible/2.4/playbooks_tags.html
