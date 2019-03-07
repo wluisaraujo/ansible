@@ -1,7 +1,6 @@
-# IaC: Infrastructure as Code with Ansible
+## Infrastructure as Code with Ansible
 
 ## Apresentação
------------
 
   Administrar uma infraestrutura de DataCenter com a solução ansible para automação.
   Por que Ansible?
@@ -13,26 +12,28 @@
     Mantêm o estado desejado;
     Faz Provisionamento;
     Integra-se há Orquestração;
+-----------    
 
 ## Introdução
 - Guia Rápido
 
 ## Requerimentos
------------
+
   - Fedora/RHEL/CentOS
   - Debian/Ubuntu
   - Mac OS
   - Windows (WSL)?
   - Editores de texto (vim, atom, visual studio, etc)
-## Ambiente
 -----------
+
+## Ambiente
 
   - Ansible com Travis CI
   - Ansible c/ vagrant
   - Ansible c/ docker
   - Ansible Galaxy
 
-Utilizando ansible para gerenciar configurações de servidores Linux (Debian/CentOs/Ubuntu), MS Windows nodes.
+  Utilizando ansible para gerenciar configurações de servidores Linux (Debian/CentOs/Ubuntu), MS Windows nodes.
 Gerenciar um ambiente de infraestrutura utilizando serviços:
 
 * Ambiente Desktop
@@ -71,6 +72,7 @@ Gerenciar um ambiente de infraestrutura utilizando serviços:
   
 * Servidor de FTP
   * [Servidor vsFTPd](https://github.com/wluisaraujo/iac-ansible-vsftpd.git)
+-----------
 
 ## Integração
   - Interface Web
