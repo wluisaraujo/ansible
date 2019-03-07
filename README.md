@@ -35,17 +35,22 @@
 Utilizando ansible para gerenciar configurações de servidores Linux (Debian/CentOs/Ubuntu), MS Windows nodes.
 Gerenciar um ambiente de infraestrutura utilizando serviços:
 
-* iptables
-* isc-dhcp
-* dns
-* webserver
-* mailserver
-* database
-* ldapserver
-* storage
-* file server
-* proxy
-* open-vpn
+* Desktop Linux
+* Users Linux (local)
+* Firewall iptables
+* Servidor DHCP
+* Servidor DNS
+* Servidor DNS Slave
+* [Webserver](http://localhost)
+* [MailServer](https://github.com/wluisaraujo/iac-ansible-postfix.git)
+* WebMail
+* Database Server
+* LDAP Server
+* Storage
+* File Server
+* Proxy
+* Auditoria de Log de Proxy
+* Vpn Server
 
 ## Integração
   - Interface Web
