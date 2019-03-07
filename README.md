@@ -35,27 +35,46 @@
 Utilizando ansible para gerenciar configurações de servidores Linux (Debian/CentOs/Ubuntu), MS Windows nodes.
 Gerenciar um ambiente de infraestrutura utilizando serviços:
 
-* Desktop Linux
-* Users Linux (local)
-* Firewall iptables
-* Servidor DHCP
-* Servidor DNS
-* Servidor DNS Slave
-* [Webserver](http://localhost)
-* [MailServer](https://github.com/wluisaraujo/iac-ansible-postfix.git)
-* WebMail
-* Database Server
-* LDAP Server
-* Storage
-* File Server
-* Proxy
-* Auditoria de Log de Proxy
-* Vpn Server
+* Ambiente Desktop
+  * [Desktop Linux]
+  * [Users Linux (local)]
+  
+* Servidores de Rede
+  * [Firewall IPtables]
+  * [Servidor DHCP](https://github.com/wluisaraujo/iac-ansible-dhcp-server.git)
+  * [Vpn Server]
+  
+* Servidores DNS
+  * [Servidor DNS]
+  * [Servidor DNS Slave]
+  
+*  Servidores Web
+   * [Webserver](http://localhost)
+   
+* Servidor de E-mail   
+   * [MailServer](https://github.com/wluisaraujo/iac-ansible-postfix.git)
+   * [WebMail]
+   
+* Servidor de Banco de Dados   
+  * [PostgreSQL Database Server](https://github.com/wluisaraujo/iac-ansible-postgresql.git)
+  
+* Servidor de Autenticação
+  * [LDAP Server]
+  
+* Servidor de Storage e Compartilhamento
+  * [Storage]
+  * [File Server]
+  
+* Servidor de Proxy  
+  * [Proxy]
+  * [Auditoria de Log de Proxy]
+  
+* Servidor de FTP
+  * [Servidor vsFTPd](https://github.com/wluisaraujo/iac-ansible-vsftpd.git)
 
 ## Integração
   - Interface Web
-  - Ansible Tower
-  - AWX
+  - Ansible Tower & AWX
   - Rundeck
   - Jenkins
   - Project ARA
