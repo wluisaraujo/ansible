@@ -46,8 +46,8 @@ Integra-se há Orquestração;
 
 ## Ambiente
 
-  - [Ansible](https://www.ansible.com) com Travis CI
-  - [Ansible](https://www.ansible.com) c/ vagrant
+  - [Ansible](https://www.ansible.com) com [Travis CI](https://travis-ci.org/)
+  - [Ansible](https://www.ansible.com) c/ [vagrant](https://www.vagrantup.com/)
   - [Ansible c/ docker](https://github.com/wluisaraujo/iac-ansible-docker.git)
   - [Ansible Galaxy](https://galaxy.ansible.com/)
 
