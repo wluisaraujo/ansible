@@ -47,7 +47,7 @@ Integra-se há Orquestração;
 Gerenciar um ambiente de infraestrutura utilizando serviços:
 
 * Ambiente Desktop
-  * [Desktop Linux]
+  * [Desktop Linux](https://github.com/wluisaraujo/iac-ansible-desktop-environment.git)
   * [Users Linux (local)](https://github.com/wluisaraujo/iac-ansible-local-users.git)
 
 * [BaseLine de Servidores (Compliance)](https://github.com/wluisaraujo/iac-ansible-common-server.git)
@@ -65,12 +65,12 @@ Gerenciar um ambiente de infraestrutura utilizando serviços:
   * [SNMP Client](https://github.com/wluisaraujo/iac-ansible-snmp-agent.git)
   
 * Servidores DNS
-  * [Servidor DNS]
+  * [Servidor DNS](https://github.com/wluisaraujo/iac-ansible-named-server.git)
   * [Servidor DNS Slave](https://github.com/wluisaraujo/iac-ansible-named-slave.git)
   * [Web Interface Gui](https://github.com/wluisaraujo/iac-ansible-globodns.git)
   
 *  Servidores Web
-   * [Webserver](http://localhost)
+   * [Webserver](https://github.com/wluisaraujo/iac-ansible-webserver.git)
    
 * Servidor de E-mail   
    * [MailServer](https://github.com/wluisaraujo/iac-ansible-postfix.git)
@@ -80,7 +80,7 @@ Gerenciar um ambiente de infraestrutura utilizando serviços:
   * [PostgreSQL Database Server](https://github.com/wluisaraujo/iac-ansible-postgresql.git)
   
 * Servidor de Autenticação
-  * [LDAP Server]
+  * [LDAP Server](https://github.com/wluisaraujo/iac-ansible-openldap.git)
   
 * Servidor de Storage e Compartilhamento
   * [Storage]
@@ -101,9 +101,11 @@ Gerenciar um ambiente de infraestrutura utilizando serviços:
 ## Integração
 
   - Interface Web
+  - [GitLab](https://github.com/wluisaraujo/iac-ansible-gitlab.git)
   - [Ansible Tower & AWX](https://github.com/wluisaraujo/iac-ansible-awx.git)
   - [Rundeck](https://github.com/wluisaraujo/iac-ansible-rundeck.git)
   - [Jenkins](https://github.com/wluisaraujo/iac-ansible-jenkins.git)
+  - [Foreman](https://github.com/wluisaraujo/iac-ansible-theforeman.git)
   - Project ARA
 		
 ## Refrências
