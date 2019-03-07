@@ -2,9 +2,9 @@
 
 ## Apresentação
 
-Administrar uma infraestrutura de DataCenter com a solução ansible para automação.
+Administrar uma infraestrutura de DataCenter com a solução [Ansible](https://www.ansible.com) para automação.
 
-Por que Ansible?
+Por que [Ansible](https://www.ansible.com)?
 Entre as ferramentas, é a menos que interfere entre você e o problema. É a mais efetiva para traduzir o pensamentos em ações.
 É All-in-one;
 Faz Gerência de Configuração;
@@ -38,12 +38,12 @@ Integra-se há Orquestração;
 
 ## Ambiente
 
-  - Ansible com Travis CI
-  - Ansible c/ vagrant
+  - [Ansible](https://www.ansible.com) com Travis CI
+  - [Ansible](https://www.ansible.com) c/ vagrant
   - [Ansible c/ docker](https://github.com/wluisaraujo/iac-ansible-docker.git)
-  - Ansible Galaxy
+  - [Ansible Galaxy](https://galaxy.ansible.com/)
 
-  Utilizando ansible para gerenciar configurações de servidores Linux (Debian/CentOs/Ubuntu), MS Windows nodes.
+  Utilizando [Ansible](https://www.ansible.com) para gerenciar configurações de servidores Linux (Debian/CentOs/Ubuntu), MS Windows nodes.
 Gerenciar um ambiente de infraestrutura utilizando serviços:
 
 * Ambiente Desktop
@@ -111,16 +111,15 @@ Gerenciar um ambiente de infraestrutura utilizando serviços:
 ## Refrências
 -----------
 
-* http://blog.4linux.com.br/
-* http://ansible-br.org
-* http://devdocs.io/ansible/
-* https://doauto.blog/?s=ansible
-* https://churrops.io/category/devops/ansible
-* https://medium.com/@ricardson
-* http://blog.4linux.com.br
-* https://www.digitalocean.com
-* https://giovannireisnunes.wordpress.com
-* https://www.cyberciti.biz/faq/how-to-set-and-use-sudo-password-for-ansible-vault/
+[Blog 4Linux](http://blog.4linux.com.br/)
+[AnsibleBR](http://ansible-br.org)
+[DevDocs](http://devdocs.io/ansible/)
+[DoAUTO](https://doauto.blog/?s=ansible)
+[Churrops](https://churrops.io/category/devops/ansible)
+[Medium](https://medium.com/@ricardson)
+[DigitalOcean](https://www.digitalocean.com)
+[GiovanniReisNunes](https://giovannireisnunes.wordpress.com)
+[Cyberciti](https://www.cyberciti.biz/faq/how-to-set-and-use-sudo-password-for-ansible-vault/)
 
 ## Author
 -----------
