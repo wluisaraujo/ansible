@@ -17,7 +17,7 @@ Integra-se há Orquestração;
 -----------    
 
 ## Introdução
-- Guia Rápido
+- [Guia Rápido](https://github.com/wluisaraujo/iac-ansible/blob/master/WELCOME.md)
 
 ## Requerimentos
 
