@@ -5,13 +5,21 @@
 Administrar uma infraestrutura de DataCenter com a solução [Ansible](https://www.ansible.com) para automação.
 
 Por que [Ansible](https://www.ansible.com)?
+
 Entre as ferramentas, é a menos que interfere entre você e o problema. É a mais efetiva para traduzir o pensamentos em ações.
+
 É All-in-one;
+
 Faz Gerência de Configuração;
+
 Aplica-se com idempotência;
+
 Aplica-se a Convergência;
+
 Mantêm o estado desejado;
+
 Faz Provisionamento;
+
 Integra-se há Orquestração;
 
 -----------    
