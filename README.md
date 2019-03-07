@@ -21,7 +21,7 @@ Integra-se há Orquestração;
 
 ## Compatibilidade
 
-  - Fedora
+  - [Fedora](https://getfedora.org/pt_BR/workstation/)
   - RHEL
   - CentOS
   - Debian
@@ -31,7 +31,7 @@ Integra-se há Orquestração;
 
 # Requerimentos
   - Editores de texto 
-    - vim
+    - [vim](https://aurelio.net/vim/)
     - atom
     - Visual Studio Code
 -----------
