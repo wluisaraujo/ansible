@@ -25,7 +25,7 @@ Integra-se há Orquestração;
 -----------    
 
 ## Introdução
-- [Guia Rápido](https://github.com/wluisaraujo/iac-ansible/blob/master/WELCOME.md)
+- [Guia Rápido](https://git.io/fhhZ9)
 
 ## Compatibilidade
 
@@ -120,13 +120,21 @@ Gerenciar um ambiente de infraestrutura utilizando serviços:
 -----------
 
 [Blog 4Linux](http://blog.4linux.com.br/)
+
 [AnsibleBR](http://ansible-br.org)
+
 [DevDocs](http://devdocs.io/ansible/)
+
 [DoAUTO](https://doauto.blog/?s=ansible)
+
 [Churrops](https://churrops.io/category/devops/ansible)
+
 [Medium](https://medium.com/@ricardson)
+
 [DigitalOcean](https://www.digitalocean.com)
+
 [GiovanniReisNunes](https://giovannireisnunes.wordpress.com)
+
 [Cyberciti](https://www.cyberciti.biz/faq/how-to-set-and-use-sudo-password-for-ansible-vault/)
 
 ## Author
