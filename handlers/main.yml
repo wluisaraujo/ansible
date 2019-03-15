@@ -52,7 +52,7 @@
 - name: Stop {{ service_name }}
   service:
     state: stopped
-    name: postfix
+    name: {{ service_name }}
     enabled: yes
   when: 
     - ansible_service_mgr == "service"
