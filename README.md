@@ -58,10 +58,10 @@ Gerenciar um ambiente de infraestrutura utilizando serviços:
   * [Desktop Linux](https://github.com/wluisaraujo/iac-ansible-desktop-environment.git)
   * [Users Linux (local)](https://github.com/wluisaraujo/iac-ansible-local-users.git)
 
-* [BaseLine de Servidores (Compliance)](https://github.com/wluisaraujo/iac-ansible-common-server.git)
+* [BaseLine de Servidores (Compliance)](https://github.com/wluisaraujo/iac-ansible-common-server.git) | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-common-server.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-common-server) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Common%20Server-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac-ansible-common-server)
 
 * Servidores de Rede
-  * [Firewall IPtables](https://github.com/wluisaraujo/iac-ansible-iptables.git)
+  * [Firewall IPtables](https://github.com/wluisaraujo/iac-ansible-iptables.git) | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-iptables.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-iptables)
   * [Servidor DHCP](https://github.com/wluisaraujo/iac-ansible-dhcp-server.git)
   * [VPN Server](http://dev/null)
   * [NTP Server](https://github.com/wluisaraujo/iac-ansible-ntp-server.git)
