@@ -62,7 +62,7 @@ Gerenciar um ambiente de infraestrutura utilizando serviços:
 
 * Servidores de Rede
 
-[Firewall IPtables](https://github.com/wluisaraujo/iac-ansible-iptables.git) [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Firewall%20IPtables-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac-ansible-common-server) [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-iptables.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-iptables)
+[Firewall IPtables](https://github.com/wluisaraujo/iac-ansible-iptables.git) [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Firewall%20IPtables-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac-ansible-iptables) [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-iptables.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-iptables)
 
 * [Servidor DHCP](https://github.com/wluisaraujo/iac-ansible-dhcp-server.git)
   * [VPN Server](http://dev/null)
