@@ -52,77 +52,75 @@ Integra-se há Orquestração;
   - [Ansible Galaxy](https://galaxy.ansible.com/)
 
   Utilizando [Ansible](https://www.ansible.com) para gerenciar configurações de servidores Linux (Debian/CentOs/Ubuntu), MS Windows nodes.
-Gerenciar um ambiente de infraestrutura utilizando serviços:
 
-* Ambiente Desktop
-  * [Desktop Linux](https://github.com/wluisaraujo/iac-ansible-desktop-environment.git)
-  * [Users Linux (local)](https://github.com/wluisaraujo/iac-ansible-local-users.git)
+Roles para gerenciar um ambiente de infraestrutura
+
+[Desktop Linux](https://github.com/wluisaraujo/iac-ansible-desktop-environment.git)
+
+[Users Linux (local)](https://github.com/wluisaraujo/iac-ansible-local-users.git)
 
 [BaseLine de Servidores (Compliance)](https://github.com/wluisaraujo/iac-ansible-common-server.git)
 
 [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Common%20Server-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac-ansible-common-server) 
 [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-common-server.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-common-server)
 
-* Servidores de Rede
-
 [Firewall IPtables](https://github.com/wluisaraujo/iac-ansible-iptables.git)
 
 [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Firewall%20IPtables-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac-ansible-iptables) 
 [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-iptables.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-iptables)
 
-* [Servidor DHCP](https://github.com/wluisaraujo/iac-ansible-dhcp-server.git)
-  * [VPN Server](http://dev/null)
-  * [NTP Server](https://github.com/wluisaraujo/iac-ansible-ntp-server.git)
-  * [NTP Client](https://github.com/wluisaraujo/iac-ansible-ntp-client.git)
-  * [Log Server]
-  * [Log Client](https://github.com/wluisaraujo/iac-ansible-rsyslog-client.git)
-  * [NTP Server]
-  * [NTP Client]
-  * [SNMP Client](https://github.com/wluisaraujo/iac-ansible-snmp-agent.git)
-  
-* Servidores DNS
-  * [Servidor DNS](https://github.com/wluisaraujo/iac-ansible-named-server.git)
-  * [Servidor DNS Slave](https://github.com/wluisaraujo/iac-ansible-named-slave.git)
-  * [Web Interface Gui](https://github.com/wluisaraujo/iac-ansible-globodns.git)
-  
-*  Servidores Web
-   * [Webserver](https://github.com/wluisaraujo/iac-ansible-webserver.git)
-   
-* Servidor de E-mail   
-   * [MailServer](https://github.com/wluisaraujo/iac-ansible-postfix.git)
-   * [WebMail](https://github.com/wluisaraujo/iac-ansible-roundcubemail.git)
-   
-* Servidor de Banco de Dados   
-  * [PostgreSQL Database Server](https://github.com/wluisaraujo/iac-ansible-postgresql.git)
-  
-* Servidor de Autenticação
-  * [LDAP Server](https://github.com/wluisaraujo/iac-ansible-openldap.git)
-  
-* Servidor de Storage e Compartilhamento
-  * [Storage]
-  * [File Server]
-  
-* Servidor de Proxy  
-  * [Proxy](https://github.com/wluisaraujo/iac-ansible-squid.git)
-  * [Auditoria de Log de Proxy](https://dev/null)
-  
-* Servidor de FTP
-  * [Servidor vsFTPd](https://github.com/wluisaraujo/iac-ansible-vsftpd.git)
+[Servidor DHCP](https://github.com/wluisaraujo/iac-ansible-dhcp-server.git)
 
-* Orquestração de Ambientes Infraestrutura
-  * [Puppet](https://github.com/wluisaraujo/iac-ansible-puppet-ce.git)
+[VPN Server](http://dev/null)
+
+[NTP Server](https://github.com/wluisaraujo/iac-ansible-ntp-server.git)
+
+[NTP Client](https://github.com/wluisaraujo/iac-ansible-ntp-client.git)
+
+[Log Server]
   
------------
+[Log Client](https://github.com/wluisaraujo/iac-ansible-rsyslog-client.git)
 
-## Integração
+[NTP Server]
+  
+[NTP Client]
+  
+[SNMP Client](https://github.com/wluisaraujo/iac-ansible-snmp-agent.git)
+  
+[Servidor DNS](https://github.com/wluisaraujo/iac-ansible-named-server.git)
+  
+[Servidor DNS Slave](https://github.com/wluisaraujo/iac-ansible-named-slave.git)
 
-  - Interface Web
-  - [GitLab](https://github.com/wluisaraujo/iac-ansible-gitlab.git)
-  - [Ansible Tower & AWX](https://github.com/wluisaraujo/iac-ansible-awx.git)
-  - [Rundeck](https://github.com/wluisaraujo/iac-ansible-rundeck.git)
-  - [Jenkins](https://github.com/wluisaraujo/iac-ansible-jenkins.git)
-  - [Foreman](https://github.com/wluisaraujo/iac-ansible-theforeman.git)
-  - Project ARA
+[Web Interface Gui](https://github.com/wluisaraujo/iac-ansible-globodns.git)
+  
+[Webserver](https://github.com/wluisaraujo/iac-ansible-webserver.git)
+ 
+[MailServer](https://github.com/wluisaraujo/iac-ansible-postfix.git)
+
+[WebMail](https://github.com/wluisaraujo/iac-ansible-roundcubemail.git)
+
+[PostgreSQL Database Server](https://github.com/wluisaraujo/iac-ansible-postgresql.git)
+  
+[LDAP Server](https://github.com/wluisaraujo/iac-ansible-openldap.git)
+  
+[Proxy](https://github.com/wluisaraujo/iac-ansible-squid.git)
+
+[Auditoria de Log de Proxy](https://dev/null)
+  
+[Servidor vsFTPd](https://github.com/wluisaraujo/iac-ansible-vsftpd.git)
+
+[Puppet](https://github.com/wluisaraujo/iac-ansible-puppet-ce.git)
+  
+[GitLab](https://github.com/wluisaraujo/iac-ansible-gitlab.git)
+
+[Ansible Tower & AWX](https://github.com/wluisaraujo/iac-ansible-awx.git)
+
+[Rundeck](https://github.com/wluisaraujo/iac-ansible-rundeck.git)
+
+[Jenkins](https://github.com/wluisaraujo/iac-ansible-jenkins.git)
+
+[Foreman](https://github.com/wluisaraujo/iac-ansible-theforeman.git)
+
 		
 ## Refrências
 -----------
