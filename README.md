@@ -136,6 +136,7 @@ Gerenciar um ambiente de infraestrutura utilizando serviços:
 [GiovanniReisNunes](https://giovannireisnunes.wordpress.com)
 
 [Cyberciti](https://www.cyberciti.biz/faq/how-to-set-and-use-sudo-password-for-ansible-vault/)
+
 ----------------
 
 [![Author](https://img.shields.io/badge/Author-%40w.luis.araujo-blue.svg)](http://linkedin.com/in/wluisaraujo)
