@@ -1,0 +1,82 @@
+---
+- hosts: RHEL8
+  
+  vars: 
+    - username: REDHATACCOUNT
+    - password: REDHATPASSWORD
+    - snmpuser: SNMPUSER
+    - snmppassword: SNMPPASWORD
+    
+  tasks:
+
+  - assert:
+      msg: "This role can only be applied to Red Hat 8 Environment"
+      that: ansible_distribution == "RedHat" and ansible_distribution_major_version == '8'
+
+  - name: REGISTER SYSTEM 
+    redhat_subscription:
+      state: present
+      username: "{{ username }}"
+      password: "{{ password }}"
+      auto_attach: yes
+  
+  - rhsm_repository:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - rhel-8-for-x86_64-baseos-rpms
+      - ansible-2.8-for-rhel-8-x86_64-rpms
+      - rhel-8-for-x86_64-supplementary-rpms 
+    when: ansible_distribution == "RedHat" and ansible_distribution_major_version == '8'
+    
+  - name: INSTALL PACKAGE
+    yum:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - net-snmp
+      - net-snmp-libs
+      - qemu-guest-agent
+      - lsof
+      - tzdata
+
+  - name: STOPPING SNMP
+    systemd:
+      state: stopped
+      name:  snmpd.service     
+    when: ansible_service_mgr == "systemd"
+  
+  - name: SETTING SNMP
+    shell: net-snmp-create-v3-user -ro -A "{{ snmppassword }}" -a MD5 -X "{{ snmppassword }}" -x DES "{{ snmpuser }}" 2>/dev/null
+
+  - name: SETTING FIREWALLD     
+    firewalld:
+      service: snmp
+      permanent: yes
+      state: enabled
+       
+  - firewalld:
+      port: "{{ item }}"
+      permanent: yes
+      state: enabled
+    loop:
+      - 161-162/udp
+      - 161-162/tcp
+
+  - name: SETTING SERVICES
+    systemd:
+      state: started
+      name: "{{ item }}" 
+      enabled: yes
+    loop:
+      - snmpd.service
+      - cockpit.socket
+      - chronyd.service
+    when: ansible_service_mgr == "systemd"
+
+  - name: SETTING ENVIRONMENT
+    timezone:
+      name: America/Sao_Paulo
+  
+  - shell: timedatectl set-ntp true    
+...
