@@ -2,8 +2,8 @@
 - hosts: RHEL8
   
   vars: 
-    - username: REDHATACCOUNT
-    - password: REDHATPASSWORD
+    - redhatacc: REDHATACCOUNT
+    - redhatpass: REDHATPASSWORD
     - snmpuser: SNMPUSER
     - snmppassword: SNMPPASWORD
     
@@ -16,8 +16,8 @@
   - name: REGISTER SYSTEM 
     redhat_subscription:
       state: present
-      username: "{{ username }}"
-      password: "{{ password }}"
+      username: "{{ redhatacc }}"
+      password: "{{ redhatpass }}"
       auto_attach: yes
   
   - rhsm_repository:
