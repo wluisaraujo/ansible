@@ -13,33 +13,34 @@
       msg: "This role can only be applied to Red Hat 8 Environment"
       that: ansible_distribution == "RedHat" and ansible_distribution_major_version == '8'
 
-  - name: REGISTER SYSTEM 
+  - name: "     REGISTER SYSTEM " 
     redhat_subscription:
       state: present
       username: "{{ redhatacc }}"
       password: "{{ redhatpass }}"
       auto_attach: yes
   
-  - rhsm_repository:
+   - rhsm_repository:
       name: "{{ item }}"
       state: present
     loop:
       - rhel-8-for-x86_64-baseos-rpms
-      - ansible-2.8-for-rhel-8-x86_64-rpms
       - rhel-8-for-x86_64-supplementary-rpms 
     
-  - name: INSTALL PACKAGE
+  - name: "     INSTALL PACKAGE"
     yum:
       name: "{{ item }}"
       state: present
     loop:
+      - git
+      - lsof
       - net-snmp
       - net-snmp-libs
       - qemu-guest-agent
-      - lsof
+      - sysstat
       - tzdata
 
-  - name: STOPPING SNMP
+  - name: "     STOPPING SNMP"
     systemd:
       state: stopped
       name:  snmpd.service     
@@ -68,9 +69,11 @@
       name: "{{ item }}" 
       enabled: yes
     loop:
-      - snmpd.service
-      - cockpit.socket
       - chronyd.service
+      - cockpit.socket
+      - qemu-guest-agent.service
+      - snmpd.service
+      - tuned.service
     when: ansible_service_mgr == "systemd"
 
   - name: SETTING ENVIRONMENT
@@ -79,8 +82,24 @@
   
   - shell: timedatectl set-ntp true
   
+  - replace:
+      dest: /etc/logrotate.conf
+      regexp: '^#compress'
+      replace: 'compress'
+  
   - lineinfile:
       path: /etc/bashrc
       state: present
       line: 'export HISTTIMEFORMAT="%d-%m-%y %T  "'
+
+  - sysctl:
+      name: '{{ item.name }}'
+      state: present
+      value: '{{ item.value }}'
+      sysctl_file: /etc/sysctl.conf
+      sysctl_set: yes
+      reload: yes
+      ignoreerrors: yes
+    with_items:
+      - { name: 'vm.swappiness', value: '10' }      
 ...
