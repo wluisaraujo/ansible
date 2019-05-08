@@ -27,7 +27,6 @@
       - rhel-8-for-x86_64-baseos-rpms
       - ansible-2.8-for-rhel-8-x86_64-rpms
       - rhel-8-for-x86_64-supplementary-rpms 
-    when: ansible_distribution == "RedHat" and ansible_distribution_major_version == '8'
     
   - name: INSTALL PACKAGE
     yum:
@@ -78,5 +77,10 @@
     timezone:
       name: America/Sao_Paulo
   
-  - shell: timedatectl set-ntp true    
+  - shell: timedatectl set-ntp true
+  
+  - lineinfile:
+      path: /etc/bashrc
+      state: present
+      line: 'export HISTTIMEFORMAT="%d-%m-%y %T  "'
 ...
