@@ -61,17 +61,17 @@ Role | Ansible Galaxy | Build
 [Users Linux (local)](https://git.io/fjRao) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Desktop%20Linux-blue.svg)](https://git.io/fjRao) | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-local-users.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-local-users)
 [BaseLine de Servidores (Compliance)](https://github.com/wluisaraujo/iac-ansible-common-server.git) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Common%20Server-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac-ansible-common-server) | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-common-server.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-common-server)
 [Firewall IPtables](https://github.com/wluisaraujo/iac-ansible-iptables.git) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Firewall%20IPtables-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac-ansible-iptables) | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-iptables.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-iptables)
-[Servidor DHCP](https://github.com/wluisaraujo/iac-ansible-dhcp-server.git) | TEXTO | TEXTO
+[Servidor DHCP](https://github.com/wluisaraujo/iac-ansible-dhcp-server.git) | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-dhcp-server.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-dhcp-server)
 [VPN Server](http://dev/null)  | TEXTO | TEXTO
-[NTP Server](https://github.com/wluisaraujo/iac-ansible-ntp-server.git)  | TEXTO | TEXTO
-[NTP Client](https://github.com/wluisaraujo/iac-ansible-ntp-client.git)  | TEXTO | TEXTO
-[Log Server](http://dev/null) | TEXTO | TEXTO
-[Log Client](https://github.com/wluisaraujo/iac-ansible-rsyslog-client.git)
-[NTP Server](http://dev/null) | TEXTO | TEXTO
-[NTP Client](http://dev/null) | TEXTO | TEXTO
-[SNMP Client](https://github.com/wluisaraujo/iac-ansible-snmp-agent.git)  | TEXTO | TEXTO  
-[Servidor DNS](https://github.com/wluisaraujo/iac-ansible-named-server.git)  | TEXTO | TEXTO
-[Servidor DNS Slave](https://github.com/wluisaraujo/iac-ansible-named-slave.git) | TEXTO | TEXTO
+[NTP Server](https://github.com/wluisaraujo/iac-ansible-ntp-server.git)  | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-ntp-server.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-ntp-server)
+[NTP Client](https://github.com/wluisaraujo/iac-ansible-ntp-client.git)  | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-ntp-client.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-ntp-client)
+[Log Server](http://dev/null) |  | 
+[Log Client](https://github.com/wluisaraujo/iac-ansible-rsyslog-client.git) | | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-rsyslog-client.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-rsyslog-client)
+[NTP Server](http://dev/null) |  | 
+[NTP Client](http://dev/null) |  | 
+[SNMP Client](https://github.com/wluisaraujo/iac-ansible-snmp-agent.git)  | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-snmp-agent.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-snmp-agent)  
+[Servidor DNS](https://github.com/wluisaraujo/iac-ansible-named-server.git)  | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-named-server.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-named-server)
+[Servidor DNS Slave](https://github.com/wluisaraujo/iac-ansible-named-slave.git) | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-named-slave.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-named-slave)
 [Web Interface Gui](https://github.com/wluisaraujo/iac-ansible-globodns.git) | TEXTO | TEXTO
 [Webserver](https://github.com/wluisaraujo/iac-ansible-webserver.git) | TEXTO | TEXTO
 [MailServer](https://github.com/wluisaraujo/iac-ansible-postfix.git) | TEXTO | TEXTO
@@ -88,11 +88,7 @@ Role | Ansible Galaxy | Build
 [Jenkins](https://github.com/wluisaraujo/iac-ansible-jenkins.git) | TEXTO | TEXTO
 [Foreman](https://github.com/wluisaraujo/iac-ansible-theforeman.git) | TEXTO | TEXTO
 
- 
 
-
-
-		
 ## Refrências
 -----------
 
