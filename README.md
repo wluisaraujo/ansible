@@ -57,10 +57,18 @@ Roles para gerenciar um ambiente de infraestrutura
 
 Role | Ansible Galaxy | Build
 --- | --- | ---
-[Desktop Linux](https://git.io/fjRaK) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Desktop%20Linux-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac_ansible_workstation_environment) | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-workstation-environment.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-workstation-environment)
-[Users Linux (local)](https://git.io/fjRao) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Desktop%20Linux-blue.svg)](https://git.io/fjRao) | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-local-users.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-local-users)
-[BaseLine de Servidores (Compliance)](https://github.com/wluisaraujo/iac-ansible-common-server.git) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Common%20Server-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac-ansible-common-server) | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-common-server.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-common-server)
-[Firewall IPtables](https://github.com/wluisaraujo/iac-ansible-iptables.git) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Firewall%20IPtables-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac-ansible-iptables) | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-iptables.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-iptables)
+[Desktop Linux](https://git.io/fjRaK) | 
+[![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Desktop%20Linux-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac_ansible_workstation_environment) | 
+[![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-workstation-environment.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-workstation-environment)
+[Users Linux (local)](https://git.io/fjRao) | 
+[![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Desktop%20Linux-blue.svg)](https://git.io/fjRao) | 
+[![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-local-users.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-local-users)
+[BaseLine de Servidores (Compliance)](https://github.com/wluisaraujo/iac-ansible-common-server.git) | 
+[![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Common%20Server-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac-ansible-common-server) | 
+[![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-common-server.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-common-server)
+[Firewall IPtables](https://github.com/wluisaraujo/iac-ansible-iptables.git) | 
+[![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Firewall%20IPtables-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac-ansible-iptables) | 
+[![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-iptables.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-iptables)
 [Servidor DHCP](https://github.com/wluisaraujo/iac-ansible-dhcp-server.git) | TEXTO | TEXTO
 [VPN Server](http://dev/null)  | TEXTO | TEXTO
 [NTP Server](https://github.com/wluisaraujo/iac-ansible-ntp-server.git)  | TEXTO | TEXTO
