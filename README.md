@@ -72,21 +72,21 @@ Role | Ansible Galaxy | Build
 [SNMP Client](https://github.com/wluisaraujo/iac-ansible-snmp-agent.git)  | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-snmp-agent.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-snmp-agent)  
 [Servidor DNS](https://github.com/wluisaraujo/iac-ansible-named-server.git)  | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-named-server.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-named-server)
 [Servidor DNS Slave](https://github.com/wluisaraujo/iac-ansible-named-slave.git) | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-named-slave.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-named-slave)
-[Web Interface Gui](https://github.com/wluisaraujo/iac-ansible-globodns.git) | TEXTO | TEXTO
-[Webserver](https://github.com/wluisaraujo/iac-ansible-webserver.git) | TEXTO | TEXTO
-[MailServer](https://github.com/wluisaraujo/iac-ansible-postfix.git) | TEXTO | TEXTO
-[WebMail](https://github.com/wluisaraujo/iac-ansible-roundcubemail.git) | TEXTO | TEXTO
-[PostgreSQL Database Server](https://github.com/wluisaraujo/iac-ansible-postgresql.git) | TEXTO | TEXTO
-[LDAP Server](https://github.com/wluisaraujo/iac-ansible-openldap.git) | TEXTO | TEXTO
-[Proxy](https://github.com/wluisaraujo/iac-ansible-squid.git) | TEXTO | TEXTO
+[DNS GUI WebInterface ](https://github.com/wluisaraujo/iac-ansible-globodns.git) | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-globodns.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-globodns)
+[Webserver](https://github.com/wluisaraujo/iac-ansible-webserver.git) | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-webserver.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-webserver)
+[MailServer](https://github.com/wluisaraujo/iac-ansible-postfix.git) | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-postfix.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-postfix)
+[WebMail](https://github.com/wluisaraujo/iac-ansible-roundcubemail.git) | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-roundcubemail.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-roundcubemail)
+[PostgreSQL Database Server](https://github.com/wluisaraujo/iac-ansible-postgresql.git) | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-postgresql.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-postgresql)
+[LDAP Server](https://github.com/wluisaraujo/iac-ansible-openldap.git) | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-openldap.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-openldap)
+[Proxy](https://github.com/wluisaraujo/iac-ansible-squid.git) | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-squid.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-squid)
 [Auditoria de Log de Proxy](https://dev/null) | TEXTO | TEXTO
-[Servidor vsFTPd](https://github.com/wluisaraujo/iac-ansible-vsftpd.git) | TEXTO | TEXTO
-[Puppet](https://github.com/wluisaraujo/iac-ansible-puppet-ce.git) | TEXTO | TEXTO
-[GitLab](https://github.com/wluisaraujo/iac-ansible-gitlab.git) | TEXTO | TEXTO
-[Ansible Tower & AWX](https://github.com/wluisaraujo/iac-ansible-awx.git) | TEXTO | TEXTO
-[Rundeck](https://github.com/wluisaraujo/iac-ansible-rundeck.git) | TEXTO | TEXTO
-[Jenkins](https://github.com/wluisaraujo/iac-ansible-jenkins.git) | TEXTO | TEXTO
-[Foreman](https://github.com/wluisaraujo/iac-ansible-theforeman.git) | TEXTO | TEXTO
+[Servidor vsFTPd](https://github.com/wluisaraujo/iac-ansible-vsftpd.git) | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-vsftpd.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-vsftpd)
+[Puppet](https://github.com/wluisaraujo/iac-ansible-puppet-ce.git) | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-puppet-ce.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-puppet-ce)
+[GitLab](https://github.com/wluisaraujo/iac-ansible-gitlab.git) | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-gitlab.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-gitlab)
+[Ansible Tower & AWX](https://github.com/wluisaraujo/iac-ansible-awx.git) | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-awx.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-awx)
+[Rundeck](https://github.com/wluisaraujo/iac-ansible-rundeck.git) | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-rundeck.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-rundeck)
+[Jenkins](https://github.com/wluisaraujo/iac-ansible-jenkins.git) | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-jenkins.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-jenkins)
+[Foreman](https://github.com/wluisaraujo/iac-ansible-theforeman.git) | TEXTO | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-theforeman.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-theforeman)
 
 
 ## Refrências
