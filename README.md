@@ -30,9 +30,9 @@ Integra-se há Orquestração;
 ## Compatibilidade
 
   - [Fedora](https://getfedora.org/pt_BR/workstation/)
-  - RHEL
-  - CentOS
-  - Debian
+  - [RHEL](https://access.redhat.com/documentation)
+  - [CentOS](https://wiki.centos.org/HowTos)
+  - [Debian]()
   - Ubuntu
   - Mac OS
   - Windows (WSL)?
