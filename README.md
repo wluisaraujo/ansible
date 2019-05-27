@@ -88,6 +88,7 @@ Role | Ansible Galaxy | Build
 [Jenkins](https://github.com/wluisaraujo/iac-ansible-jenkins.git) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Jenkins-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac-ansible-jenkins) | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-jenkins.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-jenkins)
 [Foreman](https://git.io/fjRVK) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-The%20SForeman-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac-ansible-theforeman) | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-theforeman.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-theforeman)
 [oVirt Guest Agent](https://git.io/fjRVr) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-oVirt%20SGuestAgent-blue.svg)](https://git.io/fjRVr) | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-ovirt-guest-agent.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-ovirt-guest-agent)
+[Docker](https://git.io/fjRwT) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Docker-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac-ansible-docker) | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-docker.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-docker)
 
 ## Refrências
 -----------
