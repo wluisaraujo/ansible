@@ -55,7 +55,10 @@ Integra-se há Orquestração;
 
 Roles para gerenciar um ambiente de infraestrutura
 
-[Desktop Linux](https://github.com/wluisaraujo/iac-ansible-desktop-environment.git)
+[Desktop Linux](https://github.com/wluisaraujo/iac-ansible-workstation-environment.git)
+
+[![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Common%20Server-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac_ansible_workstation_environment) 
+[![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-workstation-environment.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-workstation-environment)
 
 [Users Linux (local)](https://github.com/wluisaraujo/iac-ansible-local-users.git)
 
