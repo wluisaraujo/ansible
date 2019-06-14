@@ -1,4 +1,4 @@
-## Infrastructure as Code with Ansible
+## Infrastructure as Code with [Ansible](https://www.ansible.com)
 
 ## Apresentação
 
@@ -33,15 +33,15 @@ Integra-se há Orquestração;
   - [RHEL](https://access.redhat.com/documentation)
   - [CentOS](https://wiki.centos.org/HowTos)
   - [Debian]()
-  - Ubuntu
-  - Mac OS
-  - Windows (WSL)?
+  - [Ubuntu]()
+  - [Mac OS]()
+  - [Windows (WSL)?]()
 
 # Requerimentos
   - Editores de texto 
     - [vim](https://aurelio.net/vim/)
-    - atom
-    - Visual Studio Code
+    - [atom]()
+    - [Visual Studio Code]()
 -----------
 
 ## Ambiente
