@@ -57,7 +57,7 @@ Roles para gerenciar um ambiente de infraestrutura
 
 Role | Ansible Galaxy | Build
 --- | --- | ---
-[Ansible AWX](https://git.io/fj2X6) | [![Ansible Galaxy](https://tinyurl.com/y3et5tru)](https://tinyurl.com/yxffzfmk) | [![Build Status]](https://tinyurl.com/yyze4j89)
+[Ansible AWX](https://git.io/fj2X6) | [![Ansible Galaxy](https://tinyurl.com/y3et5tru)](https://tinyurl.com/yxffzfmk) | [![Build Status](https://tinyurl.com/yy92eosr)](https://tinyurl.com/y5rrpawb)
 [Auditoria de Log de Proxy](https://) |  | 
 [BaseLine de Servidores](https://git.io/fjRVU) | [![Ansible Galaxy](https://tinyurl.com/y4q26nft)](https://tinyurl.com/y6axwndl) | [![Build Status](https://tinyurl.com/y4jne68v)](https://tinyurl.com/y3b7ncgy)
 [DNS GUI WebInterface ](https://git.io/fj2XR) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Globo%20DNS-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac-ansible-globodns) | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-globodns.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-globodns)
