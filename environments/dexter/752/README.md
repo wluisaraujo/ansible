@@ -29,8 +29,9 @@ Requisitos
 
 A 4Linux utiliza Máquinas Virtuais para permitir ao aluno realizar o Curso em qualquer computador ou sistema operacional. Você precisará baixar os Appliances e importá-lo no VirtualBox.
 
- [Oracle Virtual Box](https://www.virtualbox.org/wiki/Downloads) versão 6 ou mais atual
- [Oracle VM VirtualBox Extension Pack](https://www.virtualbox.org/wiki/Downloads)
+* [Oracle Virtual Box](https://www.virtualbox.org/wiki/Downloads) versão 6 ou mais atual
+ 
+* [Oracle VM VirtualBox Extension Pack](https://www.virtualbox.org/wiki/Downloads)
  
 Appliance (Template)
 
