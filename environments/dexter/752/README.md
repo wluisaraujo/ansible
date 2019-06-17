@@ -41,7 +41,7 @@ domingo@sala-linus:~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 
 
 ### Exemplo de uso configurando FIREWALL
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml --limit="security" --tags "FIREWALL"  --check
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
 ```
 
 ### DNS
