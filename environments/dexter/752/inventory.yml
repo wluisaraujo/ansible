@@ -3,15 +3,16 @@
 #author:  w.luis.araujo@gmail.com
 #publish_date: Jun/2019
 
-
-
 [FIREWALL]
 security          ansible_host=172.16.100.201
+
 [DNS]
 webserver01       ansible_host=172.16.100.203
 webserver02       ansible_host=172.16.100.204
+
 [LDAP]
 storage           ansible_host=172.16.100.201
+
 [SHARE]
 
 [MAIL]
@@ -25,16 +26,16 @@ storage           ansible_host=172.16.100.201
 [SQUID]
 
 [DEXTER:children]
-FIREWALL
+DATABASE
 DNS
+FIREWALL
 LDAP
-SHARE
 MAIL
+NGINX
+SHARE
+SQUID
 VPN
 WEB
-NGINX
-SQUID
-DATABASE
 
 [all:vars]
 ansible_ssh_user=suporte

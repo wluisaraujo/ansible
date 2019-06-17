@@ -3,10 +3,67 @@
 #author:  w.luis.araujo@gmail.com
 #publish_date: Jun/2019
 
-- hosts: FIREWALL
+- hosts: security
   vars:
     - MYDOMAIN: dexter.com.br
   tasks:
-  - name " Hello!!!"
+#
+  - apt: 
+      name: "{{ item }}" 
+      state: present 
+      update_cache: true
+    loop:
+    - iptables-persistent
+    - nmap
+    - tcpdump 
+#
+  - copy:
+      src: /opt/iptables/firewall
+      dest: /etc/init.d/firewall
+      mode: '755'
+      remote_src: yes
+# 
+  - shell: "{{ item }}"
+    loop:
+      - /etc/init.d/firewall start > /dev/null 2>&1
+      - iptables -t filter -I INPUT   -p tcp --sport 22  -j ACCEPT > /dev/null 2>&1
+      - iptables -t filter -I OUTPUT  -p tcp --dport 22  -j ACCEPT > /dev/null 2>&1
+      - iptables -t filter -I FORWARD -p udp --dport 123 -j ACCEPT > /dev/null 2>&1
+      - iptables -t filter -I FORWARD -p udp --sport 123 -j ACCEPT > /dev/null 2>&1
+      - iptables -t filter -I INPUT   -p udp --sport 123 -j ACCEPT > /dev/null 2>&1
+      - iptables -t filter -I OUTPUT  -p udp --dport 123 -j ACCEPT > /dev/null 2>&1
+      - iptables-save > /etc/iptables/rules.v4 > /dev/null 2>&1
+#
+  - replace:
+      dest: /lib/systemd/system/netfilter-persistent.service
+      regexp: '^ExecStop=/usr/sbin/netfilter-persistent'
+      replace: 'ExecStop=/usr/sbin/netfilter-persistent flush'
+#
+  - systemd:
+      daemon_reload: yes
+      
+  - systemd:
+      state: restarted
+      daemon_reload: yes
+      enabled: yes
+      name: netfilter-persistent.service
+#      
+- hosts: "webserve02,webproxy"
+  tasks:
+  - systemd:
+      state: restarted
+      name: firewalld.service       
+      enabled: yes
 
+  - firewalld:
+      service: ntp
+      permanent: yes
+      immediate: yes
+      state: enabled
+  
+  - firewalld:
+      service: dns
+      permanent: yes
+      immediate: yes
+      state: enabled      
 ...

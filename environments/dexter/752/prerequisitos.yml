@@ -3,7 +3,7 @@
 #author:  w.luis.araujo@gmail.com
 #publish_date: Jun/2019
 
-- hosts: all
+- hosts: DEXTER
   
   vars:
     - MYDOMAIN: dexter.com.br
@@ -26,6 +26,9 @@
     loop:
       - bash-completion
       - ntpdate
+      - systat
+      - lsof
+      - htop
     when: ansible_os_family == "Debian" 
     
   - yum: 
