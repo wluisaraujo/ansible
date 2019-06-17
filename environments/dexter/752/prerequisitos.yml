@@ -1,0 +1,38 @@
+---
+#title:   Praticas do ambiente do curso 752 Linux Servers – Configuration & DevOps
+#author:  w.luis.araujo@gmail.com
+#publish_date: Jun/2019
+
+- hosts: all
+  
+  vars:
+    - MYDOMAIN: dexter.com.br
+  
+  tasks:
+  - lineinfile: 
+      dest: /etc/hosts 
+      state: present 
+      line: "{{ item }}"
+    with_items:
+      - "172.16.100.201 security.{{ MYDOMAIN }}"
+    
+  - timezone:
+      name: America/Sao_Paulo
+        
+  - apt: 
+      name: "{{ item }}" 
+      state: present 
+      update_cache: true
+    loop:
+      - bash-completion
+      - ntpdate
+    when: ansible_os_family == "Debian" 
+    
+  - yum: 
+      name: "{{ item }}"
+      state: present 
+    loop:
+      - bash-completion
+      - ntpdate         
+    when: ansible_os_family == "RedHat"   
+...

@@ -22,7 +22,7 @@ Aula 09 | Load Balancer com Nginx
 Aula 10 | Proxy Server com Squid 3
 Aula 11 | Gerenciar ambientes com Ansible 
 Aula 12 | Planejamento de Capacidade
- 
+
 
 Requisitos
 ------------
@@ -30,7 +30,6 @@ Requisitos
 A 4Linux utiliza Máquinas Virtuais para permitir ao aluno realizar o Curso em qualquer computador ou sistema operacional. Você precisará baixar os Appliances e importá-lo no VirtualBox.
 
 * [Oracle Virtual Box](https://www.virtualbox.org/wiki/Downloads) versão 6 ou mais atual
- 
 * [Oracle VM VirtualBox Extension Pack](https://www.virtualbox.org/wiki/Downloads)
  
 Appliance (Template)
@@ -49,70 +48,64 @@ MYDOMAIN: dexter.com.br
 Dependências
 ------------
 
-*
+* Appliance devidamente configurado
+* Ansible versão 2 ou mais atual
 
 Exemplo de uso
 ----------------
 
 ```console
-domingo@sala-linus:~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml --check
-```
-
-Exemplo de uso
-----------------
-
-```console
-domingo@sala-linus:~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml --check
+domingo@sala-linus:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml --check
 ```
 
 ##### Exemplo de uso configurando FIREWALL
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l security -t FIREWALL -C
 ```
 
 ##### Exemplo de uso configurando DNS
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l "web01,web02" -t DNS -C
+~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l "web01,web02" -t DNS -C
 ```
 
 ##### Exemplo de uso configurando LDAP
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l storage -t LDAP -C
+~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l storage -t LDAP -C
 ```
 
 ##### Exemplo de uso configurando SHARE
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t SHARE -C
+~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t SHARE -C
 ```
 
 ##### Exemplo de uso configurando DATABASE
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t DATABASE -C
+~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t DATABASE -C
 ```
 
 ##### Exemplo de uso configurando MAIL
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t MAIL -C
+~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t MAIL -C
 ```
 
 ##### Exemplo de uso configurando VPN
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t VPN -C
+~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t VPN -C
 ```
 
 ##### Exemplo de uso configurando APACHE
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t APACHE -C
+~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t APACHE -C
 ```
 
 ##### Exemplo de uso configurando NGINX
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t NGINX -C
+~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t NGINX -C
 ```
 
 ##### Exemplo de uso configurando SQUID
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t SQUID -C
+~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l security -t SQUID -C
 ```
 
 ----------------

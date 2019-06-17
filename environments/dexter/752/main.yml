@@ -1,0 +1,41 @@
+---
+#title:   Praticas do ambiente do curso 752 Linux Servers – Configuration & DevOps
+#author:  w.luis.araujo@gmail.com
+#publish_date: Jun/2019
+
+- hosts: all
+  tasks:
+  
+- import_playbook: prerequisitos.yml
+  tags: PREREQ
+  
+- import_playbook: aula01.yml
+  tags: FIREWALL
+  
+- import_playbook: aula02.yml
+  tags: DNS 
+  
+- import_playbook: aula03.yml
+  tags: LDAP
+  
+- import_playbook: aula04.yml
+  tags: SHARE
+  
+- import_playbook: aula05.yml
+  tags: DATABASE
+  
+- import_playbook: aula06.yml
+  tags: MAIL
+  
+- import_playbook: aula07.yml
+  tags: VPN
+  
+- import_playbook: aula08.yml
+  tags: APACHE
+  
+- import_playbook: aula09.yml
+  tags: NGINX
+  
+- import_playbook: aula10.yml
+  tags: SQUID
+...

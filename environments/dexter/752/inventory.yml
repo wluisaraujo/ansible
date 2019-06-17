@@ -1,6 +1,9 @@
-## w.luis.araujo@gmail.com
-## Junho/2019
-## Praticas do ambiente do curso 752 Linux Servers – Configuration & DevOps
+
+#title:   Praticas do ambiente do curso 752 Linux Servers – Configuration & DevOps
+#author:  w.luis.araujo@gmail.com
+#publish_date: Jun/2019
+
+
 
 [FIREWALL]
 security          ansible_host=172.16.100.201
@@ -31,6 +34,7 @@ VPN
 WEB
 NGINX
 SQUID
+DATABASE
 
 [all:vars]
 ansible_ssh_user=suporte

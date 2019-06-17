@@ -1,0 +1,12 @@
+---
+#title:   Praticas do ambiente do curso 752 Linux Servers – Configuration & DevOps
+#author:  w.luis.araujo@gmail.com
+#publish_date: Jun/2019
+
+- hosts: SQUID
+  vars:
+    - MYDOMAIN: dexter.com.br
+  tasks:
+  - name " Hello!!!"
+
+...
