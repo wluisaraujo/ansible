@@ -39,23 +39,55 @@ Exemplo de uso
 domingo@sala-linus:~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml --check
 ```
 
-### Exemplo de uso configurando FIREWALL
+##### Exemplo de uso configurando FIREWALL
 ```console
 ~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
 ```
 
-### DNS
-### LDAP
-### SHARE
-### DATABASE
-### MAIL
-### VPN
-### APACHE
-### NGINX
-### SQUID
+##### Exemplo de uso configurando DNS
+```console
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+```
 
+##### Exemplo de uso configurando LDAP
+```console
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+```
 
+##### Exemplo de uso configurando SHARE
+```console
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+```
 
+##### Exemplo de uso configurando DATABASE
+```console
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+```
+
+##### Exemplo de uso configurando MAIL
+```console
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+```
+
+##### Exemplo de uso configurando VPN
+```console
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+```
+
+##### Exemplo de uso configurando APACHE
+```console
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+```
+
+##### Exemplo de uso configurando NGINX
+```console
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+```
+
+##### Exemplo de uso configurando SQUID
+```console
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+```
 
 ----------------
 [![Licence](https://img.shields.io/badge/License-GPL%20v3-red.svg)](https://www.gnu.org/licenses/gpl-3.0.pt-br.html)
