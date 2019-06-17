@@ -29,7 +29,7 @@ Playbook usage example
 ----------------
 
 ```console
-$ ansible-playbook -i 752-inventory.yml -b 752_AIO.yml --check
+domingo@sala-linus:~$ ansible-playbook -i 752-inventory.yml -b 752_AIO.yml --check
 ```
 
 ----------------
