@@ -14,7 +14,9 @@
       state: present 
       line: "{{ item }}"
     with_items:
-      - "172.16.100.201 security.{{ MYDOMAIN }}"
+      - "172.16.100.201 security    security.{{ MYDOMAIN }}"
+      - "172.16.100.204 ldap        ldap.{{ MYDOMAIN }}"
+      - "172.16.100.204 storage     storage.{{ MYDOMAIN }}"
     
   - timezone:
       name: America/Sao_Paulo
@@ -24,18 +26,32 @@
       state: present 
       update_cache: true
     loop:
+      - autofs5
       - bash-completion
-      - ntpdate
-      - systat
-      - lsof
+      - dnsutils
       - htop
+      - ldap-utils
+      - libnss-ldap 
+      - libpam-ldap
+      - lsof
+      - nfs-common
+      - ntpdate
+      - open-iscsi 
+      - parted      
+      - systat
     when: ansible_os_family == "Debian" 
     
   - yum: 
       name: "{{ item }}"
       state: present 
     loop:
+      - autofs
       - bash-completion
-      - ntpdate         
+      - bind-utils
+      - iscsi-initiator-utils
+      - nfs-utils      
+      - nss-pam-ldapd
+      - ntpdate
+      - openldap-clients
     when: ansible_os_family == "RedHat"   
 ...

@@ -3,10 +3,103 @@
 #author:  w.luis.araujo@gmail.com
 #publish_date: Jun/2019
 
-- hosts: DNS
-  vars:
-    - MYDOMAIN: dexter.com.br
+- hosts: web01
   tasks:
-  - name " Hello!!!"
+  
+  - apt: 
+      name: "{{ item }}" 
+      state: present 
+      update_cache: true
+    loop:
+      - bind9
+      - dnsutils
+  
+  - copy:
+      src: /opt/dns/named.conf.final
+      dest: /etc/bind/named.conf.local
+      remote_src: yes
 
+  - copy:
+      src: /opt/dns/named.conf.options
+      dest: /etc/bind/named.conf.options
+      remote_src: yes
+  
+  - copy:
+      src: /opt/dns/db.dexter
+      dest: /var/cache/bind/db.dexter
+      remote_src: yes
+  
+  - copy:
+      src: /opt/dns/rev.dexter
+      dest: /var/cache/bind/rev.dexter
+      remote_src: yes        
+
+  - lineinfile:
+      path: /opt/dns/named.conf.options
+      state: present
+      backup: yes
+      nsertafter: '^(.*)options {(.*)$' 
+      line: "{{ item }}"
+    loop:
+      - 'allow-recursion { localhost; 172.16.100.0/24; 200.100.50.0/24; };'
+      - 'allow-query { localhost; 172.16.100.0/24; 200.100.50.0/24; };'
+  
+  - systemd:
+      state: restarted
+      name: bind9.service
+      enabled: yes 
+
+- hosts: web02
+  tasks:
+  
+  - yum: 
+      name: "{{ item }}" 
+      state: present 
+      update_cache: true
+    loop:
+      - bind
+      - bind-utils
+  
+  - copy:
+      src: /opt/dns/named.conf
+      dest: /etc/named.conf
+      remote_src: yes
+  
+  - systemd:
+      state: restarted
+      name: named.service
+      enabled: yes
+      
+- hosts: DEXTER
+  tasks:  
+  - lineinfile:
+      path: /etc/resolv.conf
+      state: present
+      backup: yes
+      line: "{{ item }}"
+    loop:
+      - 'search dexter.com.br'
+      - 'domain dexter.com.br'
+      - 'nameserver 172.16.100.203'
+      - 'nameserver 172.16.100.204'
+      - 'nameserver 8.8.8.8'
+  
+  - replace:
+      dest: /etc/network/interfaces
+      regexp: '^(.*)dns-nameservers(.*)$'
+      replace: 'dns-nameservers 172.16.100.203 172.16.100.204 8.8.8.8'
+      backup: yes
+    when: ansible_os_family == "Debian"
+
+  - lineinfile:
+      path: /etc/sysconfig/network-scripts/ifcfg-enp0s3
+      state: present
+      backup: yes
+      line: "{{ item }}"
+    loop:
+      - 'DNS1=172.16.100.203'
+      - 'DNS2=172.16.100.203'
+      - 'DNS3=8.8.8.8'
+      - 'DOMAIN=dexter.com.br'
+    when: ansible_os_family == "RedHat"    
 ...

@@ -7,6 +7,32 @@
   vars:
     - MYDOMAIN: dexter.com.br
   tasks:
-  - name " Hello!!!"
+  - apt: 
+      name: "{{ item }}" 
+      state: present 
+      update_cache: true
+    loop:
+      - mdadm
+      - nfs-kernel-server
+      - tgt
+# mdadm --create /dev/md0 --level 1 --raid-devices=2 /dev/sdb1 /dev/sdc1 --spare-devices=1 /dev/sdd1
+# mdadm --create /dev/md0 --level 1 --raid-devices=2 /dev/sde1 /dev/sdf1
+# mdadm --examine --scan >> /etc/mdadm/mdadm.conf
+# echo '/home 172.16.100.0/24(rw,no_root_squash,asyc)' > /home/exports 
+# systemctl restart nfs-kernel-server
+# systemctl enable nfs-kernel-server
+# systemctl enable autofs ; systemctl restart autofs
+
+
+## pratica iscsi
+#- hosts: storage
+#pvcreate /dev/sdg
+#vgcreate dexter_iscsi /dev/sdg
+#lvcreate -l 50%FREE -n dexter_lun1 dexter_iscsi
+#lvcreate -l 100%FREE -n dexter_lun2 dexter_iscsi
+#cp /opt/iscsi/dexter_iscsi.conf /etc/tgt/conf.d/
+# systemctl restart tgt
+
+#- hosts: storage
 
 ...

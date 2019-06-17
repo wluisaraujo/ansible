@@ -7,8 +7,8 @@
 security          ansible_host=172.16.100.201
 
 [DNS]
-webserver01       ansible_host=172.16.100.203
-webserver02       ansible_host=172.16.100.204
+web01           ansible_host=172.16.100.203
+web02           ansible_host=172.16.100.204
 
 [LDAP]
 storage           ansible_host=172.16.100.201

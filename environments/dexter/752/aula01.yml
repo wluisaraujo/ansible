@@ -48,7 +48,7 @@
       enabled: yes
       name: netfilter-persistent.service
 #      
-- hosts: "webserve02,webproxy"
+- hosts: "web02,webproxy"
   tasks:
   - systemd:
       state: restarted
