@@ -7,11 +7,45 @@ Descrição
 ------------
 
  Praticas do ambiente do curso 752 Linux Servers – Configuration & DevOps
+ 
+Aula 01 - Gerenciando o Firewall
+
+Aula 02 - DNS Server
+
+Aula 03 - LDAP Server
+
+Aula 04 - Compartilhamento em Rede
+
+Aula 05 - Database Server  
+
+Aula 06 - Mail Server
+
+Aula 07 - VPN Server 
+
+Aula 08 - Web Server
+
+Aula 09 - Load Balancer com Nginx 
+
+Aula 10 - Proxy Server com Squid 3
+
+Aula 11 - Gerenciar ambientes com Ansible 
+
+Aula 12 - Planejamento de Capacidade
+ 
 
 Requisitos
 ------------
 
- *
+A 4Linux utiliza Máquinas Virtuais para permitir ao aluno realizar o Curso em qualquer computador ou sistema operacional. Você precisará baixar os Appliances e importá-lo no VirtualBox.
+
+ [Oracle Virtual Box](https://www.virtualbox.org/wiki/Downloads) versão 6 ou mais atual
+ [Oracle VM VirtualBox Extension Pack](https://www.virtualbox.org/wiki/Downloads)
+ 
+Appliance (Template)
+
+[Curso 752 Parte 01](https://storage.googleapis.com/4752-repositorio/Curso-4752-P1.ova)
+[Curso 752 Parte 02](https://storage.googleapis.com/4752-repositorio/Curso-4752-P2.ova)
+[Curso 752 Parte 03](https://storage.googleapis.com/4752-repositorio/Curso-4752-P3.ova)
 
 Variaveis Playbooks
 --------------
@@ -46,12 +80,12 @@ domingo@sala-linus:~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 
 
 ##### Exemplo de uso configurando DNS
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t DNS -C
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l "web01,web02" -t DNS -C
 ```
 
 ##### Exemplo de uso configurando LDAP
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t LDAP -C
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l storage -t LDAP -C
 ```
 
 ##### Exemplo de uso configurando SHARE

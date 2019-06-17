@@ -1,0 +1,87 @@
+Módulo 01 -  
+
+Aula 01 - Gerenciando o Firewall
+Aula 1.1 Introdução ao Firewall
+Aula 1.2 Entendendo as Regras no iptables
+Aula 1.3 Aplicando Regras no iptables
+Aula 1.4 Regras da tabela NAT
+Aula 1.5 Script de Firewal
+
+Aula 02 - DNS Server
+Aula 1.1 Introdução ao DNS
+Aula 2.2 Instalação do Servidor DNS
+Aula 2.3 Configurando Slave e Reverso
+
+Aula 03 - LDAP Server
+Aula 3.1 Introdução ao LDAP
+Aula 3.2 Instalação do OpenLDAP
+Aula 3.3 Migrar dados para base LDAP
+Aula 3.4 Segurança e Backup no LDAP
+Aula 3.5 Apache Directory Studio
+Aula 3.6 Autenticação LDAP Debian - Ubuntu
+Aula 3.7 Autenticação LDAP Red Hat - CentOS
+
+Módulo 02 - 
+
+Aula 04 -  Compartilhamento em Rede
+Aula 4.1 Introdução ao RAID
+Aula 4.2 Gerenciando dispositivos RAID
+Aula 4.3 Gerenciando dispositivos LVM
+Aula 4.4 Redimensionar Volumes com LVM
+Aula 4.5 Configurar compartilhamento NFS
+Aula 4.6 Configurar Aumount NFS
+Aula 4.7 Configurar servidor ISCSI
+Aula 4.8 Configurar cliente ISCSI
+
+Módulo 03 -   
+
+Aula 05 - Database Server  
+Aula 5.1 Instalação do Database Server
+Aula 5.2 Comandos SQL
+Aula 5.3 PHPMyAdmin
+
+Aula 06 - Mail Server
+Aula 6.1 Configurando SMTP Server
+Aula 6.2 Configurando IMAP Server
+Aula 6.3 Mail Security – SMTPS
+Aula 6.4 Mail Security – IMAPS
+
+Aula 07 - VPN Server 
+Aula 7.1 Introdução a VPN
+Aula 7.2 Configurar VPN Server e Client Clientes
+Aula 7.3 VPN Autenticando LDAP
+
+
+Módulo 04 -   
+
+Aula 08 - Web Server 
+Aula 8.1 Configurando Web Server
+Aula 8.2 VirtualHosts e Web Security 
+Aula 8.3 Configurar Autenticação no Apache 
+Aula 8.4 Implementar Webmail Roundcube 
+
+Aula 09 -  Load Balancer com Nginx 
+Aula 9.1 Configurando o Nginx 
+Aula 9.2 Proxy Reverso com Nginx
+Aula 9.3 Load Labancr com Nginx
+
+Aula 10 -  Proxy Server com Squid 3
+Aula 10.1 Implementar Proxy Server
+Aula 10.2 Configurar Autenticação no Squid
+Aula 10.3 Implementação do Squidguard
+Aula 10.4 Gerando relatórios com SARG
+Aula 10.5 Controle de Banda e Proxy Transparente
+
+Módulo 05 - 
+
+Aula 11 -  Gerenciar ambientes com Ansible 
+Aula 11.1 Introdução a Automação
+Aula 11.2 Gerencia de Configurações
+Aula 11.3 Instalação e configuração do Ansible
+Aula 11.4 Primeiros Passos com Ansible
+Aula 11.5 Gerenciar ambiente com Ansible
+
+Aula 12 - Planejamento de Capacidade
+Aula 12.1 Introdução ao Capacity Planning
+Aula 12.2 Monitoramento e Análise do Sistema
+Aula 12.3 Monitorando o desempenho da Rede
