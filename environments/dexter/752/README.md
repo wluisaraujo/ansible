@@ -6,31 +6,22 @@
 Descrição
 ------------
 
- Praticas do ambiente do curso 752 Linux Servers – Configuration & DevOps
- 
-Aula 01 - Gerenciando o Firewall
+Praticas do ambiente do curso [752 Linux Servers – Configuration & DevOps](https://www.4linux.com.br/curso/linux-servers-configuration-devops)
 
-Aula 02 - DNS Server
-
-Aula 03 - LDAP Server
-
-Aula 04 - Compartilhamento em Rede
-
-Aula 05 - Database Server  
-
-Aula 06 - Mail Server
-
-Aula 07 - VPN Server 
-
-Aula 08 - Web Server
-
-Aula 09 - Load Balancer com Nginx 
-
-Aula 10 - Proxy Server com Squid 3
-
-Aula 11 - Gerenciar ambientes com Ansible 
-
-Aula 12 - Planejamento de Capacidade
+Aula | Conteúdo Programático
+--- | --- 
+Aula 01 | Gerenciando o Firewall
+Aula 02 | DNS Server
+Aula 03 | LDAP Server
+Aula 04 | Compartilhamento em Rede
+Aula 05 | Database Server  
+Aula 06 | Mail Server
+Aula 07 | VPN Server 
+Aula 08 | Web Server
+Aula 09 | Load Balancer com Nginx 
+Aula 10 | Proxy Server com Squid 3
+Aula 11 | Gerenciar ambientes com Ansible 
+Aula 12 | Planejamento de Capacidade
  
 
 Requisitos
