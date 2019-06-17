@@ -1,0 +1,148 @@
+---
+## w.luis.araujo@gmail.com
+## Junho/2019
+## Praticas do ambiente do curso 752 Linux Servers – Configuration & DevOps
+- hosts: all
+  
+  vars:
+    - MYDOMAIN: dexter.com.br
+  
+  tasks:
+  - lineinfile: 
+      dest: /etc/hosts 
+      state: present 
+      line: "{{ item }}"
+    with_items:
+      - "172.16.100.201 security.{{ MYDOMAIN }}"
+    
+  - timezone:
+      name: America/Sao_Paulo
+        
+  - apt: 
+      name: "{{ item }}" 
+      state: present 
+      update_cache: true
+    loop:
+      - bash-completion
+      - ntpdate
+    when: ansible_os_family == "Debian" 
+    
+  - yum: 
+      name: "{{ item }}"
+      state: present 
+    loop:
+      - bash-completion
+      - ntpdate         
+    when: ansible_os_family == "RedHat"   
+#===========================================================================#
+- hosts: security
+  
+  vars:
+    - MYDOMAIN: dexter.com.br
+  
+  tasks:
+  - name: "Servidor firewall com iptables"
+    shell: echo
+    tags: FIREWALL
+#===========================================================================#
+- hosts: web01,web02
+  
+  vars:
+    - MYDOMAIN: dexter.com.br
+  
+  tasks:
+  - name: "Servidor firewall com iptables"
+    shell: echo
+    tags: DNS
+
+#===========================================================================#    
+- hosts: sorage
+  
+  vars:
+    - MYDOMAIN: dexter.com.br
+  
+  tasks:
+  - name: "Servidor firewall com iptables"
+    shell: echo
+    tags: LDAP
+#===========================================================================#    
+- hosts: sorage
+  
+  vars:
+    - MYDOMAIN: dexter.com.br
+  
+  tasks:
+  - name: "Servidor firewall com iptables"
+    shell: echo
+    tags: SHARE
+#===========================================================================#    
+- hosts: sorage
+  
+  vars:
+    - MYDOMAIN: dexter.com.br
+  
+  tasks:
+  - name: "Servidor firewall com iptables"
+    shell: echo
+    tags: DATABASE       
+#===========================================================================#    
+- hosts: sorage
+  
+  vars:
+    - MYDOMAIN: dexter.com.br
+  
+  tasks:
+  - name: "Servidor firewall com iptables"
+    shell: echo
+    tags: MAIL
+#===========================================================================# 
+- hosts: sorage
+  
+  vars:
+    - MYDOMAIN: dexter.com.br
+  
+  tasks:
+  - name: "Servidor firewall com iptables"
+    shell: echo
+    tags: VPN
+#===========================================================================# 
+- hosts: sorage
+  
+  vars:
+    - MYDOMAIN: dexter.com.br
+  
+  tasks:
+  - name: "Servidor firewall com iptables"
+    shell: echo
+    tags: APACHE
+#===========================================================================# 
+- hosts: sorage
+  
+  vars:
+    - MYDOMAIN: dexter.com.br
+  
+  tasks:
+  - name: "Servidor firewall com iptables"
+    shell: echo
+    tags: APACHE
+#===========================================================================# 
+- hosts: sorage
+  
+  vars:
+    - MYDOMAIN: dexter.com.br
+  
+  tasks:
+  - name: "Servidor firewall com iptables"
+    shell: echo
+    tags: NGINX
+#===========================================================================# 
+- hosts: sorage
+  
+  vars:
+    - MYDOMAIN: dexter.com.br
+  
+  tasks:
+  - name: "Servidor firewall com iptables"
+    shell: echo
+    tags: SQUID        
+...

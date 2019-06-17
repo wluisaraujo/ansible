@@ -1,0 +1,39 @@
+## w.luis.araujo@gmail.com
+## Junho/2019
+## Praticas do ambiente do curso 752 Linux Servers – Configuration & DevOps
+
+[FIREWALL]
+security          ansible_host=172.16.100.201
+[DNS]
+webserver01       ansible_host=172.16.100.203
+webserver02       ansible_host=172.16.100.204
+[LDAP]
+storage           ansible_host=172.16.100.201
+[SHARE]
+
+[MAIL]
+
+[VPN]
+
+[WEB]
+
+[NGINX]
+
+[SQUID]
+
+[DEXTER:children]
+FIREWALL
+DNS
+LDAP
+SHARE
+MAIL
+VPN
+WEB
+NGINX
+SQUID
+
+[all:vars]
+ansible_ssh_user=suporte
+ansible_ssh_password=4linux
+ansible_become=true
+ansible_become_password=4linux

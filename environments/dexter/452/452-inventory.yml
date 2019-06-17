@@ -1,5 +1,6 @@
 ###
-### 06/Fevereiro/2019
+### 06/Fevereiro/2018
+### w.luis.araujo@gmail.com
 [LINUX]
 audit               ansible_host=192.168.200.30
 automation          ansible_host=192.168.200.2
