@@ -124,16 +124,6 @@
   tasks:
   - name: "Servidor firewall com iptables"
     shell: echo
-    tags: APACHE
-#===========================================================================# 
-- hosts: sorage
-  
-  vars:
-    - MYDOMAIN: dexter.com.br
-  
-  tasks:
-  - name: "Servidor firewall com iptables"
-    shell: echo
     tags: NGINX
 #===========================================================================# 
 - hosts: sorage

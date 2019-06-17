@@ -3,34 +3,57 @@
 ### Infrastructure as Code: with [Ansible](https://www.ansible.com)
 ------------
 
-### Description
+Descrição
 ------------
 
  Praticas do ambiente do curso 752 Linux Servers – Configuration & DevOps
 
-### Requirements
+Requisitos
 ------------
 
  *
 
-### Role Variables
+Variaveis Playbooks
 --------------
 
 ```yaml
 MYDOMAIN: dexter.com.br
 ```
 
-### Dependencies
+Dependências
 ------------
 
 *
 
-### Playbook usage example
+Exemplo de uso
 ----------------
 
 ```console
-domingo@sala-linus:~$ ansible-playbook -i 752-inventory.yml -b 752_AIO.yml --check
+domingo@sala-linus:~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml --check
 ```
+
+Exemplo de uso
+----------------
+
+```console
+domingo@sala-linus:~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml --check
+```
+
+### Exemplo de uso configurando FIREWALL
+```console
+domingo@sala-linus:~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml --limit="security" --tags "FIREWALL"  --check
+```
+
+### DNS
+### LDAP
+### SHARE
+### DATABASE
+### MAIL
+### VPN
+### APACHE
+### NGINX
+### SQUID
+
 
 
 
