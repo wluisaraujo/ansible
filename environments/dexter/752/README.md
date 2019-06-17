@@ -46,47 +46,47 @@ domingo@sala-linus:~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 
 
 ##### Exemplo de uso configurando DNS
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t DNS -C
 ```
 
 ##### Exemplo de uso configurando LDAP
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t LDAP -C
 ```
 
 ##### Exemplo de uso configurando SHARE
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t SHARE -C
 ```
 
 ##### Exemplo de uso configurando DATABASE
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t DATABASE -C
 ```
 
 ##### Exemplo de uso configurando MAIL
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t MAIL -C
 ```
 
 ##### Exemplo de uso configurando VPN
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t VPN -C
 ```
 
 ##### Exemplo de uso configurando APACHE
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t APACHE -C
 ```
 
 ##### Exemplo de uso configurando NGINX
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t NGINX -C
 ```
 
 ##### Exemplo de uso configurando SQUID
 ```console
-~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t FIREWALL -C
+~$ ansible-playbook -i 752-inventory.yml -u suporte -b -k -K 752_AIO.yml -l security -t SQUID -C
 ```
 
 ----------------
