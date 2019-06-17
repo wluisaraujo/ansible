@@ -1,0 +1,16 @@
+###
+### 06/Fevereiro/2018
+[LINUX]
+audit               ansible_host=192.168.200.30
+automation          ansible_host=192.168.200.2
+datacenter          ansible_host=192.168.200.131
+desktoplinux        ansible_host=192.168.200.10
+security            ansible_host=192.168.200.1
+storage             ansible_host=192.168.200.50
+webserverinterno    ansible_host=192.168.200.130
+webservercloud      ansible_host=200.100.50.110
+fileserver          ansible_host=192.168.200.40
+linuxexterna        ansible_host=200.100.50.100
+
+[DEXTER:children]
+LINUX
