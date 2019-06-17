@@ -35,9 +35,9 @@ A 4Linux utiliza Máquinas Virtuais para permitir ao aluno realizar o Curso em q
  
 Appliance (Template)
 
-[Curso 752 Parte 01](https://storage.googleapis.com/4752-repositorio/Curso-4752-P1.ova)
-[Curso 752 Parte 02](https://storage.googleapis.com/4752-repositorio/Curso-4752-P2.ova)
-[Curso 752 Parte 03](https://storage.googleapis.com/4752-repositorio/Curso-4752-P3.ova)
+* [Curso 752 Parte 01](https://storage.googleapis.com/4752-repositorio/Curso-4752-P1.ova)
+* [Curso 752 Parte 02](https://storage.googleapis.com/4752-repositorio/Curso-4752-P2.ova)
+* [Curso 752 Parte 03](https://storage.googleapis.com/4752-repositorio/Curso-4752-P3.ova)
 
 Variaveis Playbooks
 --------------
