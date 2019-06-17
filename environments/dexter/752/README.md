@@ -1,6 +1,6 @@
 [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-wluisaraujo-blue.svg)](https://galaxy.ansible.com/wluisaraujo)
 
-## Infrastructure as Code: with [Ansible](https://www.ansible.com)
+### Infrastructure as Code: with [Ansible](https://www.ansible.com)
 ------------
 
 Description
