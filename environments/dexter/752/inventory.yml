@@ -1,29 +1,33 @@
-
 #title:   Praticas do ambiente do curso 752 Linux Servers – Configuration & DevOps
 #author:  w.luis.araujo@gmail.com
 #publish_date: Jun/2019
 
 [FIREWALL]
-security          ansible_host=172.16.100.201
+security        ansible_host=172.16.100.201
 
 [DNS]
 web01           ansible_host=172.16.100.203
 web02           ansible_host=172.16.100.204
 
 [LDAP]
-storage           ansible_host=172.16.100.201
+storage         ansible_host=172.16.100.202
 
 [SHARE]
 
 [MAIL]
+mail172         ansible_host=172.16.100.206
 
 [VPN]
-
+cliente-externo ansible_host=200.100.50.150
 [WEB]
 
 [NGINX]
 
 [SQUID]
+proxy           ansible_host=172.16.100.205
+
+[DESKTOP]
+devops          ansible_host=172.16.100.207
 
 [DEXTER:children]
 DATABASE
@@ -36,6 +40,7 @@ SHARE
 SQUID
 VPN
 WEB
+DESKTOP
 
 [all:vars]
 ansible_ssh_user=suporte

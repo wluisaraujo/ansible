@@ -55,57 +55,57 @@ Exemplo de uso
 ----------------
 
 ```console
-lusar@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml --check
+vagrant@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml --check
 ```
 
 ##### Exemplo de uso configurando FIREWALL
 ```console
-lusar@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l security -t FIREWALL -C
+vagrant@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l security -t FIREWALL -C
 ```
 
 ##### Exemplo de uso configurando DNS
 ```console
-lusar@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l "web01,web02" -t DNS -C
+vagrant@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l "web01,web02" -t DNS -C
 ```
 
 ##### Exemplo de uso configurando LDAP
 ```console
-lusar@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l storage -t LDAP -C
+vagrant@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l storage -t LDAP -C
 ```
 
 ##### Exemplo de uso configurando SHARE
 ```console
-lusar@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t SHARE -C
+vagrant@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t SHARE -C
 ```
 
 ##### Exemplo de uso configurando DATABASE
 ```console
-lusar@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t DATABASE -C
+vagrant@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t DATABASE -C
 ```
 
 ##### Exemplo de uso configurando MAIL
 ```console
-lusar@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t MAIL -C
+vagrant@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t MAIL -C
 ```
 
 ##### Exemplo de uso configurando VPN
 ```console
-lusar@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t VPN -C
+vagrant@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t VPN -C
 ```
 
 ##### Exemplo de uso configurando APACHE
 ```console
-lusar@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t APACHE -C
+vagrant@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t APACHE -C
 ```
 
 ##### Exemplo de uso configurando NGINX
 ```console
-lusar@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t NGINX -C
+vagrant@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l localhost -t NGINX -C
 ```
 
 ##### Exemplo de uso configurando SQUID
 ```console
-lusar@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l security -t SQUID -C
+vagrant@localhost:~$ ansible-playbook -i inventory.yml -u suporte -b -k -K main.yml -l security -t SQUID -C
 ```
 
 ----------------

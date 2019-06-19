@@ -15,8 +15,14 @@
       line: "{{ item }}"
     with_items:
       - "172.16.100.201 security    security.{{ MYDOMAIN }}"
-      - "172.16.100.204 ldap        ldap.{{ MYDOMAIN }}"
-      - "172.16.100.204 storage     storage.{{ MYDOMAIN }}"
+      - "172.16.100.202 ldap        ldap.{{ MYDOMAIN }}"
+      - "172.16.100.202 storage     storage.{{ MYDOMAIN }}"
+      - "172.16.100.203	web01       web01.{{ MYDOMAIN }}"
+      - "172.16.100.204	web02       web02.{{ MYDOMAIN }}"	
+      - "172.16.100.205	proxy       proxy.{{ MYDOMAIN }}"	
+      - "172.16.100.206	mail        mail.{{ MYDOMAIN }}"
+      - "172.16.100.207	devops      devops.{{ MYDOMAIN }}"	
+      - "200.100.50.150	cliente-externo cliente-externo.{{ MYDOMAIN }}"
     
   - timezone:
       name: America/Sao_Paulo
