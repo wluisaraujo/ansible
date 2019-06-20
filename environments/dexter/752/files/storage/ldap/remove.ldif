@@ -1,0 +1,14 @@
+dn: uid=antony.brooks,ou=users,dc=dexter,dc=com,dc=br
+changetype: delete
+
+dn: uid=fox.bennett,ou=users,dc=dexter,dc=com,dc=br
+changetype: delete
+
+dn: uid=harry.rosemberg,ou=users,dc=dexter,dc=com,dc=br
+changetype: delete
+
+dn: cn=financeiro,ou=groups,dc=dexter,dc=com,dc=br
+changetype: delete
+
+dn: cn=analistas,ou=groups,dc=dexter,dc=com,dc=br
+changetype: delete

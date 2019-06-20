@@ -1,0 +1,7 @@
+dn: cn=config
+changetype: modify
+del: olcTLSCACertificateFile
+
+dn: cn=config
+changetype: modify
+del: olcTLSCertificateKeyFile

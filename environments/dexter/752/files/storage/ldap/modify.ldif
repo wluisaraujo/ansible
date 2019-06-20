@@ -1,0 +1,14 @@
+# Adicionar nome completo 
+dn: uid=linus.torvalds,ou=users,dc=dexter,dc=com,dc=br
+changetype: modify
+add: givenName
+givenName: Linus Torvalds Tux
+-
+replace: mobile
+mobile: 90000-0000
+
+# Deletar o Usuario Fox Bennett do Grupo Financeiro
+dn: cn=financeiro,ou=groups,dc=dexter,dc=com,dc=br
+changetype: modify
+delete: memberUid
+memberUid: fox.bennett

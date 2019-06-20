@@ -1,0 +1,15 @@
+zone "dexter.com.br" {
+	type master;
+        file "db.dexter";
+	allow-transfer { 172.16.100.204; };
+	notify yes;
+	also-notify { 172.16.100.204; };
+};
+
+zone "100.16.172.in-addr.arpa" {
+	type master;
+        file "rev.dexter";
+	allow-transfer { 172.16.100.204; };
+	notify yes;
+	also-notify { 172.16.100.204; };
+};

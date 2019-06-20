@@ -1,0 +1,17 @@
+# Adicionar o Grupo Financeiro com os membros Antony Brooks e Fox bennet
+dn: cn=financeiro,ou=groups,dc=dexter,dc=com,dc=br
+objectClass: top
+objectClass: posixGroup
+cn: financeiro
+gidNumber: 500
+memberUid: antony.brooks
+memberUid: fox.bennett
+
+# Adicionar o Grupo Analistas com os mebros Harry Rosember e Nome Sobrenome
+dn: cn=analistas,ou=groups,dc=dexter,dc=com,dc=br
+objectClass: top
+objectClass: posixGroup
+cn: analistas
+gidNumber: 501
+memberUid: harry.rosemberg
+memberUid: linus.torvalds

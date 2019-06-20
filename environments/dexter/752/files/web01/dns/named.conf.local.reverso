@@ -1,0 +1,8 @@
+zone "dexter.com.br" {
+	type master;
+        file "db.dexter";
+};
+zone "100.16.172.in-addr.arpa" {
+	type master;
+        file "rev.dexter";
+};

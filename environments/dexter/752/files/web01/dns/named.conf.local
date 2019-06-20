@@ -1,0 +1,4 @@
+zone "dexter.com.br" {
+	type master;
+        file "db.dexter";
+};

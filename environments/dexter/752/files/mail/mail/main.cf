@@ -1,0 +1,29 @@
+smtpd_banner = Servidor de E-mail Dexter
+biff = no
+append_dot_mydomain = no
+readme_directory = no
+compatibility_level = 2
+
+smtpd_relay_restrictions = permit_mynetworks permit_sasl_authenticated defer_unauth_destination
+myhostname = mail.dexter.com.br
+mydomain = dexter.com.br
+alias_maps = hash:/etc/aliases
+alias_database = hash:/etc/aliases
+myorigin = mail.dexter.com.br
+mydestination = $myhostname, $mydomain, localhost.$mydomain, localhost
+relayhost = 
+mynetworks = 127.0.0.0/8 172.16.100.0/24
+mailbox_size_limit = 0
+recipient_delimiter = +
+inet_interfaces = all
+inet_protocols = all
+
+#home_mailbox = Maildir/
+#disable_vrfy_command = yes
+
+#smtpd_use_tls = yes
+#smtp_tls_mandatory_protocols = !SSLv2, !SSLv3
+#smtpd_tls_mandatory_protocols = !SSLv2, !SSLv3
+#smtpd_tls_cert_file = /etc/ssl/private/server.crt
+#smtpd_tls_key_file = /etc/ssl/private/server.key
+#smtpd_tls_session_cache_database = btree:${data_directory}/smtpd_scache

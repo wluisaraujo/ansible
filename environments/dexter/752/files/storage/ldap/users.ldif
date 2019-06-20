@@ -1,0 +1,59 @@
+# Antony Brooks - Gerente Financeiro 
+dn: uid=antony.brooks,ou=users,dc=dexter,dc=com,dc=br
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: antony.brooks
+sn: Antony
+cn: Brooks
+mail: antony.brooks@dexter.com.br
+description: "Gerente Financeiro"
+mobile: 91234-5670
+telephoneNumber: 9500
+userPassword: 4linux
+
+# Fox Bennett - Analista Financeiro 
+dn: uid=fox.bennett,ou=users,dc=dexter,dc=com,dc=br
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: fox.bennett
+sn: Fox
+cn: Bennett
+mail: fox.bennett@dexter.com.br
+description: "Analista Financeiro"
+mobile: 91234-5671
+telephoneNumber: 9501
+userPassword: 4linux
+
+# Harry Rosemberg - Analista de Suporte
+dn: uid=harry.rosemberg,ou=users,dc=dexter,dc=com,dc=br
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: harry.rosemberg
+sn: Harry
+cn: Rosemberg
+mail: harry.rosemberg@dexter.com.br
+mobile: 91234-5672
+telephoneNumber: 9502
+description: "Analista de Suporte"
+userPassword: 4linux
+
+# Linus Torvalds - Analista de Infraestrutura
+dn: uid=linus.torvalds,ou=users,dc=dexter,dc=com,dc=br
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+uid: linus.torvalds
+sn: Linus
+cn: Torvalds
+mail: linus.torvalds@dexter.com.br
+description: "Analista de Infraestrutura"
+mobile: 91234-5673
+telephoneNumber: 9503
+userPassword: 4linux

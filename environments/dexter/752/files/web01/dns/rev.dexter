@@ -1,0 +1,11 @@
+$TTL	604800
+@	IN	SOA	ns1.dexter.com.br. root.dexter.com.br. (
+			 2018080801	; Serial
+			 604800		; Refresh
+			  86400		; Retry
+			2419200		; Expire
+			 604800 )	; Negative Cache TTL
+;
+@		IN	NS	ns1.dexter.com.br.
+ns1		IN	A	172.16.100.203
+206		IN	PTR	mail.dexter.com.br.
