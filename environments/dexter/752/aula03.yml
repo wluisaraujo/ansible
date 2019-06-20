@@ -77,7 +77,7 @@
 # cd /etc/ssl/private
 # openssl genrsa -aes128 -out server.key 2048
 # openssl rsa -in server.key -out server.key
-# openssl req -new -days 365- -key server.key -out server.csr
+# openssl req -new -days 3650 -key server.key -out server.csr
 # openssl x509 -in server.csr -out server.crt -req -signkey server.key -days 3650
 # cp /etc/ssl/private/server.* /etc/ldap/sasl2/
 # cp /etc/ssl/certs/ca-certificates.crt /etc/ldap/sasl2/
