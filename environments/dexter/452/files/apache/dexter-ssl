@@ -1,0 +1,34 @@
+###################################################################
+###		 	Treinamento 4Linux			###
+###		   Formação Administrador Linux 		###
+###################################################################
+
+### Curso: Curso Linux Security Servers in Cloud
+### Descrição: Configuracao do Servidor Apache - Arquivo Configuração do VirtualHost
+
+<VirtualHost _default_:443>
+	ServerAdmin webmaster@dexter.com.br
+	ServerName  www.dexter.com.br
+	ServerAlias dexter.com.br
+
+	#   Enable SSL for this virtual host.
+	SSLEngine on
+	SSLCertificateFile    /etc/ssl/dexter.crt
+	SSLCertificateKeyFile /etc/ssl/dexter.key
+
+	DocumentRoot /var/www/dexter
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+	<Directory /var/www/dexter>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride None
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	ErrorLog ${APACHE_LOG_DIR}/dexter-error.log
+	LogLevel warn
+	CustomLog ${APACHE_LOG_DIR}/dexter-access.log combined
+</VirtualHost>

@@ -1,0 +1,36 @@
+###################################################################
+###		 	Treinamento 4Linux			                                ###
+###	    Formação Administrador Linux 		                        ###
+###################################################################
+
+### Curso: Curso Linux Security Servers in Cloud
+### Descrição: Configuracao do Servidor Apache - Arquivo Configuração do VirtualHost
+
+<VirtualHost *:80>
+	ServerAdmin webmaster@dexter.com.br
+	ServerName  www.dexter.com.br
+	ServerAlias dexter.com.br
+
+	DocumentRoot /var/www/dexter
+	<Directory />
+		Options FollowSymLinks
+		AllowOverride None
+	</Directory>
+	<Directory /var/www/dexter>
+		Options Indexes FollowSymLinks MultiViews
+		AllowOverride None
+		Order allow,deny
+		allow from all
+	</Directory>
+
+	# Logs
+	ErrorLog ${APACHE_LOG_DIR}/dexter-error.log
+	LogLevel warn
+	CustomLog ${APACHE_LOG_DIR}/dexter-access.log combined
+
+	# Redirecionar para Porta 443
+	#RewriteEngine On
+	#RewriteCond %{SERVER_PORT} 80
+	#RewriteRule ^(.*)$ https://www.dexter.com.br/ [R,L]
+
+</VirtualHost>
