@@ -1,0 +1,14 @@
+options {
+	directory "/var/cache/bind";
+
+	dnssec-validation auto;
+
+	auth-nxdomain no;    # conform to RFC1035
+	listen-on-v6 { any; };
+
+	allow-recursion { 192.168.X.0/24;  };
+	allow-query { 192.168.X.0/24;  };
+	tkey-gssapi-keytab "/opt/samba/private/dns.keytab";
+
+};
+

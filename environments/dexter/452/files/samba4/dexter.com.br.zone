@@ -1,0 +1,48 @@
+$ORIGIN dexter.com.br.
+$TTL 1W
+@      IN SOA  fileserver.dexter.com.br. root.dexter.com.br. (
+       2013020101   ; serial
+       2D              ; refresh
+       4H              ; retry
+       6W              ; expiry
+       1W )            ; minimum
+	
+	IN NS	fileserver.dexter.com.br.
+        IN A    192.168.XX.5
+;
+
+fileserver        IN A    192.168.XX.5
+gc._msdcs         IN CNAME fileserver
+
+3ad3f63c-4b9e-4bf5-91ad-c1085887c739._msdcs	IN CNAME	fileserver
+;
+; global catalog servers
+_gc._tcp		IN SRV 0 100 3268	fileserver
+_gc._tcp.Default-First-Site-Name._sites	IN SRV 0 100 3268	fileserver
+_ldap._tcp.gc._msdcs	IN SRV 0 100 3268	fileserver
+_ldap._tcp.Default-First-Site-Name._sites.gc._msdcs	IN SRV 0 100 3268 fileserver
+;
+; ldap servers
+_ldap._tcp		IN SRV 0 100 389	fileserver
+_ldap._tcp.dc._msdcs	IN SRV 0 100 389	fileserver
+_ldap._tcp.pdc._msdcs	IN SRV 0 100 389	fileserver
+_ldap._tcp.11526eb2-dda1-4044-b085-9e2d8f2929bc.domains._msdcs		IN SRV 0 100 389 fileserver
+_ldap._tcp.Default-First-Site-Name._sites		IN SRV 0 100 389 fileserver
+_ldap._tcp.Default-First-Site-Name._sites.dc._msdcs	IN SRV 0 100 389 fileserver
+;
+; krb5 servers
+_kerberos._tcp		IN SRV 0 100 88		fileserver
+_kerberos._tcp.dc._msdcs	IN SRV 0 100 88	fileserver
+_kerberos._tcp.Default-First-Site-Name._sites	IN SRV 0 100 88	fileserver
+_kerberos._tcp.Default-First-Site-Name._sites.dc._msdcs	IN SRV 0 100 88 fileserver
+_kerberos._udp		IN SRV 0 100 88		fileserver
+; MIT kpasswd likes to lookup this name on password change
+_kerberos-master._tcp		IN SRV 0 100 88		fileserver
+_kerberos-master._udp		IN SRV 0 100 88		fileserver
+;
+; kpasswd
+_kpasswd._tcp		IN SRV 0 100 464	fileserver
+_kpasswd._udp		IN SRV 0 100 464 	fileserver
+;
+; heimdal 'find realm for host' hack
+_kerberos		IN TXT	DEXTER.COM.BR

@@ -1,0 +1,53 @@
+# Global parameters
+[global]
+	workgroup = DEXTER
+	realm = DEXTER.COM.BR
+	netbios name = FILESERVER
+	server role = active directory domain controller
+	server services = s3fs, rpc, nbt, wrepl, ldap, cldap, kdc, drepl, winbind, ntp_signd, kcc, dnsupdate
+	idmap_ldb:use rfc2307 = Yes
+
+	allow dns updates = Yes
+	dns forwarder = 192.168.XX.5
+	dns update command = nsupdate
+ 
+	### Samba responde em determinada interface de rede 
+  #      interfaces = eth0 
+  #      bind interfaces only = Yes 
+
+
+[netlogon]
+	path = /opt/samba/var/locks/sysvol/dexter.com.br/scripts
+	read only = No
+	browseable = No
+        hide files = /*.vbs/*.bat/ 
+
+[sysvol]
+	path = /opt/samba/var/locks/sysvol
+	read only = No
+	browseable = No
+
+[profiles]
+    	path = /srv/samba/profiles
+    	read only = No
+	browseable = No
+
+[publico] 
+        comment = Publico 
+        path = /srv/storage/publico 
+        read only = No
+        guest ok = Yes 
+        force create mode = 666
+        force directory mode = 777
+        veto files = /*.mp3/*.mpg/*.mpeg/*.avi/*.jpg/ 
+        hide files = /*.ini/*.log/ 
+
+[admin] 
+        path = /srv/samba/administrativo 
+        read only = No 
+        force create mode = 660 
+        force directory mode = 750 
+        veto files = /*.mp3/*.mpg/*.mpeg/*.avi/*.jpg/ 
+        hide files = /*.ini/*.log/ 
+	      browseable = No
+	      public = No

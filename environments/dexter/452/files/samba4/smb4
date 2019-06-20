@@ -1,0 +1,53 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# Provides:		samba4
+# Required-Start:	
+# Required-Stop:	
+# Default-Start:	2 3 4 5
+# Default-Stop:		
+# Short-Description:	Samba4 Compilação 4Linux
+### END INIT INFO
+
+case $1 in
+
+start )
+pgrep samba > /dev/null
+if [ $? -eq 0 ]
+  then echo "Samba4 Rodando"
+  else /opt/samba/sbin/samba && sleep 2 && echo "Samba4 Iniciado"
+fi
+;;
+
+stop )
+pgrep samba > /dev/null
+if [ $? -eq 0 ]
+  then
+  pkill samba
+  2> /dev/null && echo "Samba4 Terminado"
+else
+        echo "Samba4 está Parado"
+fi
+;;
+
+restart )
+  $0 stop
+    sleep 5 ; echo "Reiniciando o Samba4 ..."
+  $0 start
+;;
+
+status )
+   pgrep samba > /dev/null
+   if [ $? -eq 0 ]
+   then
+   
+   echo "Samba4 Rodando"
+else
+        echo "Samba4 Parado"
+fi
+;;
+
+*)
+        echo "Opção Invalida, Por Favor utilize ’start|start|restart|status’"
+;;
+esac

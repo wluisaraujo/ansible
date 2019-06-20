@@ -1,0 +1,10 @@
+$TTL    1W
+@       IN SOA  fileserver.dexter.com.br. root.dexter.com.br. (
+       2013020101     ; serial
+       2D             ; refresh
+       4H             ; retry
+       6W             ; expiry
+       1W )           ; minimum
+
+           IN NS	fileserver.dexter.com.br.
+5          IN PTR       fileserver.dexter.com.br.

@@ -1,0 +1,79 @@
+; Configuracoes globais do samba
+
+[global]
+
+        vfs objects = full_audit
+        full_audit:facility = LOCAL5
+        full_audit:priority = NOTICE
+        full_audit : success = rename, mkdir, rmdir
+        full_audit : failuere = none
+        full_audit : prefix = %u|%I|%S
+
+; Configuracao full do modo recycle e da lixeira do sistema:
+
+        vfs objects = recycle
+        recycle: repository = /srv/storage/samba/lixeiras/%U
+        recycle: versions = Yes
+        recycle: keeptree = Yes
+        recycle: excludedir = /tmp, /var, cache
+        recycle: exclude = *.tmp, *.temp, *.log, *.ldb, *.o, *.obj, ~*.*, *.bak
+        recycle: directory_mode = 0700
+        recycle: subdir_mode = 0700
+        recycle: touch = True
+        recycle: versions = Yes
+        recycle: noversions = .doc|.xls|.ppt|*.dcl
+
+; Configuracao das pastas Departamentais
+; Funcional apenas caso os usuarios tenham sido inseridos no samba segundo o formato da proposta de aula do 451.
+
+[Diretoria]
+        comment = Diretoria
+        path = /srv/dexter/Diretoria
+        read only = No
+        guest ok = No
+        create mask = 007
+        valid users = +dexter.com.br\diretores
+        force create mode = 660
+        force directory mode = 770
+        veto files = /*.mp3/*.mpg/*.mpeg/*.avi/*.jpg/
+        hide files = /*.ini/*.log/
+
+[Financeiro]
+        comment = Financeiro
+        path = /srv/dexter/Financeiro
+        read only = No
+        guest ok = No
+        valid users = +dexter.com.br\financeiro
+        force create mode = 660
+        force directory mode = 770
+        veto files = /*.mp3/*.mpg/*.mpeg/*.avi/*.jpg/
+        hide files = /*.ini/*.log/
+
+[Infra]
+        comment = Infra
+        path = /srv/dexter/Infra
+        read only = No
+        guest ok = No
+        valid users = +dexter.com.br\analistas
+        force create mode = 660
+        force directory mode = 770
+        veto files = /*.mp3/*.mpg/*.mpeg/*.avi/*.jpg/
+        hide files = /*.ini/*.log/
+
+[Vendas]
+        comment = Vendas
+        path = /srv/dexter/Vendas
+        read only = No
+        guest ok = No
+        valid users = +dexter.com.br\vendedores
+        force create mode = 660
+        force directory mode = 770
+        veto files = /*.mp3/*.mpg/*.mpeg/*.avi/*.jpg/
+        hide files = /*.ini/*.log/
+
+[lixeiras]
+        path = /srv/storage/samba/lixeiras/%U
+        browsable = yes
+        read only = no
+        guest ok = yes
+

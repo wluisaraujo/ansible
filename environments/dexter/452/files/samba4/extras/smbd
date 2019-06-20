@@ -1,0 +1,122 @@
+#!/bin/bash
+#
+### BEGIN INIT INFO
+# Provides:          samba4
+# Required-Start:    networking
+# Required-Stop: 
+# Should-Start:      S
+# Should-Stop:       
+# Default-Start:     2 3 4 5
+# Default-Stop:
+# Short-Description: Samba4 Curso 452 - 4Linux
+# Description:       Samba4 Curso 452 - 4Linux
+#                   
+### END INIT INFO
+  
+#----------------------------------------------------------------------- 
+
+### Variáveis 
+SMBDPID="/opt/samba/var/run/smbd.pid"
+SV=`samba -V`
+
+### CORES
+VERDE="\033[1;32m"
+AMARELO="\033[1;33m"
+AZUL="\033[1;34m"
+VERMELHO="\033[1;31m"
+END="\033[m"
+
+### BARRA DE PROGRECO
+ProgressBar() {
+  tput civis
+  for X in $(seq 20)
+  do  
+    for i in ..
+    do  
+      echo -en "\033[1D$i"
+      sleep .1
+    done
+  done
+  tput cnorm
+}
+
+#----------------------------------------------------------------------- 
+
+verificasamba() 
+{ 
+#### VERIFICANDO O FUNCIONAMENTO DO SAMBA #### 
+test -f $SMBDPID
+	if [ $? -eq 0 ] 
+  		then echo -en "[\033[0;32m ok\033[m ]" ; echo -en " Samba4 is Running - " ; echo $SV;
+		else echo -en "[\033[0;31m FAIL\033[m ]" ; echo -en " Samba4 is NOT Running "; echo -e ;
+	fi
+}
+
+iniciasamba()
+{
+#### INVOCANDO O PROCESSO DO SAMBA ####
+test -f $SMBDPID
+	if [ $? -eq 1 ]
+		then /opt/samba/sbin/samba ;
+		echo -en "[\033[0;32m ok\033[m ]]" ; ProgressBar ; echo -en " Samba4 Started - " ; echo $SV;
+		else echo -en "[\033[0;32m ok\033[m ]]" ; ProgressBar ; echo -en " Samba4 is already running - "; echo $SV;
+fi
+}
+
+reloadconfig()
+{
+#### PARANDO QUALQUER PROCESSO DO SAMBA AINDA EM EXECUSAO ####
+smbcontrol reload all-config 2> /dev/null
+		echo -en "[\033[0;32m ok\033[m ]]" ; ProgressBar ; echo -en " Reloading Samba4 ";
+echo -e
+sleep 3
+verificasamba
+}
+
+
+parasamba() 
+ { 
+#### MATANDO OS PROCESSOS DO SAMBA #### 
+test -f $SMBDPID
+	if [ $? -eq 0 ]
+  		then pkill samba 2> /dev/null
+		echo -en "[\033[0;32m ok\033[m ]]" ; ProgressBar ; echo -en " Samba4 stopped "; echo -e ;
+		else echo -en "[\033[0;31m FAIL\033[m ]"; echo -en " Samba4 is NOT Running "; echo -e ;
+fi		 
+sleep 1
+} 
+
+reiniciasamba()
+ { 
+#### REINICANDO O SAMBA4 #### 
+parasamba
+echo -en "[\033[0;32m ok\033[m ]]" ; ProgressBar ; echo -en " Restarting Samba4 ";
+echo -e
+iniciasamba
+}
+
+#----------------------------------------------------------------------- 
+case $1 in 
+ start) 
+ iniciasamba
+;;
+
+ stop)
+ parasamba 
+;;
+
+ restart)
+ reiniciasamba
+;;
+
+ status)
+ verificasamba
+;;
+
+ reload)
+ reloadconfig
+;;
+ 
+*) echo "Erro utilize $0 {start|stop|restart|status|reload}" 
+  	;; 
+esac
