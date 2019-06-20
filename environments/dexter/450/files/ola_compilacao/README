@@ -1,0 +1,74 @@
+Sobre
+=====
+Esse eh um pequeno exemplo de como se compilar um programa no Linux, e foi
+criado para fins educativos :) 
+
+O programa em si penas irah mostrar uma mensagem na tela apos ser corretamente 
+configurado. Os arquivos "configure" e "Makefile" tambem podem ser usados como
+base para configuracao de programas mais complexos.
+
+
+INSTRUCOES
+==========
+
+INSTALACAO
+----------
+
+1 - Configurar o prefixo do programa.
+O prefixo eh o local do sistema onde o programa serah instalado. Para instalar
+ele em /usr/bin (local onde ficam outros programas do sistema por padrao)
+voce deve fazer o seguinte:
+
+$ ./configure --prefix=/usr/bin
+
+
+2 - Rodar o make para compilar o programa:
+
+$ make
+
+Apos esse momento o programa ja deve estar compilado. Observe que um binario
+chamado "oi" apareceu nesse diretorio. 
+
+
+3 - Instalar o programa compilado utilizando o make:
+
+$ make install
+
+Nesse momento o binario sera copiado para o diretorio que voce configurou
+com o script "configure", e ja pode ser utilizado.
+
+4 - Executar o programa:
+
+$ [prefixo]/oi
+
+Caso tenha instalado em /usr/bin provavelmente nao precisara informar o caminho
+completo; caso contrario o caminho deve ser o mesmo do prefixo configurado no
+item 1
+
+
+DESINSTALACAO
+-------------
+
+Para desinstalar o programa basta rodar o comando a seguir:
+
+$ make uninstall
+
+OBS: Caso altere alguma configuracao apos ter instalado o programa com o 
+"make install" esse comando ira falhar.
+
+
+LIMPANDO O PROGRAMA COMPILADO
+-----------------------------
+
+Algumas vezes pode ser desejado limpar os arquivos que ja foram compilados,
+como por exemplo quando trocar a configuracao feita com o configure.
+
+Para garantir que nao havera problemas, sempre que fizer uma alteracao na
+configuracao limpe os arquivos compilados com o seguinte comando:
+
+$ make clean
+
+
+AUTOR
+=====
+Diego Alencar Alves de Lima <diego@diegolima.org>

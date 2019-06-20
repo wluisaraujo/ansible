@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+prefix=NONE
+test "$prefix" = NONE && prefix=/usr/local/bin
+
+usage ()
+{
+    echo ""
+    echo "Utilizacao : configure [--prefix=PREFIX]"
+    echo ""
+}
+
+while test x$1 != x; do
+    case $1 in
+        --prefix=*)
+            prefix=`echo $1 | sed 's/--prefix=//'`
+            ;;
+        --prefix)
+            shift
+            prefix=$1
+            ;;
+        --help)
+            usage
+            exit
+            ;;
+        *)
+            echo Aviso: argumento invalido $1 >&2
+            usage
+            ;;
+    esac
+    shift
+done
+
+echo -n "SUBDIRS = " > config.make
+
+echo Resumo da Configuracao
+echo ---------------------
+echo
+echo "O programa foi configurado com: "
+echo "    prefixo = $prefix"
+echo
+echo >> config.make
+echo
+
+echo -n  "prefix=$prefix" >> config.make
+#
