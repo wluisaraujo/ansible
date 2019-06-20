@@ -1,0 +1,38 @@
+    <header class="header">
+           <?php require 'topo.php' ?>
+    </header>
+    <div class="container">
+    <div class="row">
+    <div class="span12" style="margin-top:20px">
+        <legend class="title">
+            <h3>+ Novo Cliente</h3>
+        </legend>
+         <form action="#" method="post" class="form">
+                <p>
+                    <label for="nome">Nome</label>
+                    <input type="text" name="nome" id="nome" placeholder="Nome" required>
+                </p>
+                <p>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="seu@email.com" required>
+                </p>
+                <p>
+                    <label for="tel">Telefone</label>
+                    <input type="tel" name="tel" id="tel" pattern="[0-9]{8}" required>
+                </p>
+                <p>
+                    <label for="msg">Mensagem</label>
+                    <textarea name="msg" id="msg" rows="5" placeholder="Sua mensagem..." required></textarea>
+                </p>
+                <p>
+                    <button class="btn">Enviar</button>
+                </p>
+            </form>
+
+    </div>
+</div>
+</div>
+
+</body>
+
+</html>

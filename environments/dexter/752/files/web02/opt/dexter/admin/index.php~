@@ -1,0 +1,27 @@
+<!doctype html>
+<html dir="ltr" lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <title>Dexter Courier | Home</title>
+    <link href='http://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <header class="header">
+           <?php require 'topo.php' ?>
+    </header>
+
+
+    <section class="content">
+        <?php echo "<h1> Content</h1>" ?>
+
+    </section>
+
+    <footer class="footer">
+        <?php require 'rodape.php' ?>
+    </footer>
+
+</body>
+
+</html>
