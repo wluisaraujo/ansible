@@ -1,0 +1,3 @@
+# Insert hosts you wish ignored in the sarg reports
+127.0.0.1
+google.com.br

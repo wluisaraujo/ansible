@@ -1,0 +1,134 @@
+#!/bin/bash
+
+# Variaveis
+FWWAN1="10.0.2.15"
+FWWAN2="200.100.50.100"
+
+MAQEXERNA="200.100.50.150"
+MAQFISICA="200.100.50.1"
+
+LAN="172.16.100.0/24"
+FWLAN="172.16.100.201"
+STORAGE="172.16.100.202"
+PROXY="172.16.100.201"
+MAILSERVER="172.16.100.206"
+
+VPN="200.100.50.100"
+TUNVPN="192.168.200.0/24"
+
+
+# 2 - Liberar acesso ao loopback – 127.0.0.1
+iptables -t filter -A INPUT -s 0/0 -d 127.0.0.1 -j ACCEPT
+iptables -t filter -A OUTPUT -s 0/0 -d 127.0.0.1 -j ACCEPT
+
+# 3 - Liberar Ping do Firewall para Internet e da rede interna
+iptables -t filter -A OUTPUT -p icmp -s 0/0 -d 0/0 -j ACCEPT
+iptables -t filter -A INPUT -p icmp --icmp-type 0 -s 0/0 -d 0/0 -j ACCEPT
+iptables -t filter -A INPUT -p icmp --icmp-type 8 -s $LAN -d 0/0 -j ACCEPT
+
+# 4 - Liberar Consulta DNS a partir do  Firewall
+iptables -t filter -A INPUT -p udp -s 0/0 --sport 53 -d $FWWAN1 -j ACCEPT
+iptables -t filter -A OUTPUT -p udp -s $FWWAN1  -d 0/0 --dport 53 -j ACCEPT
+
+# 5 - Permitir Acesso a Internet pelo Firewall
+iptables -t filter -A INPUT -p tcp -m multiport -s 0/0 --sport 80,443 -d $FWWAN1 -j ACCEPT
+iptables -t filter -A OUTPUT -p tcp -m multiport -s $FWWAN1  -d 0/0 --dport 80,443 -j ACCEPT
+
+# 5.1 - Permitir Acesso Interno do firewall
+iptables -t filter -A INPUT -p tcp -m multiport -s $LAN --sport 20,21,80,443 -d $FWLAN -j ACCEPT
+iptables -t filter -A OUTPUT -p tcp -m multiport -s $FWLAN  -d $LAN --dport 20,21,80,443 -j ACCEPT
+
+
+# 6 - Liberar Acesso SSH da Máquina Filial para o Firewall
+iptables -t filter -A INPUT -p tcp -s $STORAGE  -d $FWLAN --dport 22 -j ACCEPT
+iptables -t filter -A OUTPUT -p tcp  -s $FWLAN --sport 22 -d $STORAGE -j ACCEPT
+
+# 7 - Liberar "MASCARAMENTO" de Pacotes da Rede Interna para a Internet
+iptables -t nat -A POSTROUTING -s $LAN -d 0/0 -j MASQUERADE
+
+# 7.1 - Liberar Acesso a Internet para as Máquinas das SubRedes
+iptables -t filter -A FORWARD -p tcp -m multiport -s $LAN -d 0/0 --dport 80,443 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp -m multiport -s 0/0 --sport 80,443 -d $LAN  -j ACCEPT
+
+# 8 - Liberar Acesso a Consulta DNS para as Máquinas das SubRedes
+iptables -t filter -A FORWARD -p udp -s $LAN -d 0/0 --dport 53 -j ACCEPT
+iptables -t filter -A FORWARD -p udp -s 0/0 --sport 53 -d $LAN -j ACCEPT
+
+# 8.1 - Liberar Ping das SubRedes para a Internet
+iptables -t filter -A FORWARD -p icmp -s $LAN -d 0/0  -j ACCEPT
+iptables -t filter -A FORWARD -p icmp -s 0/0 -d $LAN -j ACCEPT
+
+# 8.2 - Libera o acesso DNS
+iptables -t filter -A INPUT -p udp -s $LAN --sport 53 -d $FWLAN -j ACCEPT
+iptables -t filter -A OUTPUT -p udp -d $LAN --dport 53 -s $FWLAN -j ACCEPT
+
+# Liberar transferencia de pacotes pelo firewall 
+iptables -t filter -A FORWARD -p tcp -s $LAN -d $LAN -j ACCEPT
+iptables -t filter -A FORWARD -p udp -s $LAN -d $LAN -j ACCEPT
+
+# 9- Redirecione o Serviço SSH para o Servidor Interno Storage
+iptables -t nat -A PREROUTING -p tcp -s 0/0 -d $FWWAN2 --dport 52000 -j DNAT --to 172.16.100.202:22
+iptables -t filter -A FORWARD -p tcp -s 0/0 -d 172.16.100.202 --dport 22 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp -s 172.16.100.202 --sport 22 -d 0/0 -j ACCEPT
+
+# 9.1- Redirecione o Serviço SSH para o Servidor Interno Web Server 1
+iptables -t nat -A PREROUTING -p tcp -s 0/0 -d $FWWAN2 --dport 53000 -j DNAT --to 172.16.100.203:22
+iptables -t filter -A FORWARD -p tcp -s 0/0 -d 172.16.100.203 --dport 22 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp -s 172.16.100.203 --sport 22 -d 0/0 -j ACCEPT
+
+# 9.2- Redirecione o Serviço SSH para o Servidor Interno Web Server 2
+iptables -t nat -A PREROUTING -p tcp -s 0/0 -d $FWWAN2 --dport 54000 -j DNAT --to 172.16.100.204:22
+iptables -t filter -A FORWARD -p tcp -s 0/0 -d 172.16.100.204 --dport 22 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp -s 172.16.100.204 --sport 22 -d 0/0 -j ACCEPT
+
+# 9.3- Redirecione o Serviço SSH para o Servidor Interno Web Proxy
+iptables -t nat -A PREROUTING -p tcp -s 0/0 -d $FWWAN2 --dport 55000 -j DNAT --to 172.16.100.205:22
+iptables -t filter -A FORWARD -p tcp -s 0/0 -d 172.16.100.205 --dport 22 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp -s 172.16.100.205 --sport 22 -d 0/0 -j ACCEPT
+
+# 9.4- Redirecione o Serviço SSH para o Servidor Interno Mail Server
+iptables -t nat -A PREROUTING -p tcp -s 0/0 -d $FWWAN2 --dport 56000 -j DNAT --to 172.16.100.206:22
+iptables -t filter -A FORWARD -p tcp -s 0/0 -d 172.16.100.206 --dport 22 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp -s 172.16.100.206 --sport 22 -d 0/0 -j ACCEPT
+
+# 9.5- Redirecione o Serviço SSH para o Servidor Interno Mail Server
+iptables -t nat -A PREROUTING -p tcp -s 0/0 -d $FWWAN2 --dport 57000 -j DNAT --to 172.16.100.207:22
+iptables -t filter -A FORWARD -p tcp -s 0/0 -d 172.16.100.207 --dport 22 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp -s 172.16.100.207 --sport 22 -d 0/0 -j ACCEPT
+
+# Libere Repasse de Pacotes para os Serviços mais comuns para as Máquinas das Redes:
+
+for PORTS in 25 110 143 993 21 20
+do
+   iptables -A FORWARD -p tcp -s $LAN  --sport 1024:65535  -d 0/0 --dport $PORTS -j ACCEPT 
+   iptables -A FORWARD -p tcp  -s 0/0 --sport $PORTS -d $LAN --dport 1024:65535 -j ACCEPT
+done
+
+# 10.1 - Liberar o ssh interno
+iptables -t filter -A OUTPUT -p tcp -s 0/0 -d $LAN --dport 22 -j ACCEPT
+iptables -t filter -A INPUT -p tcp -s $LAN --sport 22 -d 0/0 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp -s $LAN -d $LAN --dport 22 -j ACCEPT
+
+# 11- Liberar Squid LDAP no Firewall
+
+iptables -t filter -A INPUT -p tcp -s $LAN -d $FWLAN --dport 80 -j ACCEPT
+iptables -t filter -A OUTPUT -p tcp -s $FWLAN --sport 80 -d $LAN -j ACCEPT
+
+iptables -t filter -A INPUT -p tcp -s $LAN -d $FWLAN --dport 3128 -j ACCEPT
+iptables -t filter -A OUTPUT -p tcp -s $FWLAN --sport 3128 -d $LAN -j ACCEPT
+
+iptables -t filter -A OUTPUT -p tcp -s 0/0 -d $STORAGE --dport 389 -j ACCEPT
+iptables -t filter -A INPUT -p tcp  -s $STORAGE --sport 389 -d 0/0 -j ACCEPT
+
+iptables -t filter -A OUTPUT -p tcp -s 0/0 -d $STORAGE --dport 636 -j ACCEPT
+iptables -t filter -A INPUT -p tcp  -s $STORAGE --sport 636 -d 0/0 -j ACCEPT
+
+iptables -t filter -A INPUT -i enp0s9 -p udp -m state --state NEW,ESTABLISHED --dport 5000 -j ACCEPT
+iptables -t filter -A OUTPUT -o enp0s9 -p udp -m state --state ESTABLISHED --sport 5000 -j ACCEPT
+
+iptables -t filter -A INPUT -i tun0 -j ACCEPT
+iptables -t filter -A FORWARD -i tun0 -j ACCEPT
+iptables -t filter -A OUTPUT -o tun0 -j ACCEPT
+
+iptables -t filter -A FORWARD -i tun0 -o enp0s9 -s $TUNVPN -j ACCEPT
+iptables -t filter -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
