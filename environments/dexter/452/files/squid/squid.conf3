@@ -1,0 +1,102 @@
+### ARQUIVO DE CONFIGURACAO DO SQUID ###
+ 
+## DEFINE A PORTA DE CONEXAO DO SQUID
+http_port 3128
+ 
+## DEFINE O TAMANHO MAXIMO DE UM OBJETO PARA SER ARMAZENADO EM CACHE ##
+maximum_object_size 4096 KB
+ 
+## DEFINE O TAMANHO MINIMO DE UM OBJETO PARA SER ARMAZENADO EM CACHE ## 
+minimum_object_size 0 KB
+ 
+## DEFINE O TAMANHO MAXIMO DE UM OBJETO PARA SER ARMAZENADO EM CACHE DE MEMORIA ## 
+maximum_object_size_in_memory 64 KB
+ 
+## DEFINE A QUANTIDADE DE MEMORIA RAM A SER ALOCADA PARA CACHE ## 
+cache_mem 512 MB
+ 
+## AJUSTA A PERFORMANCE EM CONEXOES PIPELINE ##
+pipeline_prefetch on
+ 
+## CACHE DE FQDN ##
+fqdncache_size 1024
+ 
+## OPCOES DE REFRESH PATTERN ##
+refresh_pattern ^ftp: 1440 20% 10080
+refresh_pattern ^gopher: 1440 0% 1440
+refresh_pattern -i (/cgi-bin/|\?) 0 0% 0
+refresh_pattern . 0 20% 4320
+ 
+## DEFINE A PORCENTAGEM DO USO DO CACHE ## 
+cache_swap_low 90
+cache_swap_high 95
+ 
+## ARQUIVO DE LOGS DO SQUID ## 
+access_log /var/log/squid/access.log squid
+cache_log /var/log/squid/cache.log
+cache_store_log /var/log/squid/store.log
+ 
+## DEFINE O LOCAL DO CACHE ##
+cache_dir ufs /var/spool/squid 1600 16 256
+ 
+## CONTROLE DE ROTACAO DOS ARQUIVOS DE LOGS ##
+logfile_rotate 10
+ 
+## ARQUIVO ONDE CONTEM OS ENDERECOS LOCAIS DA REDE ##
+hosts_file /etc/hosts
+ 
+## ACLS - PORTAS PADROES LIBERADAS ##
+acl SSL_ports port 80 #HTTP
+acl SSL_ports port 443 #HTTPS
+acl Safe_ports port 80 # http
+acl Safe_ports port 21 # ftp
+acl Safe_ports port 443 # https
+acl Safe_ports port 70 # gopher
+acl Safe_ports port 210 # wais
+acl Safe_ports port 1025-65535 # unregistered ports
+acl Safe_ports port 280 # http-mgmt
+acl Safe_ports port 488 # gss-http
+acl Safe_ports port 591 # filemaker
+acl Safe_ports port 777 # multiling http
+acl CONNECT method CONNECT
+ 
+### DEFININDO MODO DE AUTENTICACAO
+auth_param basic program /usr/lib/squid3/basic_ncsa_auth /etc/squid/usuarios
+auth_param basic children 5
+auth_param basic realm "DIGITE SEU USUARIO E SENHA PARA ACESSO A INTERNET:"
+auth_param basic credentialsttl 2 hours
+auth_param basic casesensitive off
+ 
+### ACL PARA GARANTIR A AUTENTICACAO DO USUARIO NOS SITES ###
+acl autenticados proxy_auth REQUIRED
+ 
+## BLOQUEIA O ACESSO UNSAFE PORTS ##
+http_access deny !Safe_ports
+ 
+## Deny CONNECT to other than secure SSL port ##
+http_access deny CONNECT !SSL_ports
+ 
+## SITES BLOQUEADOS PARA ACESSO ##
+acl sites-bloqueados url_regex -i "/etc/squid/regras/sites_bloqueados"
+ 
+## SITES LIBERADOS PARA ACESSO ##
+acl sites-liberados url_regex -i "/etc/squid/regras/sites_liberados"
+ 
+## DEFININDO A ORDEM DAS REGRAS - ACLS ##
+http_access allow autenticados
+http_access deny sites-bloqueados
+http_access allow sites-liberados
+http_access deny all
+http_reply_access allow all
+icp_access allow all
+miss_access allow all
+ 
+## NOME QUE IRA APARECER NA TELA DE ERRO OU BLOQUEIO DO SQUID ##
+visible_hostname proxy.tidahora.com.br
+ 
+## DIRETORIO DAS PAGINAS DE ERROS ##
+error_directory /usr/share/squid/errors/pt-br
+ 
+## OUTRAS OPCOES DE CACHE ##
+cache_effective_user proxy
+coredump_dir /var/spool/squid

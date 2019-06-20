@@ -1,0 +1,67 @@
+## ACLS
+
+acl VIP src 192.168.X.0/24
+acl REDE src 192.168.X.X/24
+acl ALMOCO src time 12:00-13:00
+# acl ALMOCO src time MTWHF 12:00-13:00
+acl BLOQUEADOS url_regex "/etc/squid3/acl/bloqueados.txt"
+acl BLOQUEADOS2 dstdomain "/etc/squid3/acl/bloqueados2.txt"
+acl BLOQUEADOS3 src "/etc/squid3/acl/bloqueados3.txt"
+
+## REGRAS
+
+http_access allow VIP
+http_access deny BLOQUEADOS !ALMOCO
+http_access deny BLOQUEADOS
+http_access allow REDE
+http_access deny all
+#########################
+Dica: Toda vez que você mudar as ACL's você deve executar os comandos:
+
+# squid  -k  parse
+# squid  -k  reconfigure
+
+###########################
+# vim /etc/squid/squid.conf
+...
+###### Minhas ACL's ###### 
+acl RedeDexter 	src 			192.168.X.0/24 
+acl Internacional 	dstdomain 	.com 
+acl Globo 			dstdomain 	.globo.com 
+acl blacklist 		url_regex 	linux
+acl whitelist dstdomain www.linux.com  www.4linux.com.br
+... 
+###### Minhas regras ###### 
+http_access 	allow	RedeDexter 	whitelist 
+http_access 	deny	RedeDexter 	blacklist
+http_access 	allow 	RedeDexter 	Globo 
+http_access 	deny 	RedeDexter 	Internacional 
+http_access 	allow 	RedeDexter 
+
+# squid -k reconfigure
+
+Tente acessar agora os seguintes endereços:
+
+http://www.4linux.com.br
+http://www.linux.com
+http://www.br-linux.org
+http://www.vivaolinux.com.br
+
+
+
+##
+apt-get install apache2 sarg 
+
+iptables -t filter -A INPUT -p tcp -s 192.168.17.1/24 --dport 80 -j ACCEPT 
+iptables -t filter -A OUTPUT -p tcp -d 192.168.17.1/24 --sport 80 -j ACCEPT
+
+	1# cd /etc/sarg
+	2# mv sarg.conf sarg.conf.dist
+	3# wget http://192.168.1.1/452/squid/sarg.conf
+Abra o arquivo /etc/sarg/sarg-reports
+Especifique aonde irá gerar os arquivos de logs do sarg alterando a
+	
+	4# vim /etc/sarg/sarg-reports
+		HTMLOUT=/etc/sarg/reports
+
+

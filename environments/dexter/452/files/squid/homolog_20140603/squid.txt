@@ -1,0 +1,200 @@
+Roteiro Squid - Rafael Mendonca  Thu Feb 27 08:18:28 BRT 2014
+
+SLIDE05 - Objetivos da Aula
+➢ Introdução ao Web Proxy Squid;
+➢ Conhecer os tipos de Proxy;
+➢ Conhecer os tipos de ACLs;
+➢ Ajustar o Firewall para acesso ao Proxy;
+➢ Implementar na prática o servidor Proxy;
+➢ Configurar autenticação NCSA;
+
+SLIDE06 - Introdução ao Squid. 
+As soluções Web Proxy foram desenvolvidas para contornar
+desperdício de banda nas empresas. Isso acontece quando varias
+máquinas acessam a mesma página.
+Quando um Proxy é implementado na rede, o navegador das
+máquinas clientes ao invés de consultar o site, consultam o "Web
+Proxy" previamente configurado, que armazena o conteúdo dos
+sites em um diretório num disco rígido.
+
+
+SLIDE07 - Tipos de Squid (( SQUID MANUAL )) 
+	-- Mostrar imagem 
+
+
+SLIDE08 - Tipos de Squid (( SQUID TRANSPARENTE )) 
+	-- Mostrar imagem 
+
+SLIDE09 - Trabalhando com ACL 
+O que é um ACL?
+Access Control List ou Lista de controle de acesso (também
+conhecida pelo acrônimo ACL), como o próprio nome diz é uma
+maneira de criar listas de acesso no Squid.
+É definida como uma lista que define quem tem permissão de
+acesso a certos serviços. Ou seja, para quem um servidor deve
+permitir ou negar determinada tarefa.
+
+
+SLIDE10 - Tipos de ACL 
+rc →	Filtro por rede ou endereço IP;
+time →	Filtro por hora e dia da semana;
+urlpath_regex →	Filtro de complemento de uma "url";
+url_regex →	Filtro de uma "string" na "url ";
+dstdomain →	Filtro de uma "url";
+proxy_auth →	Filtro por usuários autenticados;
+arp →	Filtro por "MAC Address";
+Maxconn → Filtro por conexões;
+Proto → Filtro por protocolos;
+port →	Filtro por porta.
+
+SLIDE11 - Regras das ACLs. 
+http_access → Permite ou nega acessos baseados nas ACLs pré definidas. É
+utilizado seguido de allow ou deny.
+Se a ACL for precedida de um ponto de exclamação significa que será a negação da
+ACL. As regras serão lidas na ordem em que aparecem.
+➢ Exemplos:
+http_access allow DIRETOR
+http_access deny FACEBOOK !HORARIO_ALMOCO
+http_access deny EXTENSAO_PROIBIDA
+
+
+SLIDE12 - ➢ Liberando VPN no Firewall:
+Antes de implementar o squid libere a conexão VPN no arquivo
+de configuração do Firewall.
+➢Descomente a linha 11 no arquivo de configuração do firewall
+
+
+1# vim +11 /etc/init.d/firewall 
+LAN="192.168.X.0/24"
+REDE="192.168.X."
+FWWAN="200.100.50.X"
+FWLAN="192.168.X.1"
+DATACENTER="192.168.X.2"
+VPN="200.100.50.Y"	<--- DESCOMENTAR e ALTERAR o Y para o IP do Colega. 
+
+SLIDE13 - Liberando o Squid e o LDAP no Firewall. 
+
+o arquivo de configuração do firewall, descomente da linha 74 a linha 89 até
+2# vim +74 /etc/init.d/firewall 
+➢ Restarte o serviço do firewall:
+3# /etc/init.d/firewall restart
+
+SLIDE14 - INSTALANDO O SQUID e o SARG 
+	# apt-get update && apt-get install squid3 sarg 
+	# cd /etc/squid3 
+	# wc -l squid.conf 
+	# mv squid.conf squid.conf.dist 
+	# wget 192.168.1.1/452/squid/squid.conf 
+	
+Arquivos do Squid: 
+/etc/squid3/squid.conf → Arquivo de configuração
+/var/log/squid3/* → Arquivos de log do squid
+/var/spool/squid3 → Diretório que contém o cache do squid
+
+
+SLIDE15 - Configurando o Squid. 
+# Fazer a ACL dexter no escopo de minhas ACLS
+acl REDEDEXTER src 192.168.X.0/24
+
+# Fazer regra em minhas regras:
+http_access allow RedeDexter
+
+acl YOUTUBE dstdomain .youtube.com
+acl BLOQUEADOS url_regex "/etc/squid3/acl/bloqueados.txt"
+
+
+##################################################
+1# cd /etc/squid3
+2# mkdir acl
+3# cd acl/
+4# echo “uol.com.br” > liberados1.txt
+5# echo “terra.com.br” > liberados2.txt
+6# echo “192.168.X.10” > financeiro.txt
+7# echo “192.168.X.100” > vendas.txt
+8# echo “playboy.com” > vip_bloqueados.txt
+9# echo “192.168.15.200” > vip.txt
+######################################################
+
+SLIDE16  -  Descomentando a linha de configuração do Squid. 
+No arquivo de configuração do squid, descomente as acls da
+linha 85 até a linha 97.
+	1# vim +85 /etc/squid3/squid.conf
+Execute o comando abaixo para reler o arquivo squid.conf sem
+precisar reiniciar o squid.
+	2# squid -­k reconfigure
+Execute o comando abaixo para criar a estrutuda de cache do
+squid.
+	3# squid3 ­z
+
+SLIDE17 - Testando o Acesso
+ Configurando o Proxy no browser:
+No navegador Firefox da máquina Desktoplinux, siga as
+instruções abaixo para a configuração do Proxy:
+	 Editar > Preferências > Avançado > Rede > Configurar Conexão
+➢ Testando as ACLs:
+Utilize o comando tailf para acompanhar os logs do Squid
+	2# tailf /var/log/squid3/cache.log
+
+
+SLIDE18 - Autenticacao via LDAP. 
+Para liberação da autenticação via LDAP, no arquivo squid.conf descomente
+da linha 55 a 58.
+➢ Criação da ACL de Bloqueio
+Ainda no arquivo squid.conf crie a ACL de bloqueio:
+	1# vim +55 /etc/squid3/squid.conf
+		acl AUTH proxy_auth REQUIRED
+
+➢ Criação da regra de Acesso
+Coloque a seguinte linha como PRIMEIRA regra de acesso:
+		http_access deny !AUTH
+
+➢ Recarregue as configurações do Squid e acesse as páginas
+	2# squid ­k reconfigure
+
+
+SLIDE19 - Relatorio com SARG. 
+Mova o arquivo de configuração sarg.conf para backup e em seguida
+baixe um novo sarg.conf
+	1# cd /etc/sarg
+	2# mv sarg.conf sarg.conf.dist
+	3# wget http://192.1680.1.1/452/squid/sarg.conf
+Abra o arquivo /etc/sarg/sarg-reports
+Especifique aonde irá gerar os arquivos de logs do sarg alterando a
+	
+	4# vim /etc/sarg/sarg­reports
+		HTMLOUT=/etc/sarg/reports
+
+
+
+#########  MINHAS ACLS ########### 
+
+acl REDE src 192.168.30.0/24 
+
+acl VIP src "/etc/squid3/acls/vip.txt"
+
+acl FINANCEIRO src "/etc/squid3/acls/financeiro.txt"
+acl LIBERADOS1 url_regex "/etc/squid3/acls/liberados1.txt" 
+
+acl VENDAS src "/etc/squid3/acls/vendas.txt"
+acl LIBERADOS2 url_regex "/etc/squid3/acls/liberados2.txt" 
+
+acl ALMOCO time MTWHF 15:00-16:30
+#acl ALMOCO time MTWHF 12:00-13:30
+acl LIBERADOS_ALMOCO url_regex "/etc/squid3/acls/liberados_almoco.txt"
+
+http_access deny !AUTH
+http_access allow  VIP
+http_access allow  REDE ALMOCO LIBERADOS_ALMOCO
+http_access allow  FINANCEIRO LIBERADOS1
+http_access allow  VENDAS LIBERADOS2
+
+http_access deny REDE
+http_access deny all 
+
+############################### SARG ##################### 
+apt-get install apache2 sarg 
+
+iptables -t filter -A INPUT -p tcp -s 192.168.15/24 --dport 80 -j ACCEPT 
+iptables -t filter -A OUTPUT -p tcp -d 192.168.15/24 --sport 80 -j ACCEPT
+
+
