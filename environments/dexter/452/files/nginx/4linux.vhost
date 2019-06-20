@@ -1,0 +1,38 @@
+###################################################################
+###     Treinamento 4Linux                                      ###
+###      Formação Administrador Linux                           ###
+###################################################################
+
+### Curso: Curso Linux Security Servers in Cloud
+### Descrição: Configuracao do Servidor Nginx - Arquivo de VirtualHost
+
+
+#Inicia o bloco de configuração do Vhost
+server {
+
+  ## Define porta padrao do site, por padrão é a 80
+  #listen   80; 
+
+  #Define porta IPV6
+  #listen   [::]:80 default_server ipv6only=on; 
+
+  #Diretorio de arquivos do site, equivalente ao DocumentRoot do Apache
+  root /usr/share/nginx/www/exemplo;
+
+  #Ordem das páginas index
+  index index.html index.htm;
+
+  #Dominio do site equivalente ao ServerName do apache
+        server_name exemplo;
+
+  # Define rotas no servidor.
+  # Rotas sao equivalentes a Alias para um caminho,
+  # Exemplo: o usuario acessa localhost/teste e o servidor aponta para /imagens e na url continua /teste
+  #Define a rota
+  location /teste { 
+                #define o caminho real dos arquivos
+                try_files $uri $uri/ /imagens/index.html;
+                #proxy_pass http://servidor.com.br;
+        }
+}
+

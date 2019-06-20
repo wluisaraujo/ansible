@@ -1,0 +1,56 @@
+## Default
+  authoritative;
+  ddns-update-style none; 
+  log-facility local7; 
+  default-lease-time 600;
+  max-lease-time 7200;
+  min-lease-time 1000;
+  server-identifier audit.dexter.com.br;
+  option domain-name "dexter.com.br";
+  option domain-name-servers 192.168.200.30,192.168.200.130;
+  option log-servers 192.168.200.30;
+  option ntp-servers 192.168.200.30;
+
+## Failover
+failover peer "dhcp-failover" {
+        primary;
+        address 192.168.200.30;
+        port 647;
+        peer address 192.168.200.30;
+        peer port 647;
+        max-response-delay 30; 
+        max-unacked-updates 10; 
+        load balance max seconds 3;
+        mclt 1800;
+        split 128;
+}
+
+## VLAN 1
+subnet 192.168.200.0 netmask 255.255.255.128 {
+        option routers 192.168.200.1, 192.168.200.129;
+	option broadcast-address 192.168.200.127;
+          pool {
+                failover peer "dhcp-failover";
+                range 192.168.200.100 192.168.200.110;
+                }   
+}
+## VLAN 2
+subnet 192.168.200.128 netmask 255.255.255.128 {
+        option routers 192.168.200.129, 192.168.200.1;
+	option broadcast-address 192.168.200.255;
+          pool {
+                failover peer "dhcp-failover";
+                range 192.168.200.200 192.168.200.210;
+                }   
+}
+
+# Ativando IP Fixo pelo MacAddress
+group servers {
+host audit      { hardware ethernet 08:00:27:ab:9d:3c; fixed-address 192.168.200.30;  }
+host datacenter { hardware ethernet 08:00:27:b7:e7:f0; fixed-address 192.168.200.131; }
+host fileserver { hardware ethernet 08:00:27:91:b6:4a; fixed-address 192.168.200.40;  }
+host security   { hardware ethernet 08:00:27:7a:d7:e8; fixed-address 192.168.200.1;   }   
+host storage    { hardware ethernet 08:00:27:1b:89:1c; fixed-address 192.168.200.50;  }
+host webserver  { hardware ethernet 08:00:27:43:22:05; fixed-address 192.168.200.130; }
+}
+

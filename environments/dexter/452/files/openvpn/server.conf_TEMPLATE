@@ -1,0 +1,121 @@
+### Global
+###
+###
+# Habilita suporte ao drive TUN/TAP;
+
+dev tun0
+
+# Define a porta que a OpenVPN vai rodar;
+
+port 1194
+
+# A conexão será aberta via protocolo UDP;
+
+proto udp
+
+# Informando o IP por onde minha VPN ir á responder na Internet;
+
+local 10.0.0.175
+
+# Ativa suporte a compressão;
+
+comp-lzo
+
+# Envia um ping a cada 10 segundos sem atividade e a VPN é reiniciada depois de 120 segundos sem respostas;
+
+keepalive 10 120
+
+# Assegura que o daemon mantenha as chaves carregadas, quando a VPN é restabelecida depois de uma queda de conexão;
+
+persist-key
+
+# Assegura que o daemon mantenha a interface tun aberta, quando a VPN é restabelecida depois de uma queda de conexão;
+
+persist-tun
+
+# Permite que o túnel continue aberto mesmo que o endereço IP da outra máquina mude.
+
+float
+
+#
+
+### Certificados
+
+ca /etc/openvpn/keys/ca.crt
+
+cert /etc/openvpn/keys/server.crt
+
+key /etc/openvpn/keys/server.key
+
+dh /etc/openvpn/keys/dh1024.pem
+
+#
+
+# Range de ips que o openvpn ir á distribuir
+
+server 172.16.39.0 255.255.255.0
+
+#
+
+# Cria uma regra de roteamento na configuração do cliente VPN no momento da conexão.
+
+push "route 10.0.0.1 255.255.255.0"
+
+push "route 192.168.10.0 255.255.255.0"
+
+push "route 192.168.0.0 255.255.255.0"
+
+#
+
+#
+push "route 10.0.0.0 255.0.0.0"
+
+# Configuração do servidor DNS enviado as maquinas clientes da VPN;
+
+push "dhcp-option DNS 10.0.0.5"
+
+push "dhcp-option DNS 10.0.0.6"
+
+# Configuração de domínio enviado as maquinas clientes da VPN;
+
+push "dhcp-option DOMAIN 4linux.com.br"
+
+#
+
+ifconfig-pool-persist ipp.txt
+
+#
+
+tls-auth preshared.key 0
+
+crl-verify /etc/openvpn/crl.pem
+
+### LOG
+
+status      /var/log/openvpn-status.log
+
+log         /var/log/openvpn.log
+
+log-append  /var/log/openvpn.log
+
+# Nível para depuração de erros;
+
+verb 5
+
+# Não será necessário que o cliente possua todos certificados;
+
+#
+
+client-cert-not-required
+
+Username-as-common-name
+
+#
+
+##### plugin externo de conex ã o via PAM
+
+#plugin /usr/lib/openvpn/openvpn-auth-pam.so /etc/pam.d/login
+
+
+
+

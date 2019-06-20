@@ -1,0 +1,134 @@
+########### VSFTPD
+	
+Servidor: 5 - Fileserver
+Cliente: Desktop Linux
+
+## O que é FTP?
+Protocolo FTP (FIle Transfer Protocol) é um protocolo simples para transferencia de arquivos.
+
+## Objetivo da Aula.
+- Introdução ao protocolo FTP
+- Entender a diferença entre tipos de FTP (Ativo e Passivo).
+- Implementar na prática o servidor VSFTPD.
+
+## Introdução ao protocolo FTP
+
+## FTP modo ativo: 
+- Os comandos são enviados pelo cliente por uma porta alta. destino ao servidor na porta 21.
+Porta 21 é a porta ativa para comandos.
+Porta 20 é porta para tranferencia de dados.
+
+## Instalaçao (FileServer)
+
+# apt-get install vsftpd
+
+# mv /etc/vsftpd.conf /etc/vsftpd.conf.dist 
+
+# wget 192.168.1.1/452/ftp/vsftpd.conf
+
+# vim  /etc/vsftpd.conf
+
+## Permite a utilização do FTP com o usuário anonymous
+anonymous_enable = No
+
+##Adicione um novo usuário, altere o dono e grupo do diretório.
+
+# useradd ftpuser -d /srv/ftp -s /bin/false
+
+# gpasswd -a ftpuser ftp
+
+# touch /srv/ftp/.message
+  # Personalizar o arquivo .message para ser o banner do ftp.
+
+# chown -R ftp.dexter:ftp.dexter /srv/ftp/
+
+# chmod -R 775 /srv/ftp
+
+# grep ftpuser /etc/passwd
+
+## Personalizar o Banner
+
+# vim /srv/ftp/.message
+
+===========================================================
+## Este sistema é para uso exclusivo da empresa DEXTER .
+## Todas as atividades ser ã o registradas .
+## É vetada a utilização deste sistema para transferência de
+## arquivos protegidos por qualquer lei de direito autoral
+## ou arquivos que infrinjam a legislação vigente .
+============================================================
+
+## Reiniciar o Serviço
+
+#service vsftpd restart
+
+## Verifque a o status via netstat
+
+# netstat - ltupan | grep ftp
+
+## Verificar o log 
+tail -f /var/log/vsftpd.log
+
+#### Cliente
+
+## Acesse a máquina desktop linux, e instale o filezilla
+
+apt-get install filezilla ftp 
+
+## Acesse o menu Aplicativos > Internet > Filezilla. e conecte no servidor via ip.  ;)
+
+## Testando via linha de comando (desktoplinux)
+
+#apt-get install ftp
+
+#ftp 192.168.X.5
+
+## Para saber em qual diret ó rio se encontra :
+ftp > pwd
+
+## Para saber em qual diret ó rio se encontra ( lado cliente ) :
+
+ftp > !pwd
+## Para trocar de diretórios dentro do servidor:
+
+ftp > cd < diretório >
+
+## Para voltar um diretório :
+ftp > cd ..
+
+## Para listar o conteúdo do diretório atual:
+ftp > ls
+
+## Para listar os diret ó rios locais ( lado cliente ) :
+ftp > ! ls
+
+## Para mudar de diret ó rio na m á quina cliente :
+ftp > lcd < diret ó rio >
+
+## Para realizar o download de um arquivo :
+ftp > get < arquivo >
+
+## Para realizar m ú ltiplos downloads :
+ftp > mget *
+
+## Para realizar o upload de um arquivo :
+ftp > put < arquivo >
+
+## Para realizar m ú ltiplos uploads :
+ftp > mput *
+
+## Para uma lista completa de comandos :
+
+ftp > help
+
+
+
+
+###### ATENÇÃO. 
+/etc/ftpusers é o arquivo que define quais usuários shell não podem usar o ftp
+
+
+
+#### Dica rápida
+
+http://wiki.ubuntu-br.org/InstalandoVSFTP

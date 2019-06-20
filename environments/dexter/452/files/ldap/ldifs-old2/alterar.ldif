@@ -1,0 +1,17 @@
+dn: uid=gabriela,ou=users,dc=dexter,dc=com,dc=br
+changetype: modify
+add: givenName
+givenName: Gabriela de Lima Dias
+-
+replace: loginShell
+loginShell: /bin/bash
+
+dn: cn=users,ou=groups,dc=dexter,dc=com,dc=br
+changetype: modify
+delete: memberUid
+memberUid: pedro
+
+dn: cn=vendas,ou=groups,dc=dexter,dc=com,dc=br
+changetype: modify
+delete: memberUid
+memberUid: pedro

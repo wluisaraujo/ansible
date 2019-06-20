@@ -1,0 +1,6 @@
+dn: cn=users,ou=groups,dc=dexter,dc=com,dc=br
+objectClass: top
+objectClass: posixGroup
+cn: users
+gidNumber: 500
+memberUid: gabriela

@@ -1,0 +1,10 @@
+dn: ou=groups,dc=dexter,dc=com,dc=br
+objectClass: organizationalUnit
+ou: groups
+description: Grupos Departamentais da Dexter
+
+dn: ou=users,dc=dexter,dc=com,dc=br
+objectClass: organizationalUnit
+ou: users
+description: Usuarios da Dexter
+

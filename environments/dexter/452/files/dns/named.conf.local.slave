@@ -1,0 +1,14 @@
+###################################################################
+###		 	Treinamento 4Linux			###
+###		   Formação Administrador Linux 		###
+###################################################################
+
+### Curso: Curso Linux Security Servers in Cloud
+### Descrição: Configuracao do Servidor DNS - Arquivo de Zonas Slave
+
+zone "dexter.com.br" {
+	type slave;
+	masters { 192.168.X.2; };
+	file "/var/named/slaves/db.slave.dexter";
+};
+

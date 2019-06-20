@@ -1,0 +1,15 @@
+dn: uid=gabriela,ou=users,dc=dexter,dc=com,dc=br
+objectClass: inetOrgPerson
+objectClass: organizationalPerson
+objectClass: person
+objectClass: top
+objectClass: posixAccount
+uid: gabriela
+sn: Dias
+cn: Gabriela
+homeDirectory: /home/gabriela
+loginShell: /bin/sh
+uidNumber: 1010
+gidNumber: 500
+mail: gabydias@gmail.com
+userPassword: {crypt}4linux

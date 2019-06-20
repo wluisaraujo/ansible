@@ -1,0 +1,36 @@
+## Arquivo de Configuracao do Servidor vsFTPd (Very Secure FTP daemon)
+##
+## Treinamento 4Linux - Formacao Linux
+
+# Ativando a Porta do FTP
+listen=YES
+connect_from_port_20=YES
+
+# Liberacao de Anonymous
+#anonymous_enable=YES
+#anon_upload_enable=YES
+# O diretorio raiz do ftp sera o proprio direotrio home do usuario para conexoes anonimas 
+#chroot_local_user=YES
+
+# Usar usuarios locais
+local_enable=YES
+pam_service_name=vsftpd
+
+# Permitir upload para os Usuarios
+write_enable=YES
+local_umask=007
+
+
+
+# Permitir a exibicao de mensagen ao usuario
+dirmessage_enable=YES
+
+# Log
+xferlog_enable=YES
+xferlog_file=/var/log/vsftpd.log
+
+use_localtime=YES
+
+# Define timout para a sessao e conexao de dados
+idle_session_timeout=600
+data_connection_timeout=120

@@ -1,0 +1,96 @@
+#!/bin/bash
+# Script de Regras do Iptables
+# Acionado por /etc/init.d/firewall start
+
+# Variaveis
+LAN="192.168.x.0/24"
+REDE="192.168.x."
+FWWAN="200.100.50.x"
+FWLAN="192.168.x.1"
+DATACENTER="192.168.x.2"
+#VPN="200.100.50.x"
+
+
+# 2 - Liberar acesso ao loopback – 127.0.0.1
+iptables -t filter -A INPUT -d 127.0.0.1 -j ACCEPT
+iptables -t filter -A OUTPUT -d 127.0.0.1 -j ACCEPT
+
+# 3- Liberar Ping do Firewall para Internet e Rede LAN
+iptables -t filter -A OUTPUT -p icmp  -d 0/0 -j ACCEPT
+iptables -t filter -A INPUT -p icmp --icmp-type 0 -s 0/0 -d $FWWAN -j ACCEPT
+
+# 4- Liberar Consulta DNS a partir do  Firewall
+iptables -t filter -A OUTPUT -p udp -s $FWWAN  -d 0/0 --dport 53 -j ACCEPT
+iptables -t filter -A INPUT -p udp -s 0/0 --sport 53 -d $FWWAN -j ACCEPT
+
+# 5- Permitir Acesso a Internet pelo Firewall
+iptables -t filter -A OUTPUT -p tcp -m multiport -s $FWWAN  -d 0/0 --dport 80,443 -j ACCEPT
+iptables -t filter -A INPUT -p tcp -m multiport -s 0/0 --sport 80,443 -d $FWWAN -j ACCEPT
+
+# 6- Liberar Acesso SSH da Máquina Física para o Firewall:
+iptables -t filter -A INPUT -p tcp -s 200.100.50.x  -d $FWWAN --dport 22 -j ACCEPT
+iptables -t filter -A OUTPUT -p tcp  -s $FWWAN --sport 22 -d 200.100.50.x -j ACCEPT
+
+# 6.1 - Liberar SSH do Firewall para as Maquinas da Rede:
+iptables -t filter -A OUTPUT -p tcp -s $FWLAN -d $LAN --dport 22 -j ACCEPT
+iptables -t filter -A INPUT -p tcp -d $FWLAN -s $LAN --sport 22 -j ACCEPT 
+
+# Liberar "MASCARAMENTO" de Pacotes da Rede Interna para a Internet
+iptables -t nat -A POSTROUTING -s $LAN  -d 0/0 -j MASQUERADE
+
+# 7- Liberar Acesso a Internet para as Máquinas da LAN
+iptables -t filter -A FORWARD -p tcp -m multiport -s $LAN -d 0/0 --dport 80,443 -j ACCEPT
+iptables -t filter -A FORWARD -p tcp -m multiport -s 0/0 --sport 80,443 -d $LAN  -j ACCEPT
+
+# 8- Liberar Acesso a Consulta DNS para as Máquinas da LAN
+iptables -t filter -A FORWARD -p udp -s $LAN -d 0/0 --dport 53 -j ACCEPT
+iptables -t filter -A FORWARD -p udp -s 0/0 --sport 53 -d $LAN -j ACCEPT
+
+# 8.1- Liberar Ping da LAN para a Internet
+iptables -t filter -A FORWARD -p icmp -s $LAN -d 0/0  -j ACCEPT
+iptables -t filter -A FORWARD -p icmp -s 0/0 -d $LAN -j ACCEPT
+
+# 9- Libere Repasse de Pacotes para os Serviços mais comuns para a Rede Interna:
+
+for PORT in  80 443 25 110 143 993 995 21 20 22
+do
+   iptables -A FORWARD -p tcp -s $LAN  --sport 1024:65535  -d 0/0 --dport $PORT -j ACCEPT 
+   iptables -A FORWARD -p tcp  -s 0/0 --sport $PORT -d $LAN --dport 1024:65535 -j ACCEPT
+done
+
+# 10- Redirecione o Serviço SSH para os Servidores Internos
+for SERVER in  2 3 4 5 6
+do
+   iptables -t nat -A PREROUTING -p tcp -s 0/0 -d $FWWAN --dport 5$SERVER'000' -j DNAT --to $REDE$SERVER:22
+   iptables -t filter -A FORWARD -p tcp -s 0/0 -d $REDE$SERVER --dport 22 -j ACCEPT
+   iptables -t filter -A FORWARD -p tcp -s $REDE$SERVER --sport 22 -d 0/0 -j ACCEPT
+done
+
+
+# 11- Liberar Squid LDAP no Firewall
+
+#iptables -t filter -A INPUT -p tcp -s $LAN -d $FWLAN --dport 3128 -j ACCEPT
+#iptables -t filter -A OUTPUT -p tcp -s $FWLAN --sport 3128 -d $LAN -j ACCEPT
+
+#iptables -t filter -A OUTPUT -p tcp -s $FWLAN -d $DATACENTER --dport 389 -j ACCEPT
+#iptables -t filter -A INPUT -p tcp  -s $DATACENTER --sport 389 -d $FWLAN -j ACCEPT
+
+# 12- Liberar comunicacao pela VPN
+
+#iptables -t filter -A OUTPUT -p tcp -s $FWWAN -d $VPN --dport 5000 -j ACCEPT
+#iptables -t filter -A OUTPUT -p udp -s $FWWAN -d $VPN --dport 5000 -j ACCEPT
+
+#iptables -t filter -A INPUT -p tcp -s $VPN --sport 5000 -d $FWWAN -j ACCEPT
+#iptables -t filter -A INPUT -p udp -s $VPN --sport 5000 -d $FWWAN -j ACCEPT
+
+#iptables -t filter -A OUTPUT -p icmp -d 10.0.0.0/16 -j ACCEPT
+#iptables -t filter -A INPUT  -p icmp -s 10.0.0.0/16 -j ACCEPT
+
+
+
+
+
+
+
+
+

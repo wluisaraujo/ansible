@@ -1,0 +1,23 @@
+####################################################################
+####                      Treinamento 4Linux                    ####
+####                  Formação Administrador Linux              ####
+####################################################################
+#
+#### Curso: Curso Linux Security Servers in Cloud
+#### Descrição: Arquivo de Configuracao do Servidor VPN
+
+# Device utilizado no tunelamento
+dev tun0
+
+# Definicao da porta de acesso
+port 5000
+
+# Definicao dos enderecamentos do servidor e do cliente respectivamente
+ifconfig 172.16.2.1 172.16.2.2
+
+# Definicao da chave de acesso no de forma similar ao que ocorre no ssh
+# O servidor devera gerar essa chave e enviar ao seu cliente via scp
+secret server.key
+
+# Compressao do trafego de dados atraves da biblioteca lzo
+comp-lzo

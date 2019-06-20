@@ -1,0 +1,52 @@
+## Arquivo de Configuracao do Servidor vsFTPd (Very Secure FTP daemon)
+## Treinamento 4Linux - Formacao Linux
+##
+# Ativando a Porta do FTP
+listen=YES
+connect_from_port_20=YES
+ftp_banner= FTP Dexter Logistica
+
+## Liberacao de Anonymous
+anonymous_enable=NO
+anon_upload_enable=NO
+#
+## O diretorio raiz do ftp sera o proprio direotrio home do usuario para conexoes anônimas 
+chroot_local_user=YES
+chroot_list_enable=YES
+chroot_local_user=YES
+
+# Usar usuarios locais
+local_enable=YES
+pam_service_name=vsftpd
+
+# Permitir upload para os Usuarios
+write_enable=YES
+local_umask=007
+
+# Permitir a exibicao de mensagen ao usuario
+dirmessage_enable=YES
+
+# Log
+xferlog_enable=YES
+xferlog_file=/var/log/vsftpd.log
+
+use_localtime=YES
+
+# Define timout para a sessao e conexao de dados
+idle_session_timeout=600
+data_connection_timeout=120
+
+##################
+# Adicionando criptografia ssl
+# 1 - Gere um novo certificado
+# openssl req -new -newkey rsa:1024 -days 365 -nodes -x509 -keyout /etc/ssl/certs/vsftpd.pem -out /etc/ssl/certs/vsftpd.pem
+# Insira no arquivo vsftp.conf
+# rsa_cert_file=/etc/ssl/certs/vdftpd.pem
+# ssl_enable_YES
+# allow_anon_ssl=NO
+# force_local_data_ssl=NO
+# force_local_logins_ssl=NO
+# ssl_tlsv1=YES
+# ssl_tlsv2=NO
+# ssl_tlsv3=NO
+

@@ -1,0 +1,33 @@
+$TTL 86400 ; Tempo em Segundos que o Cache ira permanecer nos DNS do Mundo 
+@       IN      SOA     ns1.dexter.com.br.  root.dexter.com.br. ( 
+                2013070401; serial 
+                8h ; refresh 
+                1h ; retry 
+                3d ; expire 
+                3h ) ; negative caching ttl 
+@               IN              NS      ns1.dexter.com.br. 
+ns1             IN              A       192.168.X.2
+
+@               IN              A       200.100.1.X 
+www             IN              A       200.100.1.X 
+ftp             IN              CNAME   www
+
+intranet	IN		A	192.168.X.3
+bkpreport	IN		CNAME	intranet
+backup		IN		CNAME	intranet
+sarg      IN    CNAME intranet
+
+@               IN              MX      10 mail.dexter.com.br. 
+mail            IN              A       192.168.X.2 
+smtp            IN              CNAME   mail 
+webmail         IN              CNAME   mail 
+pop             IN              CNAME   mail 
+imap            IN              CNAME   mail 
+
+ldap		IN		A	192.168.X.2
+
+
+
+; Configuração do DNS secundário 
+;@         IN        NS      ns2.dexter.com.br.
+;ns2       IN        A       192.168.X.3

@@ -1,0 +1,44 @@
+###################################################################
+###		 	Treinamento 4Linux			###
+###		   Formação Administrador Linux 		###
+###################################################################
+
+### Curso: Curso Linux Security Servers in Cloud
+### Descrição: Configuracao do Servidor Postfix - Arquivo Principal
+
+## Banner que será mostrado nas conexões. É importante mudar.
+smtpd_banner = $myhostname ESMTP $mail_name (Debian/GNU)
+
+## Hostname da máquina e o domínio que é conhecido como FQDN.
+myhostname = datacenter.dexter.com.br
+
+## FQDN que está em /etc/mailname. Será enviado esse nome no cabeçalho da mensagem
+myorigin = dexter.com.br
+
+## Domínios que seu Servidor é Responsável e podem enviar Email.
+mydestination = dexter.com.br, smtp.dexter.com.br, mail.dexter.com.br, webmail.dexter.com.br, pop.dexter.com.br, imap.dexter.com.br, localhost 
+
+## Quais Redes ou IPs podem enviar email por você.
+mynetworks = 127.0.0.0/8, 192.168.XXX.0/24
+
+## Ativar Relay para outro SMTP
+relayhost = 
+
+## Arquivos onde são configurados os alias de e-mails.
+alias_maps = hash:/etc/aliases 
+alias_database = hash:/etc/aliases 
+
+## MailBox - Padrão de entrega das mensagens. 
+#mailbox_command = procmail -a "$EXTENSION" 
+
+## MailDir - Padrão de entrega das mensagens
+home_mailbox = Maildir/
+
+## Tamanho máximo de caixa-postal em Kbytes.(0 = Ilimitado)
+mailbox_size_limit = 0 
+
+## Interfaces de Rede na qual o Postfix pode estabelecer conexões.
+inet_interfaces = all 
+
+## Tamanho máximo da mensagem kbytes (25M)
+message_size_limit = 25000000

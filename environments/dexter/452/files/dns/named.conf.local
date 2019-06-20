@@ -1,0 +1,20 @@
+###################################################################
+###		 	Treinamento 4Linux			###
+###		   Formação Administrador Linux 		###
+###################################################################
+
+### Curso: Curso Linux Security Servers in Cloud
+### Descrição: Configuracao do Servidor DNS - Arquivo de Zonas Master
+
+# Zona Primaria
+zone "dexter.com.br" {
+        type master;
+        file "db.dexter";
+};
+
+
+# Zona Reversa
+#zone "X.168.192.in-addr.arpa" {
+#	type master;
+#	file "rev.dexter";
+#};
