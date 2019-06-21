@@ -1,0 +1,4 @@
+apt install -y ntp ntpdate
+echo -e '#!/bin/bash
+ntpdate -d a.ntp.br >> /dev/null 2>&1' | tee /etc/cron.hourly/ntpdate.sh && chmod +x /etc/cron.hourly/ntpdate.sh -v ; sleep 3 ; clear
+cat /etc/cron.hourly/ntpdate.sh
