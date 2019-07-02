@@ -64,7 +64,7 @@ Role | Ansible Galaxy | Build
 
 [DNS GUI WebInterface ](https://git.io/fj2XR) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Globo%20DNS-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac-ansible-globodns) | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-globodns.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-globodns)
 
-[Desktop Linux](https://github.com/wluisaraujo/ansible-role-workstation) | [![Ansible Galaxy](https://tinyurl.com/y6tul2yg)](https://galaxy.ansible.com/wluisaraujo/workstation) | [![Build Status](https://travis-ci.org/wluisaraujo/ansible-role-workstation.svg?branch=master)](https://travis-ci.org/wluisaraujo/ansible-role-workstation)
+[Desktop Linux](https://github.com/wluisaraujo/ansible-role-workstation.git) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Workstation-blue.svg)](https://galaxy.ansible.com/wluisaraujo/workstation) | [![Build Status](https://travis-ci.org/wluisaraujo/ansible-role-workstation.svg?branch=master)](https://travis-ci.org/wluisaraujo/ansible-role-workstation)
 
 [Docker](https://git.io/fjRwT) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Docker-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iac-ansible-docker) | [![Build Status](https://travis-ci.org/wluisaraujo/iac-ansible-docker.svg?branch=master)](https://travis-ci.org/wluisaraujo/iac-ansible-docker)
 
