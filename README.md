@@ -71,7 +71,7 @@ Role | Ansible Galaxy | Build Status
 [DNS Server](https://github.com/wluisaraujo/ansible-role-named)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Named-blue.svg)](https://galaxy.ansible.com/wluisaraujo/named) |
 [NFS Server](https://github.com/wluisaraujo/ansible-role-nfs)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-NFS-blue.svg)](https://galaxy.ansible.com/wluisaraujo/nfs) |
 [Web Server Nginx](https://github.com/wluisaraujo/ansible-role-nginx)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-NGINX-blue.svg)](https://galaxy.ansible.com/wluisaraujo/nginx) |
-[NTP](https://github.com/wluisaraujo/ansible-role-ntp)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-NTP-blue.svg)](https://galaxy.ansible.com/wluisaraujo/ntp) |
+[NTP](https://github.com/wluisaraujo/ansible-role-ntp)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-NTP-blue.svg)](https://galaxy.ansible.com/wluisaraujo/ntp) | [![Build Status](https://travis-ci.org/wluisaraujo/ansible-role-ntp.svg?branch=master)](https://travis-ci.org/wluisaraujo/ansible-role-ntp)
 [OpenShift (OKD)](https://github.com/wluisaraujo/ansible-role-okd)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-OpenShift-blue.svg)](https://galaxy.ansible.com/wluisaraujo/okd) |
 [OpenLadp](https://github.com/wluisaraujo/ansible-role-openldap)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-OpenLdap-blue.svg)](https://galaxy.ansible.com/wluisaraujo/openldap) |
 [OpenVPN](https://github.com/wluisaraujo/ansible-role-openvpn)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-OpenVPN-blue.svg)](https://galaxy.ansible.com/wluisaraujo/openvpn) |
