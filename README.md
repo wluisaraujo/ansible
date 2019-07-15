@@ -64,7 +64,7 @@ Role | Ansible Galaxy | Build Status
 [Docker](https://github.com/wluisaraujo/ansible-role-docker)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Docker-blue.svg)](https://galaxy.ansible.com/wluisaraujo/docker) |
 [Gitlab](https://github.com/wluisaraujo/ansible-role-gitlab)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Gitlab-blue.svg)](https://galaxy.ansible.com/wluisaraujo/gitlab) |
 [DNS GUI WebInterface](https://github.com/wluisaraujo/ansible-role-globodns) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Globo%20DNS-blue.svg)](https://galaxy.ansible.com/wluisaraujo/globodns) |
-[Firewall iptables](https://github.com/wluisaraujo/ansible-role-iptables)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-iptables-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iptables) |
+[Firewall iptables](https://github.com/wluisaraujo/ansible-role-iptables)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-iptables-blue.svg)](https://galaxy.ansible.com/wluisaraujo/iptables) | [![Build Status](https://travis-ci.org/wluisaraujo/ansible-role-iptables.svg?branch=master)](https://travis-ci.org/wluisaraujo/ansible-role-iptables)
 [Jenkins](https://github.com/wluisaraujo/ansible-role-jenkins)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Jenkins-blue.svg)](https://galaxy.ansible.com/wluisaraujo/jenkins) |
 [Kubernetes](https://github.com/wluisaraujo/ansible-role-k8s)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Kubernetes-blue.svg)](https://galaxy.ansible.com/wluisaraujo/k8s) |
 [Mysql Server](https://github.com/wluisaraujo/ansible-role-mariadb)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-MariaDB-blue.svg)](https://galaxy.ansible.com/wluisaraujo/mariadb) |
@@ -80,7 +80,7 @@ Role | Ansible Galaxy | Build Status
 [PosgreSQL](https://github.com/wluisaraujo/ansible-role-postgresql)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Postgresql-blue.svg)](https://galaxy.ansible.com/wluisaraujo/postgresql) |
 [Puppet](https://github.com/wluisaraujo/ansible-role-puppet)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Puppet-blue.svg)](https://galaxy.ansible.com/wluisaraujo/puppet) |
 [Webmail RoundCube](https://github.com/wluisaraujo/ansible-role-roundcubemail)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Roundcube-blue.svg)](https://galaxy.ansible.com/wluisaraujo/roundcubemail) |
-[Log Server](https://github.com/wluisaraujo/ansible-role-rsyslog)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-rsyslog-blue.svg)](https://galaxy.ansible.com/wluisaraujo/rsyslog) |
+[Log Server](https://github.com/wluisaraujo/ansible-role-rsyslog)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-rsyslog-blue.svg)](https://galaxy.ansible.com/wluisaraujo/rsyslog) | [![Build Status](https://travis-ci.org/wluisaraujo/ansible-role-rsyslog.svg?branch=master)](https://travis-ci.org/wluisaraujo/ansible-role-rsyslog)
 [Rundeck](https://github.com/wluisaraujo/ansible-role-rundeck)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Rundeck-blue.svg)](https://galaxy.ansible.com/wluisaraujo/rundeck) | [![Build Status](https://travis-ci.org/wluisaraujo/ansible-role-rundeck.svg?branch=master)](https://travis-ci.org/wluisaraujo/ansible-role-rundeck)
 [Snmpd](https://github.com/wluisaraujo/ansible-role-snmpd)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Snmpd-blue.svg)](https://galaxy.ansible.com/wluisaraujo/snmpd) | [![Build Status](https://travis-ci.org/wluisaraujo/ansible-role-snmpd.svg?branch=master)](https://travis-ci.org/wluisaraujo/ansible-role-snmpd)
 [Proxy Server](https://github.com/wluisaraujo/ansible-role-squid)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Squid-blue.svg)](https://galaxy.ansible.com/wluisaraujo/squid) | [![Build Status](https://travis-ci.org/wluisaraujo/ansible-role-squid.svg?branch=master)](https://travis-ci.org/wluisaraujo/ansible-role-squid)
@@ -90,7 +90,7 @@ Role | Ansible Galaxy | Build Status
 [FTP Server](https://github.com/wluisaraujo/ansible-role-vsftpd)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-vsFTPd-blue.svg)](https://galaxy.ansible.com/wluisaraujo/vsftpd) | [![Build Status](https://travis-ci.org/wluisaraujo/ansible-role-vsftpd.svg?branch=master)](https://travis-ci.org/wluisaraujo/ansible-role-vsftpd)
 [Desktop Linux](https://github.com/wluisaraujo/ansible-role-workstation.git) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Workstation-blue.svg)](https://galaxy.ansible.com/wluisaraujo/workstation) | [![Build Status](https://travis-ci.org/wluisaraujo/ansible-role-workstation.svg?branch=master)](https://travis-ci.org/wluisaraujo/ansible-role-workstation)
 
-## Refrências
+## Referências
 -----------
 
 [Blog 4Linux](http://blog.4linux.com.br/)
