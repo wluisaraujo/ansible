@@ -8,20 +8,20 @@ Descrição
 
 Praticas do ambiente do curso [752 Linux Servers – Configuration & DevOps](https://www.4linux.com.br/curso/linux-servers-configuration-devops)
 
-Aula | Conteúdo Programático
---- | --- 
-Aula 01 | Gerenciando o Firewall
-Aula 02 | DNS Server
-Aula 03 | LDAP Server
-Aula 04 | Compartilhamento em Rede
-Aula 05 | Database Server  
-Aula 06 | Mail Server
-Aula 07 | VPN Server 
-Aula 08 | Web Server
-Aula 09 | Load Balancer com Nginx 
-Aula 10 | Proxy Server com Squid 3
-Aula 11 | Gerenciar ambientes com Ansible 
-Aula 12 | Planejamento de Capacidade
+Aula | Conteúdo Programático | Playbook
+--- | --- | ---
+Aula 01 | Gerenciando o Firewall | aula01.yml
+Aula 02 | DNS Server | aula02.yml
+Aula 03 | LDAP Server | aula03.yml
+Aula 04 | Compartilhamento em Rede | aula04.yml
+Aula 05 | Database Server | aula05.yml
+Aula 06 | Mail Server | aula06.yml
+Aula 07 | VPN Server | aula07.yml
+Aula 08 | Web Server | aula08.yml
+Aula 09 | Load Balancer com Nginx | aula09.yml 
+Aula 10 | Gerenciar ambientes com Ansible | aula10.yml
+Aula 11 | Proxy Server com Squid 3 | aula11.yml
+Aula 12 | Planejamento de Capacidade | aula12.yml
 
 
 Requisitos
