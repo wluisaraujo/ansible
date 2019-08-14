@@ -10,7 +10,7 @@ Praticas do ambiente do curso [752 Linux Servers – Configuration & DevOps](htt
 
 Aula | Conteúdo Programático | Playbook
 --- | --- | ---
-Aula 01 | Gerenciando o Firewall | aula01.yml
+Aula 01 | Gerenciando o Firewall | [aula01.yml](aula01.yml)
 Aula 02 | DNS Server | aula02.yml
 Aula 03 | LDAP Server | aula03.yml
 Aula 04 | Compartilhamento em Rede | aula04.yml
