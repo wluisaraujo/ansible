@@ -18,9 +18,9 @@ Aula 05 | Database Server | [aula05.yml](aula05.yml)
 Aula 06 | Mail Server | [aula06.yml](aula06.yml)
 Aula 07 | VPN Server | [aula07.yml](aula07.yml)
 Aula 08 | Web Server | [aula08.yml](aula08.yml)
-Aula 09 | Load Balancer com Nginx | [aula09.yml](aula09.yml) 
-Aula 10 | Gerenciar ambientes com Ansible | [aula10.yml](aula10.yml)
-Aula 11 | Proxy Server com Squid 3 | [aula11.yml](aula11.yml)
+Aula 09 | Load Balancer com Nginx | [aula09.yml](aula09.yml)
+Aula 10 | Proxy Server com Squid 3 | [aula11.yml](aula10.yml)
+Aula 11 | Gerenciar ambientes com Ansible | [aula10.yml](aula11.yml)
 Aula 12 | Planejamento de Capacidade | [aula12.yml](aula12.yml)
 
 
