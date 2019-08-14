@@ -11,17 +11,17 @@ Praticas do ambiente do curso [752 Linux Servers – Configuration & DevOps](htt
 Aula | Conteúdo Programático | Playbook
 --- | --- | ---
 Aula 01 | Gerenciando o Firewall | [aula01.yml](aula01.yml)
-Aula 02 | DNS Server | aula02.yml
-Aula 03 | LDAP Server | aula03.yml
-Aula 04 | Compartilhamento em Rede | aula04.yml
-Aula 05 | Database Server | aula05.yml
-Aula 06 | Mail Server | aula06.yml
-Aula 07 | VPN Server | aula07.yml
-Aula 08 | Web Server | aula08.yml
-Aula 09 | Load Balancer com Nginx | aula09.yml 
-Aula 10 | Gerenciar ambientes com Ansible | aula10.yml
-Aula 11 | Proxy Server com Squid 3 | aula11.yml
-Aula 12 | Planejamento de Capacidade | aula12.yml
+Aula 02 | DNS Server | [aula02.yml](aula02.yml)
+Aula 03 | LDAP Server | [aula03.yml](aula03.yml)
+Aula 04 | Compartilhamento em Rede | [aula04.yml](aula04.yml)
+Aula 05 | Database Server | [aula05.yml](aula05.yml)
+Aula 06 | Mail Server | [aula06.yml](aula06.yml)
+Aula 07 | VPN Server | [aula07.yml](aula07.yml)
+Aula 08 | Web Server | [aula08.yml](aula08.yml)
+Aula 09 | Load Balancer com Nginx | [aula09.yml](aula09.yml) 
+Aula 10 | Gerenciar ambientes com Ansible | [aula10.yml](aula10.yml)
+Aula 11 | Proxy Server com Squid 3 | [aula11.yml](aula11.yml)
+Aula 12 | Planejamento de Capacidade | [aula12.yml](aula12.yml)
 
 
 Requisitos
