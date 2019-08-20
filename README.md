@@ -56,7 +56,7 @@ Integra-se há Orquestração;
 Roles para gerenciar um ambiente de infraestrutura
 
 Role | Ansible Galaxy | Build Status
---- | --- | ---
+--- | :---: | ---
 [Web Server Apache](https://github.com/wluisaraujo/ansible-role-apache) | [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-Apache-blue.svg)](https://galaxy.ansible.com/wluisaraujo/apache) | [![Build Status](https://travis-ci.org/wluisaraujo/ansible-role-apache.svg?branch=master)](https://travis-ci.org/wluisaraujo/ansible-role-apache)
 [AWX](https://github.com/wluisaraujo/ansible-role-awx)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-AWX-blue.svg)](https://galaxy.ansible.com/wluisaraujo/awx) | [![Build Status](https://travis-ci.org/wluisaraujo/ansible-role-awx.svg?branch=master)](https://travis-ci.org/wluisaraujo/ansible-role-awx)
 [BaseLine de Servidores](https://github.com/wluisaraujo/ansible-role-commonserver)| [![Ansible Galaxy](https://img.shields.io/badge/Ansible%20Galaxy-CommonServer-blue.svg)](https://galaxy.ansible.com/wluisaraujo/commonserver) | [![Build Status](https://travis-ci.org/wluisaraujo/ansible-role-commonserver.svg?branch=master)](https://travis-ci.org/wluisaraujo/ansible-role-commonserver)
