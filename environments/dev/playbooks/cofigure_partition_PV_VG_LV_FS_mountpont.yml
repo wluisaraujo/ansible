@@ -1,0 +1,57 @@
+---
+- hosts: localhost
+  become: no
+  connection: local
+  remote_user: root
+
+  vars:
+    DISK_NAME: /dev/vdb
+    DISK_PARTNAME: /dev/vdb1
+    VG_NAME: VGDATA
+    LV_NAME: LVDATA01
+
+## checar se o disco não tem particao
+## checar se o disco não tem sistema de arquivos
+## checar se o disco não é swap
+## checar se o disco não é PV
+
+  tasks:
+
+  - parted:
+      device: "{{ DISK_NAME }}"
+      number: 1
+      state: present
+      flags: [ lvm ]
+    register: STEP01
+
+  - lvg:
+      vg: "{{ VG_NAME }}"
+      pvs: "{{ DISK_PARTNAME }}"
+      state: present
+    register: STEP02
+    when: STEP01 is success
+    
+  - lvol:
+      vg: "{{ VG_NAME }}"
+      lv: "{{ LV_NAME }}"
+#      pvs: "{{ DISK_PARTNAME }}"
+      size: 100%FREE
+      active: yes
+      force: yes
+      resizefs: yes
+    register: STEP03
+    when: STEP02 is success
+
+  - filesystem:
+      fstype: ext4
+      dev: "/dev/{{ VG_NAME }}/{{ LV_NAME }}"
+    register: STEP04
+    when: STEP03 is success
+
+  - mount:
+      fstype: ext4
+      src: "/dev/{{ VG_NAME }}/{{ LV_NAME }}"
+      path: /work
+      state: mounted
+    register: STEP05
+    when: STEP04 is success

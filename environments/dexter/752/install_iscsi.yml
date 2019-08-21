@@ -1,0 +1,69 @@
+---
+- hosts: PROVIDER
+  vars:
+    DISK_NAME: /dev/vdb1
+    DISK_PARTNAME: /dev/vdb1
+    VG_NAME: VGDATA
+    LV_NAME: LVDATA01
+  tasks:
+  
+  - parted:
+      device: "{{ DISK_NAME }}"
+      number: 1
+      state: present
+      flags: [ lvm ]
+  
+  - lvg:
+      vg: "{{ VG_NAME }}"
+      pvs: "{{ DISK_PARTNAME }}"
+      state: present
+    
+  - lvol:
+      vg: "{{ VG_NAME }}"
+      lv: "{{ LV_NAME }}"
+#      pvs: "{{ DISK_PARTNAME }}"
+#      size: 100%FREE
+#      active: yes
+#      force: yes
+#      resizefs: yes
+
+#  - filesystem:
+#      fstype: ext4
+#      dev: "{{ DISK_PARTNAME }}"  
+
+#  - mount:
+#      fstype: ext4
+#      src: /dev/"{{ VGDATA }}"/"{{ LVDATA01 }}"
+#      path: /work
+#      state: mounted
+    
+  - package:
+      name: targetcli
+      state: present
+    
+  - systemd:
+      state: started
+      name: target.service
+      enabled: yes
+      force: yes
+    ignore_errors: yes
+    when: ansible_service_mgr == "systemd"
+
+  - firewalld:
+      port: 3260/tcp
+      permanent: yes
+      state: enabled
+      immediate: yes
+
+# command: targetcli     
+
+- hosts: CLIENTS
+  vars:
+    var2: value
+  tasks:
+  
+  - package:
+      name: iscsi-initiator-utils
+      state: present
+
+...	
