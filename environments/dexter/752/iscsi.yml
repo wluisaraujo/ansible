@@ -1,0 +1,13 @@
+---
+- hosts: PROVIDER
+  vars:
+    var1: value
+  tasks:
+  - command: echo
+  
+- hosts: CLIENT
+  vars:
+    var2: value
+  tasks:
+  - command: echo
+...	
