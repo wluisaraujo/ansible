@@ -46,4 +46,4 @@ Proceso eXtreme Go Horse
 
 
 
-http://sou.gohorseprocess.com.br/extreme-go-horse-(xgh)/
+http://sou.gohorseprocess.com.br/extreme-go-horse-(xgh)
