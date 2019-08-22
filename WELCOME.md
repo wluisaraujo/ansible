@@ -2,7 +2,7 @@
 
 ## Como funciona?
 
-- Server Less
+- ServerLess??? Agent?
   
 - conexão via ssh
   
@@ -12,33 +12,41 @@
 
 * Mac OS X:
 
-   $ sudo easy_install pip
+```console 
+vagrant@localhost:~$ sudo easy_install pip
    
-   $ sudo pip install ansible
+vagrant@localhost:~$ sudo pip install ansible
+``` 
 
 * CentOS/Fedora:
 
-   $ sudo yum install ansible
+```console 
+vagrant@localhost:~$ sudo yum install ansible
+
+``` 
 
 * Ubuntu:
 
-   $ sudo apt-get install software-properties-common
+```console 
+vagrant@localhost:~$ sudo apt install -y software-properties-common
    
-   $ sudo apt-add-repository ppa:ansible/ansible
+vagrant@localhost:~$ sudo apt-add-repository --yes --update ppa:ansible/ansible
    
-   $ sudo apt-get update
-   
-   $ sudo apt-get install ansible
+vagrant@localhost:~$ sudo apt-get install ansible
+``` 
 
 ## Configuracao
 
-   $ cd /etc/ansible 
+```console 
+vagrant@localhost:~$ cd /etc/ansible 
 
-   $ more /etc/ansible/ansible.cfg
+vagrant@localhost:~$ more /etc/ansible/ansible.cfg
+``` 
 
 ## Inventario
 
-/etc/ansible/hosts
+```bash 
+cat /etc/ansible/hosts
 
 [GRUPO]
 
@@ -46,19 +54,23 @@
 
 [GRUPO:vars]
 
+```
+
 ## Primeiros Passos
 
-  $ ansible --help
+```console 
+vagrant@localhost:~$ ansible --help
 
-  $ ansible-doc --help
+vagrant@localhost:~$ ansible-doc --help
 
-  $ ansible-playbook --help
+vagrant@localhost:~$ ansible-playbook --help
 
-  $ ansible -c local -m ping
+vagrant@localhost:~$ ansible -c local -m ping
 
-  $ ansible -c local -m ping localhost 
+vagrant@localhost:~$ ansible -c local -m ping localhost 
 
-  $ ansible -c local -m ping localhost  -u -b -k -K
+vagrant@localhost:~$ ansible -c local -m ping localhost  -u -b -k -K
+``` 
 
 ## YAML
 
@@ -67,18 +79,22 @@ https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html
 
 ## Check Syntax
 
-  $ ansible --check
+```console 
+vagrant@localhost:~$ ansible --check
 
-  $ ansible --syntax-check
+vagrant@localhost:~$ ansible --syntax-check
 
-  $ ansible playbook.yml --list-hosts
+vagrant@localhost:~$ ansible playbook.yml --list-hosts
+``` 
 
 
 ## MODULOS -m modules / ARGUMENTOS -a argumento
 
-  $ ansible local -m user -a 'name=suporte state=present'
+```console 
+vagrant@localhost:~$ ansible local -m user -a 'name=suporte state=present'
 
-  $ ansible local -m apt -a 'name=htop state=present'
+vagrant@localhost:~$ ansible local -m apt -a 'name=htop state=present'
+``` 
 
 ## Playbooks (yaml)
 
@@ -92,19 +108,21 @@ hosts: *
 
 ## Run playbook
 
-  $ ansible-playbook meuplaybook.yml
+```console 
+vagrant@localhost:~$ ansible-playbook meuplaybook.yml
 
-  $ ansible-playbook meuplaybook.yml --list-tasks
+vagrant@localhost:~$ ansible-playbook meuplaybook.yml --list-tasks
 
-  $ ansible-playbook meuplaybook.yml --tags TAREFA01 --list-tasks
+vagrant@localhost:~$ ansible-playbook meuplaybook.yml --tags TAREFA01 --list-tasks
 
-  $ ansible-playbook meuplaybook.yml --limit server01
+vagrant@localhost:~$ ansible-playbook meuplaybook.yml --limit server01
 
-  $ ansible-playbook meuplaybook.yml --limit server01 --tags TAREFA01
+vagrant@localhost:~$ ansible-playbook meuplaybook.yml --limit server01 --tags TAREFA01
 
-  $ ansible-playbook meuplaybook.yml --limit server01 --tags "TAREFA01,TAREFA02"
+vagrant@localhost:~$ ansible-playbook meuplaybook.yml --limit server01 --tags "TAREFA01,TAREFA02"
 
-  $ ansible-playbook meuplaybook.yml --limit server01 --skip-tags TAREFA02
+vagrant@localhost:~$ ansible-playbook meuplaybook.yml --limit server01 --skip-tags TAREFA02
+```
 
 ## Roles
 
