@@ -111,6 +111,6 @@ hosts: *
 
 ## Fonte e Referencia  
 
-https://www.youtube.com/watch?v=lqmuUuzA39Q
+[#2 SEMANA DEVOPS - O Ansible gerenciando seus servidores](https://www.youtube.com/watch?v=lqmuUuzA39Q)
 
-https://docs.ansible.com/ansible/2.4/playbooks_tags.html
+[Ansible/docs](https://docs.ansible.com/ansible/2.4/playbooks_tags.html)
