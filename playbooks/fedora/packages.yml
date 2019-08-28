@@ -34,6 +34,8 @@
       - easytag
       - elfutils-libelf-devel 
       - ethtool
+      - fprintd 
+      - fprintd-pam
       - fuse-encfs
       - gcc
       - git
@@ -70,6 +72,7 @@
       - kubectl
       - libcurl
       - libdvdcss
+      - libfprint 
       - libgomp 
       - libgudev
       - libreoffice-langpack-pt-BR
