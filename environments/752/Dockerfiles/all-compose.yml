@@ -1,16 +1,19 @@
 ---
+# isc-dhcp-server
+# bind9
+# squid
 version: '3.7'
 
 services:
-  jenkins:
-          image: jenkins/jenkins:lts
-          container_name: jenkins
+  security:
+          image: debian
+          container_name: security
           volumes:
-            - /var/docker/jenkins/data:/var/jenkins_home
+            - /opt/security:/opt/security
           restart: always
           network_mode: "host"
           ports:
-            - "8085:8085"
+            - "68/udp:68/udp"
             - "5001:5001"
   services:
     postgres: postgres
