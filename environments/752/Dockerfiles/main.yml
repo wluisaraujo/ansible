@@ -1,7 +1,25 @@
----
-# isc-dhcp-server
+# apache
+# awx
 # bind9
+# gitlab
+# isc-dhcp-server
+# jenkins
+# ldap
+# mariadb
+# named
+# nginx
+# ntp
+# openvpn
+# postfix
+# postgresql
+# puppet
+# roundcube
+# rsyslog
+# rundeck
 # squid
+# squid
+# vsftpd
+---
 version: '3.7'
 
 services:
@@ -22,6 +40,7 @@ services:
   services:
     gogs:
     image: gogs
+...    
 #dns:
 #  - 8.8.8.8
 #  - 9.9.9.9
