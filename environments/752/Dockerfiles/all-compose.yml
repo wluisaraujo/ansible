@@ -1,0 +1,30 @@
+---
+version: '3.7'
+
+services:
+  jenkins:
+          image: jenkins/jenkins:lts
+          container_name: jenkins
+          volumes:
+            - /var/docker/jenkins/data:/var/jenkins_home
+          restart: always
+          network_mode: "host"
+          ports:
+            - "8085:8085"
+            - "5001:5001"
+  services:
+    postgres: postgres
+    image:
+    
+  services:
+    gogs:
+    image: gogs
+#dns:
+#  - 8.8.8.8
+#  - 9.9.9.9
+#dns_search:
+#  - dc1.example.com
+#  - dc2.example.com
+#extra_hosts:
+# - "somehost:162.242.195.82"
+# - "otherhost:50.31.209.229"
