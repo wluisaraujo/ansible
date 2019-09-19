@@ -1,4 +1,4 @@
-# apache
+# 
 # awx
 # bind9
 # gitlab
@@ -20,33 +20,9 @@
 # squid
 # vsftpd
 ---
-version: '3.7'
-
+version: "3.7"
 services:
-  security:
-          image: debian
-          container_name: security
-          volumes:
-            - /opt/security:/opt/security
-          restart: always
-          network_mode: "host"
-          ports:
-            - "68/udp:68/udp"
-            - "5001:5001"
-  services:
-    postgres: postgres
-    image:
-    
-  services:
-    gogs:
-    image: gogs
-...    
-#dns:
-#  - 8.8.8.8
-#  - 9.9.9.9
-#dns_search:
-#  - dc1.example.com
-#  - dc2.example.com
-#extra_hosts:
-# - "somehost:162.242.195.82"
-# - "otherhost:50.31.209.229"
+  apache:
+    build:
+      context: .
+      dockerfile: Dockerfile-ns1.dexter.com.br
