@@ -1,0 +1,28 @@
+# 
+# awx
+# bind9
+# gitlab
+# isc-dhcp-server
+# jenkins
+# ldap
+# mariadb
+# named
+# nginx
+# ntp
+# openvpn
+# postfix
+# postgresql
+# puppet
+# roundcube
+# rsyslog
+# rundeck
+# squid
+# squid
+# vsftpd
+---
+version: "3.7"
+services:
+  apache:
+    build:
+      context: .
+      dockerfile: Dockerfile-ns1.dexter.com.br

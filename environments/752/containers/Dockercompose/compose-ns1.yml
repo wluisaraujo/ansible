@@ -1,0 +1,25 @@
+---
+version: '3.7'
+
+services:
+  security:
+    image: debian
+    container_name: ns1
+    dns_search: ns1.dexter.com.br
+    restart: always
+    network_mode: "host"
+    networks:
+      app_net:
+        ipv4_address: 172.16.238.10
+    dns:
+      - 127.0.0.1
+      - 8.8.8.8
+      - 8.8.8.8
+    ports:
+      - "53/udp:53/udp"
+      - "5001:5001"
+    expose:
+      - "53/udp"
+    extra_hosts:
+      - "ns1.dexter.com.br:162.242.195.82"  
+...
