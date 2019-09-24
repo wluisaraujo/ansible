@@ -6,7 +6,11 @@
 - hosts: all
   remote_user: root
   roles:
-          - local_users
-          - ntp-client
-          - rsyslog-client
+    - local_users
+    - ntp-client
+    - rsyslog-client
+
+# example import tasks
+import_tasks: debian.yml
+ansible_distribution|lower == 'debian'    
 ...

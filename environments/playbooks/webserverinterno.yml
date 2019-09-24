@@ -4,7 +4,11 @@
 ###
 
 - hosts: webserverinterno
-  remote_user: root
+  become: yes
+  user: ubuntu
+  remote_user: ubuntu
+  gather_facts: no
+
   roles:
-          - webserver-httpd
+    - webserver-httpd
 ...
