@@ -1,5 +1,5 @@
 ---
-#title:   Praticas do ambiente do curso 752 Linux Servers – Configuration & DevOps
+#title:   Praticas do ambiente do curso 752 Linux Servers - Configuration & DevOps
 #author:  w.luis.araujo@gmail.com
 #publish_date: Jun/2019
 
@@ -14,6 +14,11 @@
     loop:
       - mariadb
       - mariadb-server
+      - epel-release
+      - phpMyAdmin 
+      - php 
+      - php-mysql 
+      - php-mcrypt
 # mysql_secure_installation      
 # CREATE DATABASE dexter;
 # CREATE TABLE clientes ( 
@@ -35,6 +40,6 @@
 # FLUSH PRIVILEGES;
 
 #- hosts: DATABASE
-# yum --enablerepo=epel install phpMyAdmin php-mysql php-mcrypt
+# yum --enablerepo=epel install phpMyAdmin php php-mysql php-mcrypt
 # firewall-cmd --add-port=8081/tcp --permanent
 ...
