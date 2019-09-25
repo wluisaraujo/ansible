@@ -1,4 +1,4 @@
-#/bin/bash
+#!/bin/bash
 
 ## remove all host only interfaces
 for vnic in $(vboxmanage list hostonlyifs | grep ^Name | awk '{ print $2}') ; do vboxmanage hostonlyif remove $vnic ; done
