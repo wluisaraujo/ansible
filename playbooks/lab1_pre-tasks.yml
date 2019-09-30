@@ -1,0 +1,19 @@
+---
+- hosts: localhost 
+  connection: local
+  gather_facts: no
+
+  vars_prompt:
+    - name: "user"
+      prompt: "Digite o nome do usario"
+      private: no
+
+  pre_tasks:
+  - command: /bin/getent passwd "{{ user }}"
+    register: USER
+    changed_when: false
+    ignore_errors: yes
+  
+  tasks:
+  - shell: gpasswd -a "{{ user }}" wheel
+    when: USER is success
