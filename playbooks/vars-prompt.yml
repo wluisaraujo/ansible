@@ -1,0 +1,9 @@
+- hosts: 127.0.0.1
+  connection: local
+
+  vars_prompt:
+    - name: "user"
+      prompt: "Digite o nome do user"
+      private: no
+  tasks:
+    - shell: echo "{{ user }}" 
