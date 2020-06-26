@@ -27,7 +27,7 @@ Aula 12 | Planejamento de Capacidade | [aula12.yml](aula12.yml)
 Requisitos
 ------------
 
-A 4Linux utiliza Máquinas Virtuais para permitir ao aluno realizar o Curso em qualquer computador ou sistema operacional. Você precisará baixar os Appliances e importá-lo no VirtualBox.
+	A 4Linux utiliza Máquinas Virtuais para permitir ao aluno realizar o Curso em qualquer computador ou sistema operacional. Você precisará baixar os Appliances e importá-lo no VirtualBox.
 
 * [Oracle Virtual Box](https://www.virtualbox.org/wiki/Downloads) versão 6 ou mais atual
 * [Oracle VM VirtualBox Extension Pack](https://www.virtualbox.org/wiki/Downloads)
@@ -51,7 +51,7 @@ Dependências
 * Appliance devidamente configurado
 * Ansible versão 2 ou mais atual
 
-Exemplo de uso
+Exemplo de uso do Ansible
 ----------------
 
 ```console
