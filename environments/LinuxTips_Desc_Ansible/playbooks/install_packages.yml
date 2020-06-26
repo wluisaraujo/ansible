@@ -1,0 +1,13 @@
+---
+- hosts: servers
+  become: yes
+
+  tasks:
+
+  - dnf:
+      name: "{{ item }}"
+      state: latest
+    loop:
+      - epel-release
+      - vim
+      - htop

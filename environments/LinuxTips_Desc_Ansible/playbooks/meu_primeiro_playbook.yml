@@ -1,0 +1,5 @@
+---
+- hosts: rundeck3
+  become: yes
+
+  tasks:

@@ -1,0 +1,27 @@
+---
+- hosts: rundeck3
+  become: yes
+
+  tasks:
+
+  - dnf:
+      name: http://repo.rundeck.org/latest.rpm
+      state: latest
+    register: "repo"
+
+  - dnf:
+      name: "{{ item }}"
+      state: latest
+    loop:
+      - ansible
+      - git
+      - java
+      - rundeck
+    when: "repo is success"
+
+  - firewalld:
+      port: "{{ item }}"
+      permanent: yes
+      state: enabled
+    loop:
+      - 4440/tcp

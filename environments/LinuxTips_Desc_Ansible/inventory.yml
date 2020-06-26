@@ -1,0 +1,5 @@
+[all:vars]
+interpreter_python=auto_silent
+
+[servers]
+rundeck3  ansible_host=172.16.100.99 ansible_ssh_user=ec2-user
