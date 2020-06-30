@@ -1,0 +1,17 @@
+---
+- hosts: "{{ my_host }}"
+  tasks:
+# Check that the operating system is Linux or CentOS.
+  - assert:
+      msg: "This role can only be applied to Linux Environment"
+      that: ansible_system == "Linux"
+
+# Check that the required variables are set
+  - assert:
+      msg: "Variable 'test_var' is mandatory. Aborting."
+      that: test_var is defined
+      
+# Include the tasks corresponding to the role_action
+
+- import_playbook: "{{ test_var }}.yml"
+...
