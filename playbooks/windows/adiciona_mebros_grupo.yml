@@ -1,0 +1,13 @@
+---
+# Playbook para criar usuário no windows
+# 16/02/2018 
+- name: Adicionando membros em um grupo
+  hosts: windows
+  tasks:
+    - name: adicionando user suporte
+      win_group_membership:
+        name: Users
+        members: 
+          - suporte
+        state: present
+...

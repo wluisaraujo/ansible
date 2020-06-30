@@ -1,0 +1,7 @@
+---
+- hosts: windows 
+  win_group_membership:
+    name: Users
+    members:
+      - w.luis.araujo
+    state: present

@@ -1,0 +1,17 @@
+---
+# Playbook para criar usuário no windows
+# 15/01/2018 
+- name: Adicionando usuário no windows
+  hosts: windows
+  tasks:
+    - name: adicionando user suporte
+      win_user:
+        name: suporte
+        fullname: Analista de Suporte
+        description: suporte@localhost
+        password: a1b2c3@#
+        state: present
+      groups:
+        - Users
+        - Administrators
+...
