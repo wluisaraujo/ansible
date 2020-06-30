@@ -1,0 +1,33 @@
+---
+## w.luis.araujo@gmail.com
+## 06/Agosto/2019
+##
+- hosts: all
+  tasks:
+  
+  - assert:
+      msg: "This role can only be applied to Linux Environment"
+      that: 
+        - ansible_system == "Linux"
+
+- import_playbook: rhel/RHEL-REGISTER.yml
+  when: ( ansible_distribution == "RedHat" )
+  
+- import_playbook: package/install-package-RedHat.yml
+  when: ( ansible_distribution == "RedHat" )
+
+- import_playbook: package/install-package-CentOS.yml
+  when: ( ansible_distribution == "CentOS" )
+
+- import_playbook: package/install-package-Debian.yml
+  when: ( ansible_distribution == "Debian" )
+
+- import_playbook: package/install-package-Ubuntu.yml
+  when: ( ansible_distribution == "Ubuntu" )  
+
+- import_playbook: package/install-package-OracleLinux.yml
+  when: ( ansible_distribution == "OracleLinux" )
+
+- import_playbook: package/install-package-Suse.yml
+  when: ( ansible_distribution == "Suse" )    
+...

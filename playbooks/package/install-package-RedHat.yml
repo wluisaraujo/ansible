@@ -1,0 +1,22 @@
+---
+## w.luis.araujo@gmail.com
+## 27/Fevereiro/2019
+- hosts: all
+  gather_facts: yes
+  tasks:
+  - yum: 
+      name: "{{ item }}" 
+      state: latest
+    loop:
+       - lsof
+       - yum-plugin-security
+    when: ( ansible_distribution == "RedHat" )
+#   environment:
+#   http_proxy: http://172.17.2.80:3128
+
+
+## http://mirrors.kernel.org/fedora/releases/test/29_Beta/Everything/x86_64/os/Packages/s/snoopy-2.2.6-3.fc24.x86_64.rpm
+#  https://admin.fedoraproject.org/updates/snoopy-2.2.6-1.el7
+#  https://kojipkgs.fedoraproject.org//packages/snoopy/2.2.6/1.el7/x86_64/snoopy-2.2.6-1.el7.x86_64.rpm
+## END
+...

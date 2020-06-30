@@ -1,0 +1,88 @@
+---
+## w.luis.araujo@gmail.com
+## 27/Fevereiro/2019
+- hosts: all
+  gather_facts: yes
+  tasks:
+
+####    TO CentOS
+  - name: Install Package to OS "{{ ansible_distribution }}"/"{{ ansible_distribution_major_version }}"
+    yum: 
+      name: "{{ item }}" 
+      state: latest
+    loop:
+      - lsof
+      - net-snmp
+      - net-snmp-utils   
+      - yum-plugin-security
+#     - snoopy
+    when: ( ansible_distribution == "CentOS" ) or ( ansible_distribution == "OracleLinux" )
+    register: PACKAGE
+
+####    TO Debian
+  - name: Install Package to OS "{{ ansible_distribution }}"/"{{ ansible_distribution_major_version }}"
+    apt: 
+      name: "{{ item }}"
+      state: latest 
+      update_cache: yes
+    loop:
+      - libsnmp-dev
+      - lsof
+      - snmp
+      - snmpd
+      - snoopy
+    when: ( ansible_os_family == "Debian" )
+    register: PACKAGE
+
+####    TO Suse
+  - name: Install Package to OS "{{ ansible_distribution }}"/"{{ ansible_distribution_major_version }}"
+    zypper: 
+      name: "{{ item }}" 
+      state: latest
+    loop:
+      - lsof
+      - net-snmp
+      - net-snmp-utils 
+#     - snoopy
+    when: ( ansible_os_family == "Suse" )
+    register: PACKAGE
+
+####    TO Redhat
+#  - name: Subscribe OS on RedHat 
+#    redhat_subscription:
+#      state: present
+#      username: Corpflex
+#      password: "XPTO"
+#      auto_attach: true
+#    when: (ansible_distribution == "RedHat")
+#    register: SUBSCRIBE
+
+  - name: Install to OS Family  "{{ ansible_distribution }}"
+    yum: 
+      name: "{{ item }}" 
+      state: latest
+    loop:
+      - lsof
+      - net-snmp
+      - net-snmp-utils
+      - yum-plugin-security
+    when: ( ansible_distribution == "RedHat" )
+#      environment:
+#      http_proxy: http://172.17.2.80:3128
+#    register: PACKAGE
+
+#  - name: Unsubscribe OS on RedHat 
+#    redhat_subscription:
+#      state: absent
+#      username: Corpflex
+#      password: "Data@2017"
+#    when:
+#      - SUBSCRIBE is success
+#      - PACKAGE is success
+#      - ansible_distribution == "RedHat"
+
+## http://mirrors.kernel.org/fedora/releases/test/29_Beta/Everything/x86_64/os/Packages/s/snoopy-2.2.6-3.fc24.x86_64.rpm
+#  https://admin.fedoraproject.org/updates/snoopy-2.2.6-1.el7
+#  https://kojipkgs.fedoraproject.org//packages/snoopy/2.2.6/1.el7/x86_64/snoopy-2.2.6-1.el7.x86_64.rpm
+## END
+...

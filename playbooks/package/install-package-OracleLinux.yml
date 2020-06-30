@@ -1,0 +1,17 @@
+---
+## w.luis.araujo@gmail.com
+## 27/Fevereiro/2019
+- hosts: all
+  gather_facts: yes
+  tasks:
+  - yum: 
+      name: "{{ item }}" 
+      state: latest
+    loop:
+      - lsof
+      - yum-plugin-security
+#      - snoopy
+    when: ( ansible_distribution == "OracleLinux" )
+    register: PACKAGE
+## END
+...

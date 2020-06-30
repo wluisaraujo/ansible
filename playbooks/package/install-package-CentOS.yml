@@ -1,0 +1,44 @@
+---
+## w.luis.araujo@gmail.com
+## 27/Fevereiro/2019
+- hosts: all
+  gather_facts: yes
+  pre_tasks:
+  - yum:
+      name: "{{ item }}"
+      state: latest
+    loop:
+      - epel-release
+  - shell: yum-config-manager --enable "{{ item }}" > /dev/null 2>&1
+    loop:
+      - "base"
+      - "centos-opstools-testing"
+      - "centos-release-opstools"
+      - "centosplus"
+      - "epel"
+      - "epel-testing"
+      - "extras"
+      - "fasttrack"
+      - "updates"
+
+  - yum:
+      name: "{{ item }}"
+      state: latest
+    loop:
+      - bash-completion
+      - bash-completion-extras
+      - chrony
+      - curl
+      - lsof
+      - ntpdate
+#      - snoopy
+      - tuned
+      - tzdata
+      - vim
+      - wget
+      - yum-plugin-security
+      - yum-utils
+    when: ( ansible_distribution == "CentOS" )
+    register: PACKAGE
+## END
+...

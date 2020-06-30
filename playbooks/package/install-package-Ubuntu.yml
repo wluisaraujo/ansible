@@ -1,0 +1,16 @@
+---
+## w.luis.araujo@gmail.com
+## 27/Fevereiro/2019
+- hosts: all
+  gather_facts: yes
+  tasks:
+  - apt: 
+      name: "{{ item }}"
+      state: latest 
+      update_cache: yes
+    loop:
+      - lsof
+      - snoopy
+    when: ( ansible_distribution == "Ubuntu" )
+    register: PACKAGE
+...
