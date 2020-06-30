@@ -1,0 +1,44 @@
+---
+- hosts: localhost
+  tasks:
+    - shell: git clone git@github.com:wluisaraujo/"{{ item }}".git
+      args:
+        chdir: /mnt/c/Users/wluisaraujo/SCM/wluisaraujo
+      loop:
+        - ansible
+        - ansible-role-apache
+        - ansible-role-awx
+        - ansible-role-commonserver
+        - ansible-role-dhcpd
+        - ansible-role-docker
+        - ansible-role-gitlab
+        - ansible-role-globodns
+        - ansible-role-iptables
+        - ansible-role-jenkins
+        - ansible-role-k8s
+        - ansible-role-mariadb
+        - ansible-role-named
+        - ansible-role-nfs
+        - ansible-role-nginx
+        - ansible-role-ntp
+        - ansible-role-okd
+        - ansible-role-openldap
+        - ansible-role-openvpn
+        - ansible-role-ovirtguestagent
+        - ansible-role-postfix
+        - ansible-role-postgresql
+        - ansible-role-puppet
+        - ansible-role-roundcubemail
+        - ansible-role-rsyslog
+        - ansible-role-rundeck
+        - ansible-role-snmpd
+        - ansible-role-squid
+        - ansible-role-theforeman
+        - ansible-role-users
+        - ansible-role-vagrant
+        - ansible-role-vsftpd
+#        - ansible-role-workstation
+#        - puppet
+#        - rundeck
+#        - wluisaraujo.github.io
+...
