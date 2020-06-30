@@ -51,7 +51,7 @@
 #  - name: Subscribe OS on RedHat 
 #    redhat_subscription:
 #      state: present
-#      username: Corpflex
+#      username: Dexter
 #      password: "XPTO"
 #      auto_attach: true
 #    when: (ansible_distribution == "RedHat")
@@ -74,8 +74,8 @@
 #  - name: Unsubscribe OS on RedHat 
 #    redhat_subscription:
 #      state: absent
-#      username: Corpflex
-#      password: "Data@2017"
+#      username: Dexter
+#      password: "mysecret"
 #    when:
 #      - SUBSCRIBE is success
 #      - PACKAGE is success

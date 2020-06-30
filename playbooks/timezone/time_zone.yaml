@@ -1,0 +1,26 @@
+- name: Remove Zone Info
+  file:
+    path: /etc/localtime
+    state: absent
+
+- name: copying file Time Zone
+  copy:
+    src: /home/haccosta/ansible/playbooks/roles/Linux/files/verao.zic 
+    dest: /usr/share/zoneinfo/verao.zic
+
+- name: Link Simbolico NTP
+  file:
+    src: /usr/share/zoneinfo/verao.zic
+    dest: /etc/localtime
+    state: link
+
+- name: Restart Service NTP
+  service:
+    name: ntpd
+    state: restarted
+
+- name: Set time Zone Info and Hour
+  shell: zdump -v /etc/localtime | egrep '201[89]'
+  register: localtime
+- debug:
+        msg: "{{ localtime.stdout_lines }}"

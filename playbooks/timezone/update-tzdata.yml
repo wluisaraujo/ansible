@@ -1,0 +1,30 @@
+---
+- hosts: all
+  tasks:
+  - redhat_subscription:
+      state: present
+      username: Dexter
+      password: mysecret
+      auto_attach: true
+    when: (ansible_distribution == "RedHat")
+    register: rhelsubs
+
+  - yum:
+      name: tzdata
+      state: latest
+    when: (ansible_os_family == "RedHat")
+
+  - apt:
+      name: tzdata
+      update_cache: yes
+      state: latest
+    when: (ansible_os_family == "Debian")
+
+  - redhat_subscription:
+      state: absent
+      username: Dexter
+      password: mysecret
+      auto_attach: true
+    when: (rhelsubs | success)
+...
+

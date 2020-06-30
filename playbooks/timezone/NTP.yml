@@ -1,0 +1,32 @@
+---
+##
+- hosts: all
+  become: true
+  tasks:
+
+  - yum: 
+      name: "{{ item }}" 
+      state: latest
+    with_items:
+      - tzdata
+      - ntpdate
+    when: (ansible_os_family == "RedHat")
+
+  - apt: 
+      name: "{{ item }}" 
+      state: latest 
+      update_cache: yes
+    with_items:
+      - tzdata
+      - ntpdate
+    when: (ansible_os_family == "Debian")
+    
+  - zypper: 
+      name: "{{ item }}" 
+      state: latest 
+      update_cache: yes
+    with_items:
+      - tzdata
+      - ntpdate
+    when: (ansible_os_family == "Suse")  
+...

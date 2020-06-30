@@ -1,0 +1,67 @@
+---
+- hosts: all
+
+  vars:
+    snmpuser: monitoramento
+    snmppasswd: Monit0r@
+  
+  tasks:
+    - name: "Instalando pacotes SNMP"
+      yum:
+        state: present
+        name: "{{ item }}"
+      loop:
+        - net-snmp
+        - net-snmp-utils
+        - net-snmp-libs
+      register: PACKAGE
+      
+    - systemd:
+        state: stopped
+        name:  snmpd.service     
+      when: 
+        - ansible_service_mgr == "systemd"
+        - PACKAGE is success
+      register: SNMPSTOP
+    
+    - shell: net-snmp-create-v3-user -ro -A "{{ snmppasswd }}" -a MD5 -X "{{ snmppasswd }}" -x DES "{{ snmpuser }}" 2>/dev/null
+      when: SNMPSTOP
+      register: CONFIG
+    
+    - systemd:
+        state: started
+        name:  snmpd.service    
+        enabled: yes
+      when: 
+      - CONFIG is success
+      - ansible_service_mgr == "systemd"
+    
+    - shell: firewall-cmd --list-all > /dev/null 2>&1 
+      register: FWSTATUS
+      ignore_errors: yes
+      
+    - firewalld:
+        service: snmp
+        state: enabled
+        permanent: yes
+        immediate: yes
+      ignore_errors: yes
+      when: FWSTATUS is success
+      
+    - firewalld:
+        port: "{{ item }}" 
+        state: enabled
+        permanent: yes
+        immediate: yes
+      loop:
+        - 161-162/udp
+        - 161-162/tcp
+      ignore_errors: yes
+      when: FWSTATUS is success
+      
+    - name: "Testando snmp v3"
+      shell: snmpwalk -v 3 -l authPriv -u "{{ snmpuser }}" -a MD5 -x DES -A "{{ snmppasswd }}" -X "{{ snmppasswd }}" localhost iso.3.6.1.2.1.1.5.0
+      register: computersnmp 
+    - debug:
+        msg: "{{ computersnmp.stdout_lines }}"
+...

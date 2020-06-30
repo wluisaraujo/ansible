@@ -1,0 +1,86 @@
+---
+- hosts: localhost
+  become: yes
+  become_user: root
+  vars:
+#      - orig: /vagrant
+#      - dest_debian: /var/www/html
+#      - dest_centos: /usr/share/nginx/html
+      - repo_add: http://repo.rundeck.org/latest.rpm
+  tasks:
+      - name: Instala o Nginx em Debian
+        apt:
+            name: rundeck
+            state: latest
+            update_cache: true
+        notify:
+            - Reinicia o Nginx
+        when:
+            ansible_os_family=="Debian"
+      - name: Adiciona o Nginx ao Yum
+        yum:
+            name: '{{ repo_add }}'
+            state: 'present'
+        when:
+            ansible_distribution=="CentOS"
+      - name: Instala o Rundeck no Base CentOS
+        yum:
+            name: nginx
+            state: present
+        notify:
+            - Reinicia o Nginx
+        when:
+            ansible_distribution=="CentOS"
+      - name: Monta a página principal em Debian
+        template:
+            src: '{{ orig }}/index.html'
+            dest: '{{ dest_debian }}/index.html'
+            owner: root
+            group: root
+            mode: 0644
+        notify:
+            - Reinicia o Nginx
+        when:
+            ansible_os_family=="Debian"
+      - name: Copia a imagem em Debian
+        copy:
+            src: '{{ orig }}/rackserver.png'
+            dest: '{{ dest_debian }}'
+            owner: root
+            group: root
+            mode: 0644
+        notify:
+            - Reinicia o Nginx
+        when:
+            ansible_os_family=="Debian"
+      - name: Monta a página princilal em CentOS
+        template:
+            src: '{{ orig }}/index.html'
+            dest: '{{ dest_centos }}/index.html'
+            owner: root
+            group: root
+            mode: 0644
+        notify:
+            - Reinicia o Nginx
+        when:
+            ansible_distribution=="CentOS"
+      - name: Copia a imagem em CentOS
+        copy:
+            src: '{{ orig }}/rackserver.png'
+            dest: '{{ dest_centos }}'
+            owner: root
+            group: root
+            mode: 0644
+        notify:
+            - Reinicia o Nginx
+        when:
+            ansible_distribution=="CentOS"
+      - name: Inicia o Nginx a cada boot
+        service:
+            name: nginx
+            enabled: true
+  handlers:
+      - name: Reinicia o Nginx
+        service:
+            name: nginx
+            state: restarted

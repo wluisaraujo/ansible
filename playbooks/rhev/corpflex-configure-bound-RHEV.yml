@@ -1,0 +1,58 @@
+---
+- hosts: all
+
+  vars:
+    ovirt_auth:
+      url: "https://{{ Manager }}/ovirt-engine/api"
+      username: admin@internal
+      password: 'password'
+      insecure: yes
+    label: VM
+
+  tasks:
+
+  - name: Create Bond 1
+    ovirt_host_network:
+      name: SF-KVM-TMK01.DEXTER.COM.BR
+      bond:
+        name: bond1
+        mode: 5
+        interfaces:
+          - enp13s0
+          - enp14s0
+      networks:
+        - name: LIVE
+          boot_protocol: static
+          address: 10.100.50.71
+          netmask: 255.255.255.0
+          version: v4
+      auth: "{{ ovirt_auth }}"
+      save: true
+
+  - name: Create Bond 2
+    ovirt_host_network:
+      name: SF-KVM-TMK01.DEXTER.COM.BR
+      bond:
+        name: bond2
+        mode: 1
+        interfaces:
+          - enp133s0
+          - enp134s0
+        labels: "{{ label }}"
+      auth: "{{ ovirt_auth }}"
+      save: true
+
+  - name: Create Bond 3
+    ovirt_host_network:
+      name: SF-KVM-TMK01.DEXTER.COM.BR
+      bond:
+        name: bond3
+        mode: 2
+        interfaces:
+          - enp140s0
+          - enp141s0
+      networks:
+        - name: BACKUP
+      auth: "{{ ovirt_auth }}"
+      save: true
+...

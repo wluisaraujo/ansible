@@ -1,0 +1,41 @@
+---
+- hosts: localhost
+
+  vars:
+    ovirt_auth:
+      url: https://kvm-server.mylab.corp/ovirt-engine/api
+      username: user do RHEV
+      password: "Senha do RHEV"
+      # curl --insecure  https://kvm-server.mylab.corp/ovirt-engine/services/pki-resource?resource=ca-certificate  -o ~/ansible/playbooks/roles/RHEV/files/ca-bundle-rhm-mylab.crt
+      ca_file: ~/ansible/playbooks/roles/RHEV/files/ca-bundle-rhm-mylab.crt
+      insecure: yes
+
+  tasks:
+    - ovirt_vm:
+        auth: "{{  ovirt_auth }}"
+        state: running
+        name: "{{ item.name }}"
+        template: "{{ item.template }}"
+        cluster: DBF_CLU
+        memory: "{{ item.memory }}"
+        cpu_cores: "{{ item.cpu_cores }}"
+        cpu_sockets: "{{ item.cpu_sockets }}"
+        type: server
+        operating_system: "{{ item.operating_system }}"
+        cloud_init:
+          nic_boot_protocol: static
+          nic_ip_address: "{{ item.nic_ip_address }}"
+          nic_netmask: "{{ item.nic_netmask }}"
+          nic_gateway: "{{ item.nic_gateway }}"
+          nic_name: "{{ item.nic_name }}"
+          nic_on_boot: true
+          dns_servers: "{{ item.dns_servers }}"
+          host_name: "{{ item.host_name }}"
+          user_name: "{{ item.user_name }}"
+          root_password: "{{ item.root_password }}"
+#        nics:
+#          - interface: virtio
+#          - profile_name: "{{ item.profile_name }}"
+#          - name: "{{ item.nic_name }}"
+      with_items:
+              - { name: 'SV-DBS01', template: 'TEMPLATECENTOS7', memory: '8GiB', cpu_cores: '2', cpu_sockets: '2', operating_system: 'rhel_7x64', nic_ip_address: '192.168.130.124', nic_netmask: '255.255.255.0', nic_gateway: '192.168.130.1', nic_name: 'eth0', dns_servers: '9.9.9.9', host_name: 'item.name', user_name: 'dba.admin', root_password: '@Jack123' }

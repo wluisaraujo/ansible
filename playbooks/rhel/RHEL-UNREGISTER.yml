@@ -1,0 +1,10 @@
+---
+- hosts: all
+  tasks:
+  - redhat_subscription:
+      state: absent
+      username: Dexter
+      password: "{{ rhn_password }}"
+    when: (ansible_distribution == "RedHat")
+    register: result
+...

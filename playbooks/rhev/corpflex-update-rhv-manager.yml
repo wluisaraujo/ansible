@@ -1,0 +1,22 @@
+---
+- hosts: all
+#  connection: local
+  become: no
+  tasks:
+    - redhat_subscription:
+        state: present
+        username: Dexter
+        password: "{{  rhn_password }}"
+        pool_ids:
+          - 8a85f98c631d06550163464ddd6072be
+
+    - rhsm_repository:
+        name: "{{ item }}"
+      loop:
+        - rhel-7-server-rpms
+        - rhel-7-server-supplementary-rpms
+        - rhel-7-server-rhv-4.2-manager-rpms
+        - rhel-7-server-rhv-4-manager-tools-rpms
+        - rhel-7-server-ansible-2-rpms
+        - jb-eap-7.2-for-rhel-7-server-rpms
+...

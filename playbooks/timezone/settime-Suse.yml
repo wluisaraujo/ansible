@@ -1,0 +1,84 @@
+---
+## w.luis.araujo@gmail.com
+## 19/Fevereiro/2018
+- hosts: all
+  tasks:
+
+#  - redhat_subscription:
+#      state: present
+#      username: Dexter
+#      password: Batat@
+#      auto_attach: true
+#    when: (ansible_distribution == "RedHat")
+#    register: RCRHSUBS
+
+  - yum: 
+      name: "{{ item }}" 
+      state: latest
+    loop:
+    - tzdata
+    - chrony
+    - ntpdate
+    when: (ansible_os_family == "RedHat")
+#    environment:
+#      http_proxy: http://demo.lab.example.com:8080
+#    register: RCPACKAGE
+    
+  #- apt: name={{ item }} state=latest update_cache=yes
+#    with_items:
+#      - tzdata
+#      - chrony
+#      - ntpdate
+#    when: (ansible_os_family == "Debian")
+#    register: RCPACKAGE
+
+#   - zypper: name={{ item }} state=latest
+#    with_items:
+#      - tzdata
+#      - chrony
+#      - ntpdate
+#    when: (ansible_os_family == "Suse")
+#    register: RCPACKAGE
+
+#  - redhat_subscription:
+#      state: absent
+#      username: Dexter
+#      password: Batat@
+#      auto_attach: true
+#    when: 
+ #     - RCRHSUBS | success
+ #     - ansible_distribution == "RedHat"
+    
+#  - systemd:
+#      state: started
+#      name:  chronyd.service 
+#      enabled: yes
+#    when:
+#    - RCPACKAGE is success
+#    - ansible_service_mgr == "systemd"
+    
+## ------------------------------------------------------------------------------  
+#  - shell: zdump -v /etc/localtime | egrep '201[89]'
+#    register: RCZDUMP
+#
+#- name: Remove Zone Info
+#  file:
+#    path: /etc/localtime
+#    state: absent
+#
+#- name: copying file Time Zone
+#  copy:
+#    src: Sao_Paulo
+#    dest: /usr/share/zoneinfo/America/Sao_Paulo
+#
+#- name: Link Simbolico NTP
+#  file:
+#    src: /usr/share/zoneinfo/America/Sao_Paulo
+#    dest: /etc/localtime
+#    state: link
+#
+#- name: Set time Zone Info and Hour
+#  shell: zdump -v /etc/localtime | egrep '201[89]'
+    
+## END
+...

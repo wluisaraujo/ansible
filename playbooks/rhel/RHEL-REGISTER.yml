@@ -1,0 +1,11 @@
+---
+- hosts: "{{ idhost }}"
+  tasks:
+  - redhat_subscription:
+      state: present
+      username: Dexter
+      password: "{{ rhn_password }}"
+      auto_attach: true
+    when: ( ansible_distribution == "RedHat" )
+    register: result
+...

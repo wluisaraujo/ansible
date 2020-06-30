@@ -1,0 +1,47 @@
+---
+## w.luis.araujo@gmail.com
+## Agosto/2019
+##
+- hosts: all
+  tasks:
+  
+  - assert:
+      msg: "This role can only be applied to Linux Environment"
+      that: 
+        - ansible_distribution == "RedHat"
+        - ansible_virtualization_type == "RHEV"
+        - ansible_virtualization_role == "guest"
+  
+  - rhsm_repository:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - rhel-7-server-rh-common-rpms
+      - rhel-7-server-optional-rpms
+      - rhel-7-server-extras-rpms
+    register: REPOSITORY
+    when: ( ansible_distribution_major_version == '7' )
+
+  - rhsm_repository:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - rhel-8-for-x86_64-baseos-rpms
+      - ansible-2.8-for-rhel-8-x86_64-rpms
+      - rhel-8-for-x86_64-supplementary-rpms 
+    register: REPOSITORY
+    when: ( ansible_distribution_major_version == '8' )    
+    
+  - yum:
+      name: ovirt-guest-agent-common
+      state: latest
+    when: ( REPOSITORY is success )
+    register: PACKAGE
+
+  - systemd:
+      state: started
+      name:  ovirt-guest-agent.service     
+      enabled: yes
+    when: 
+      - PACKAGE is success
+      - ansible_service_mgr == "systemd"

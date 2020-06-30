@@ -1,0 +1,48 @@
+---
+ - name: install the latest version of SNMPD in RedHats OS
+   yum:
+     name:
+       - net-snmp
+       - net-snmp-utils     
+     state: latest
+   when: ansible_os_family == 'RedHat' 
+ 
+ - name: install the latest version of SNMPD in Debians OS
+   apt:
+     name: 
+       - snmpd
+       - snmp
+       - libsnmp-dev
+     state: latest
+   when: ansible_os_family == 'Debian'
+
+ - name: Stop service SNMP, if running
+   service:
+     name: snmpd
+     state: stopped
+
+ - name: enable snmpd at boot
+   service:
+     name: snmpd
+     enabled: yes
+
+ - name: configure snmpv3
+   shell:
+     net-snmp-create-v3-user -ro -A "{{ snmppasswd }}" -a MD5 -X "{{ snmppasswd }}" -x DES "{{ snmpuser }}"
+
+ - name: Alternate File SNMPD Debian OS
+   shell:
+     mv /usr/share/snmp/snmpd.conf /etc/snmp/snmpd.conf
+   when: ansible_os_family == 'Debian' 
+
+ - name: Start service SNMP
+   service:
+     name: snmpd
+     state: started
+
+ - name: Test a snmpv3
+   shell:
+     snmpwalk -v 3 -l authPriv -u "{{ snmpuser }}" -a MD5 -x DES -A "{{ snmppasswd }}" -X "{{ snmppasswd }}" localhost iso.3.6.1.2.1.1.5.0
+   register: computersnmp 
+ - debug:
+     msg: "{{ computersnmp.stdout_lines }}"

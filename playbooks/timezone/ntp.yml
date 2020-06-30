@@ -1,0 +1,27 @@
+---
+- name: Playbook NTP
+  hosts: all
+  gather_facts: no
+
+  tasks:
+
+  - name:
+    lineinfile:
+      path: /etc/crontab
+      state: absent
+      line: '0 1 * * * root /usr/sbin/ntpdate pool.ntp.br 2>/dev/null'
+    #ignore_errors: yes
+
+  - name: Removing crontab line
+    lineinfile:
+      path: /etc/crontab
+      state: absent
+      line: '0 1 * * * /usr/sbin/ntpdate pool.ntp.br 2>/dev/null'
+    #ignore_errors: yes
+
+  - name: Adding crontab line
+    lineinfile:
+      path: /etc/crontab
+      state: present
+      line: '0 1 * * * /usr/sbin/ntpdate 10.200.131.11 2>/dev/null'
+    #ignore_errors: yes

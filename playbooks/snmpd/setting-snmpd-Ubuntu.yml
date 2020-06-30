@@ -1,0 +1,61 @@
+---
+- hosts: all
+  ignore_errors: yes
+  
+  vars:
+    snmpuser: monitoramento
+    snmppasswd: Monit0r@
+    
+  tasks:
+    
+    - name: "Instalando pacotes SNMP"
+      apt:
+        state: present
+        name: "{{ item }}"
+        update_cache: yes
+      loop:
+        - snmpd
+        - snmp
+        - libsnmp-dev
+      register: PACKAGE
+      
+    - systemd:
+        state: stopped
+        name:  snmpd.service     
+      when: 
+        - ansible_service_mgr == "systemd"
+        - PACKAGE is success
+      register: SNMPSTOP
+      
+    - service:
+        state: stopped
+        name: snmpd
+      when: ansible_service_mgr == "service"
+      register: SNMPSTOP      
+    
+    - shell: net-snmp-create-v3-user -ro -A "{{ snmppasswd }}" -a MD5 -X "{{ snmppasswd }}" -x DES "{{ snmpuser }}" 2>/dev/null
+      when: SNMPSTOP
+      register: CONFIG
+    
+    - shell: mv /usr/share/snmp/snmpd.conf /etc/snmp/snmpd.conf
+      when: ansible_os_family == "Debian"
+    
+    - systemd:
+        state: started
+        name:  snmpd.service    
+        enabled: yes
+      when: 
+      - CONFIG is success
+      - ansible_service_mgr == "systemd"
+    
+    - service:
+        state: started
+        name: snmpd
+      when: ansible_service_mgr == "service"  
+       
+    - name: "Testando snmp v3"
+      shell: snmpwalk -v 3 -l authPriv -u "{{ snmpuser }}" -a MD5 -x DES -A "{{ snmppasswd }}" -X "{{ snmppasswd }}" localhost iso.3.6.1.2.1.1.5.0
+      register: computersnmp 
+    - debug:
+        msg: "{{ computersnmp.stdout_lines }}"
+...

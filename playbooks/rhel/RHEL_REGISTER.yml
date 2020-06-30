@@ -1,0 +1,28 @@
+---
+- hosts: all
+  vars:
+    - RHUSER: Dexter
+    - RHPASS: mysecret
+  tasks:
+
+  - redhat_subscription:
+      state: present
+      username: "{{ RHUSER }}"
+      password: "{{ RHPASS }}"
+      auto_attach: true
+
+  - redhat_subscription:
+      state: present
+      username: "{{ RHUSER }}"
+      password: "{{ RHPASS }}"
+      pool_ids:
+        - 8a85f98c631d06550163464de3ba72d0
+
+  - rhsm_repository:
+      name: "{{ item }}"
+      state: enabled
+    loop:
+      - rhel-7-server-rpms
+      - rhel-7-server-extras-rpms
+#      - rhel-7-server-ose-3.11-rpms
+#      - rhel-7-server-ansible-2.8-rpms'

@@ -1,0 +1,40 @@
+---
+- hosts: all
+  become: yes
+  gather_facts: no
+  pre_tasks:
+  - name: 'atualizando o repo'
+    raw: 'apt-get update'
+  - name: 'Instalando o Python'
+    raw: 'apt-get install -y python'
+
+- hosts: localhost
+  become: yes
+  tasks:
+  - include_tasks: package.yml
+
+  - include_tasks: files.yml
+
+  - include_tasks: service.yml
+
+  - include_tasks: environment.yml
+
+- hosts: localhost
+  become: yes
+  tasks:
+  - assert:
+      msg: "This role can only be applied to Linux Environment"
+      that: ansible_system == "Linux"
+
+- import_playbook: PACKAGE.yml
+  tags: PACKAGE
+
+- import_playbook: ADDUSERS.yml
+  tags: USERS
+
+- import_playbook: SYNCTIME.yml
+  tags: TIME
+
+- import_playbook: SNMP.yml
+  tags: SNMP
+...

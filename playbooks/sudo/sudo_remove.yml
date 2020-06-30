@@ -1,0 +1,24 @@
+---
+- name: Config Sudo
+  hosts: all
+  gather_facts: yes
+#  user: ec2-user
+#  sudo: True
+
+  tasks:
+
+  - name: Criando arquivo para edição do arquivo sudoers
+    command: cp -f /etc/sudoers /etc/sudoers.tmp
+
+  - name: Remover 
+    lineinfile: dest=/etc/sudoers.tmp state=absent regexp='^ec2-user' line='ec2-user ALL=(ALL) ALL'
+
+  - name: Checa se o arquivo tem erros e copia para o original
+    shell: /usr/sbin/visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers
+
+  - name: Adicionando linhas no RSYSLOG
+    lineinfile: dest=/etc/rsyslog.conf line="{{ item }}"
+
+    with_items:
+     - $ModLoad imtcp
+     - '*.* @@10.100.30.23:10514'

@@ -1,0 +1,5 @@
+  - name: Adicionando chaves
+    authorized_key:
+      user: ec2-user
+      state: present
+      key: "{{ lookup('file', 'ssh_keys') }}"

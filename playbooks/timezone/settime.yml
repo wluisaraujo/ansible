@@ -1,0 +1,130 @@
+---
+## w.luis.araujo@gmail.com
+## 19/Fevereiro/2018
+- hosts: all
+  gather_facts: yes
+  force_handlers: yes
+
+  tasks:
+
+####    TO CentOS
+  - name: Install "tzdata" to "{{ ansible_distribution }}"/"{{ ansible_distribution_major_version }}"
+    yum:
+      name: "{{ item }}"
+      state: latest
+    loop:
+    - tzdata
+    - chrony
+    - ntpdate
+    when: ( ansible_distribution == "CentOS" ) and ( ansible_distribution_major_version == "7" )
+    register: RCPACKAGE
+    notify:
+      - Start Chronyd
+
+  - name: Install "tzdata" to "{{ ansible_distribution }}"/"{{ ansible_distribution_major_version }}"
+    yum:
+      name: http://rpmfind.net/linux/centos/6.10/updates/x86_64/Packages/tzdata-2018i-1.el6.noarch.rpm
+      state: installed
+      disable_gpg_check: yes
+    when: ansible_distribution == "CentOS" and ansible_distribution_major_version == '6'
+    register: RCPACKAGE
+
+####    TO OracleLinux
+  - name: Install "tzdata" to "{{ ansible_distribution }}"/"{{ ansible_distribution_major_version }}"
+    yum:
+      name: "{{ item }}"
+      state: latest
+    loop:
+    - tzdata
+    - chrony
+    - ntpdate
+    when:
+      - ( ansible_distribution == "CentOS" ) and ( ansible_distribution_major_version == "7" )
+    register: RCPACKAGE
+    notify:
+      - Start Chronyd
+
+  #- name: Install to Family  "{{ ansible_distribution }}"/"{{ ansible_distribution_major_version }}"
+  #  yum:
+  #    name: "{{ item }}"
+  #    state: installed
+  #    disable_gpg_check: yes
+  #  loop:
+  #  - http://rpmfind.net/linux/centos/6.10/updates/x86_64/Packages/tzdata-2018i-1.el6.noarch.rpm
+  #  when:
+  #    - ( ansible_distribution == "CentOS" ) and ( ansible_distribution_major_version == "6" ) or
+  #    - ( ansible_distribution == "OracleLinux" ) and ( ansible_distribution_major_version == "6" )
+  #  register: RCPACKAGE
+####    TO Debian
+  - name: Install "tzdata" to "{{ ansible_distribution }}"/"{{ ansible_distribution_major_version }}"
+    apt:
+      name: "{{ item }}"
+      state: latest
+      update_cache: yes
+    loop:
+      - tzdata
+      - ntpdate
+    when: ( ansible_os_family == "Debian" )
+    register: RCPACKAGE
+#    notify:
+#      - Start Chronyd
+
+####    TO Suse
+  - name: Install "tzdata" to "{{ ansible_distribution }}"/"{{ ansible_distribution_major_version }}"
+    zypper:
+      name: "{{ item }}"
+      state: latest
+    loop:
+      - tzdata
+      - chrony
+      - ntpdate
+    when: ( ansible_os_family == "Suse" )
+    register: RCPACKAGE
+    notify:
+      - Start Chronyd
+
+####    TO Redhat
+  - name: Subscribe OS on RedHat
+    redhat_subscription:
+      state: present
+      username: Dexter
+      password: "mysecret"
+      auto_attach: true
+    when: (ansible_distribution == "RedHat")
+    register: RCRHSUBS
+
+  - name: Install "tzdata" to "{{ ansible_distribution }}"/"{{ ansible_distribution_major_version }}"
+    yum:
+      name: "{{ item }}"
+      state: latest
+    loop:
+      - tzdata
+      - chrony
+      - ntpdate
+    when: ( ansible_distribution == "RedHat" )
+##    environment:
+#      http_proxy: http://172.17.2.80:3128
+    register: RCPACKAGE
+
+  - name: Unsubscribe OS on RedHat
+    redhat_subscription:
+      state: absent
+      username: Dexter
+      password: "mysecret"
+    when:
+      - RCRHSUBS is success
+      - RCPACKAGE is success
+      - ansible_distribution == "RedHat"
+
+## Start Service
+  handlers:
+  - name: Start Chronyd
+    systemd:
+      state: started
+      name:  chronyd.service
+      enabled: yes
+    when:
+      - RCPACKAGE is success
+      - ansible_service_mgr == "systemd"
+## END
+...

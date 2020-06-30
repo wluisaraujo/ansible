@@ -1,0 +1,27 @@
+---
+## w.luis.araujo@gmail.com
+## 06/Agosto/2019
+##
+- hosts: "{{ idhost }}"
+#  become: true
+#  become_user: ec2-user
+  gather_facts: yes
+  
+  tasks:
+  
+  - assert:
+      msg: "This role can only be applied to Linux Environment"
+      that: ansible_system == "Linux"
+    
+- import_playbook: snmpd/setting-snmpd-RedHat.yml
+  when: ( ansible_distribution == "RedHat" )
+
+- import_playbook: snmpd/setting-snmpd-CentOS.yml
+  when: ( ansible_distribution == "CentOS" )
+
+- import_playbook: snmpd/setting-snmpd-Debian.yml
+  when: ( ansible_distribution == "Debian" )
+
+- import_playbook: snmpd/setting-snmpd-Ubuntu.yml
+  when: ( ansible_distribution == "Ubuntu" )  
+...

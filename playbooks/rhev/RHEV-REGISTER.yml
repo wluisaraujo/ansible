@@ -1,0 +1,60 @@
+---
+## ec2-user@Dexter.com.br
+## 22/01/2018
+- hosts: RHEV
+  tasks:
+
+  - redhat_subscription:
+      state: present
+      username: Dexter
+      password: XPTO
+      auto_attach: true
+    when: (ansible_distribution == "RedHat")
+    register: result
+
+  - rhsm_repository:
+      name: "{{ item }}"
+      state: enabled
+    register: repo
+    with_items:
+      - rhel-7-server-rpms
+      - rhel-7-server-rhvh-4-rpms
+    when: (result is success)
+
+  - redhat_subscription:
+      state: present
+      username: Dexter
+      password: XPTO
+      pool_ids:
+        - 3d856338-0873-40e8-9e5a-6a6951714b8f
+        - 8a85f98c631d06550163464db80772b3
+    when: (result is success)
+    register: pool
+
+  - yum:
+      name: "{{ item }}"
+      state: latest
+    with_items:
+      - '*'
+      - net-snmp
+      - net-snmp-utils
+      - net-snmp-libs
+    when:
+      - result is success
+      - repo is success
+      - pool is sucess
+
+  - shell: net-snmp-create-v3-user -ro -A Monit0r@ -a MD5 -X Monit0r@ -x DES monitoramento
+
+  - firewalld:
+      service: snmp
+      permanent: yes
+      immediate: yes
+      state: enabled
+
+  - systemd:
+      state: started
+      name:  snmpd.service
+      enabled: yes
+    when: ansible_service_mgr is systemd
+...

@@ -1,0 +1,55 @@
+---
+## w.luis.araujo@gmail.com
+## Agosto/2019
+##
+- hosts: all
+  tasks:
+  
+  - assert:
+      msg: "This role can only be applied to Linux Environment"
+      that: 
+        - ansible_distribution == "CentOS"
+
+  - yum: 
+      name: "{{ item }}" 
+      state: latest
+    loop:
+      - tzdata
+      - chrony
+      - ntpdate
+    when: ( ansible_distribution == "CentOS" )
+    register: PACKAGE
+
+  - systemd:
+      state: started
+      name:  chronyd.service     
+      enabled: yes
+    when: 
+      - PACKAGE is success
+      - ansible_service_mgr == "systemd"
+      
+## ------------------------------------------------------------------------------  
+#  - shell: zdump -v /etc/localtime | egrep '201[89]'
+#    register: RCZDUMP
+#
+#- name: Remove Zone Info
+#  file:
+#    path: /etc/localtime
+#    state: absent
+#
+#- name: copying file Time Zone
+#  copy:
+#    src: Sao_Paulo
+#    dest: /usr/share/zoneinfo/America/Sao_Paulo
+#
+#- name: Link Simbolico NTP
+#  file:
+#    src: /usr/share/zoneinfo/America/Sao_Paulo
+#    dest: /etc/localtime
+#    state: link
+#
+#- name: Set time Zone Info and Hour
+#  shell: zdump -v /etc/localtime | egrep '201[89]'
+    
+## END
+...

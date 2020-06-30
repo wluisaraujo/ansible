@@ -1,0 +1,10 @@
+---
+- timezone:
+    name: America/Sao_Paulo
+
+- selinux:
+    state: permissive    
+
+- shell: timedatectl set-ntp true
+- shell: tuned-adm profile atomic-host
+...

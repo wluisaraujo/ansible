@@ -1,0 +1,49 @@
+---
+- hosts: all
+#  connection: local
+  become: no
+  tasks:
+#    - redhat_subscription:
+#        state: present
+#        username: Dexter
+#        password: mysecret
+#        auto_attach: true
+#      when: ansible_distribution == 'RedHat'
+
+    - package:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - chrony
+        - tzdata
+        -
+      register: package
+    - file:
+        src: chrony.conf
+        dest: /etc/chrony.conf
+        owner: root
+        group: root
+        mode: '0644'
+        backup: yes
+
+    - systemd:
+        state: restarted
+        name: chronyd.service
+        enabled: yes
+      when: package is success
+
+    #- shell: timedatectl set-timezone UTC
+
+    - shell: ntpdate -d a.ntp.br  2> /dev/null
+
+    - shell: chronyc -a sources  2> /dev/null
+
+#    - timezone:
+#       name: America/Sao_Paulo
+
+    - shell: timedatectl set-ntp true 2> /dev/null
+
+    - systemd:
+        state: restarted
+        name: chronyd.service
+...

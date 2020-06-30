@@ -1,0 +1,59 @@
+---
+## Fonte: https://ovirt.org/develop/release-management/features/infra/python-sdk.html
+- hosts: localhost
+  vars:
+    server: sv-rhm-tmk01.dexter.com.br
+    ovirt_auth:
+      url: https://"{{ server }}"/ovirt-engine/api
+      username: "{{ user }}"@internal
+      password: "{{ user_password }}"
+# curl --insecure  https://sv-rhm-tmk01.dexter.com.br/ovirt-engine/services/pki-resource?resource=ca-certificate  -o ~/ca-bundle-rhm-tmk.crt
+      ca_file: ~/ca-bundle-rhm-tmk.crt
+      insecure: yes
+
+  tasks:
+    - yum:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - python-lxml
+        - python-pip
+        - python-setuptools
+        - rpm-build
+        - wget
+      when: ansible_os_family == "RedHat"
+
+    - apt:
+        name: "{{ item }}"
+        state: present
+        update_cache: yes
+      loop:
+        - build-essential
+        - libxml2-dev
+        - libxslt1-dev
+        - python-lxml
+        - python-pip
+        - python-setuptools
+      when: ansible_os_family == "Debian")
+
+    - get_url:
+        url: https://"{{ server }}"/ovirt-engine/services/pki-resource?resource=ca-certificate
+        dest: ~/ca-bundle-rhm-tmk.crt
+    
+    - get_url:
+        url: https://files.pythonhosted.org/packages/28/eb/6ccef9afd320f7e0657af3b03e2c4a18bb12ad3e00c655d6794f46e42c9f/ovirt-engine-sdk-python-4.3.3.tar.gz
+        dest: /tmp/ovirt-engine-sdk-python-4.3.3.tar.gz
+
+    - unarchive:
+        src: /tmp/ovirt-engine-sdk-python-4.3.3.tar.gz
+        dest: /tmp/
+        remote_src: yes
+
+    - command: python /tmp/ovirt-engine-sdk-python-4.3.3/setup.py install
+
+#    - ovirt_vm:
+#        auth: "{{  ovirt_auth }}"
+#        state: present
+#        name: 0_TEST_RHEL77
+#        template: RHEL77
+#        cluster: Default

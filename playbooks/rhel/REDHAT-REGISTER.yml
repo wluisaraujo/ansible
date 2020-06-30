@@ -1,0 +1,25 @@
+---
+- hosts: all
+  tasks:
+  - redhat_subscription:
+      state: present
+      username: Dexter
+      password: XPTO
+      auto_attach: true
+    when: (ansible_distribution == "RedHat")
+    register: result
+
+- rhsm_repository:
+      name: rhel-7-server-rpms
+      state: enabled
+    register: repo
+  when: (result is success)
+
+## UNREGISTER
+#  - redhat_subscription:
+#      state: absent
+#      username: Dexter
+#      password: XPTO
+#      auto_attach: true
+#    when: (rhelsubs | success)
+...

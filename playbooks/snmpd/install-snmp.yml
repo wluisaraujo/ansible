@@ -1,0 +1,90 @@
+---
+## w.luis.araujo@gmail.com
+## 19/Fevereiro/2018
+- hosts: all
+  gather_facts: yes
+  tasks:
+
+####    TO CentOS
+  - name: Install SNMP to OS "{{ ansible_distribution }}"/"{{ ansible_distribution_major_version }}"
+    yum:
+      name: "{{ item }}"
+      state: latest
+    loop:
+    - net-snmp
+    - net-snmp-utils
+    when: (ansible_distribution == "CentOS")
+    register: RCPACKAGE
+    notify:
+      - Start Snmp
+
+####    TO Debian
+  - name: Install SNMP to OS "{{ ansible_distribution }}"/"{{ ansible_distribution_major_version }}"
+    apt:
+      name: "{{ item }}"
+      state: latest
+      update_cache: yes
+    loop:
+      - snmp
+      - snmpd
+      - libsnmp-dev
+    when: (ansible_os_family == "Debian")
+    register: RCPACKAGE
+    notify:
+      - Start Snmp
+
+####    TO Suse
+  - name: Install SNMP to OS "{{ ansible_distribution }}"/"{{ ansible_distribution_major_version }}"
+    zypper:
+      name: "{{ item }}"
+      state: latest
+    loop:
+      - net-snmp
+      - net-snmp-agent
+      - net-snmp-utils
+    when: (ansible_os_family == "Suse")
+    register: RCPACKAGE
+    notify:
+      - Start Snmp
+
+####    TO Redhat
+  - name: Subscribe "{{ ansible_distribution }}"/"{{ ansible_distribution_major_version }}"
+    redhat_subscription:
+      state: present
+      username: Dexter
+      password: "mysecret"
+      auto_attach: true
+    when: (ansible_distribution == "RedHat")
+    register: RCRHSUBS
+
+  - name: Install SNMP to OS "{{ ansible_distribution }}"/"{{ ansible_distribution_major_version }}"
+    yum:
+      name: "{{ item }}"
+      state: present
+    loop:
+      - net-snmp
+      - net-snmp-utils
+      - net-snmp-libs
+    when: ( ansible_distribution == "RedHat" )
+##    environment:
+#      http_proxy: http://172.17.2.80:3128
+    register: RCPACKAGE
+
+#  - name: Unsubscribe OS on RedHat
+#    redhat_subscription:
+#      state: absent
+#      username: Dexter
+#      password: "mysecret"
+#    when:
+#      - RCRHSUBS is success
+#      - RCPACKAGE is success
+#      - ansible_distribution == "RedHat"
+
+  - copy:
+      src: /usr/share/snmp/snmpd.conf
+      dest: /etc/snmp/snmpd.conf
+      remote_src: yes
+    when: ansible_os_family == "Debian"
+
+## END
+...

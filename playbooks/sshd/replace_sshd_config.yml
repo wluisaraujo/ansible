@@ -1,0 +1,18 @@
+---
+- hosts: all
+  tasks:
+  - replace:
+      dest: /tmp/sshd_config
+      regexp: "^{{ item.origem }}"
+      replace: "{{ item.destino }}"
+    with_items:
+      - { origem: '#Port 22',                   destino: 'Port 22' }
+      - { origem: '#PermitRootLogin yes',       destino: 'PermitRootLogin no' }
+      - { origem: '#GSSAPIAuthentication no',   destino: 'GSSAPIAuthentication no' }
+      - { origem: '#TCPKeepAlive yes',          destino: 'TCPKeepAlive yes' }
+      - { origem: '#UseDNS no',                 destino: 'UseDNS no' }
+      - { origem: 'Port',                       destino: 'Port 22' }
+      - { origem: 'PermitRootLogin',            destino: 'PermitRootLogin no' }
+      - { origem: 'GSSAPIAuthentication',       destino: 'GSSAPIAuthentication no' }
+      - { origem: 'TCPKeepAlive',               destino: 'TCPKeepAlive yes' }
+      - { origem: 'UseDNS',                     destino: 'Port 22' }
