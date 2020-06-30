@@ -1,0 +1,68 @@
+---
+- hosts: workstation
+  #connection: local
+  
+  vars:
+    user: lusar
+  
+  tasks:
+          - dnf: name={{item}} state=latest 
+            with_items:
+                    - bash-completion
+                    - bind-utils
+                    - bzip2
+                    - ccze
+                    - cifs-utils
+                    - curl
+                    - dkms
+                    - easytag
+                    - ethtool
+                    - gcc
+                    - gedit
+                    - git-core
+                    - gnome-gmail
+                    - gnome-shell-extension-alternate-tab
+                    - gnome-shell-extension-apps-menu
+                    - gnome-shell-extension-background-logo
+                    - gnome-shell-extension-common
+                    - gnome-shell-extension-dash-to-dock
+                    - gnome-shell-extension-drive-menu
+                    - gnome-shell-extension-launch-new-instance
+                    - gnome-shell-extension-places-menu
+                    - gnome-shell-extension-window-list
+                    - gnome-tweak-tool
+                    - google-chrome-stable
+                    - gstreamer
+                    - gstreamer1
+                    - gstreamer1-plugins-bad-free
+                    - gstreamer1-plugins-base
+                    - gstreamer1-plugins-good
+                    - gstreamer-ffmpeg
+                    - gstreamer-plugins-bad
+                    - gstreamer-plugins-bad-free
+                    - gstreamer-plugins-base
+                    - gstreamer-plugins-good
+                    - gstreamer-plugins-ugly
+                    - htop
+                    - icedtea-web
+                    - java
+                    - java-openjdk
+                    - kernel-devel
+                    - kernel-headers
+                    - kernel-modules
+                    - kernel-tools
+                    - kernel-tools-libs
+                    - libcurl
+                    - libgudev
+                    - libreoffice-langpack-pt-BR
+                    - lsof
+                    - make
+                    - mlocate
+                    - mtr
+                    - nautilus-dropbox
+                    - net-tools
+                    - nfs-utils
+                    - nmap
+                    - ntfs-3g
+            when: (ansible_distribution == "Fedora")
+...

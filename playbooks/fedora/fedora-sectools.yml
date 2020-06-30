@@ -1,0 +1,15 @@
+---
+- hosts: workstation
+  connection: local
+  
+  tasks:
+ 
+  - dnf: 
+      name: "{{ item }}" 
+      state: latest
+      update_cache: yes  
+    loop:
+      - chkrootkit
+      - inotify-tools
+      - rkhunter    
+...

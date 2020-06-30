@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  connection: local
+
+  tasks:
+  - dnf:
+      name: "{{ item }}"
+      state: latest
+      enablerepo: epel
+    loop:
+      - "{{ lookup('file', 'packages-Fedora31.txt') }}"
+...

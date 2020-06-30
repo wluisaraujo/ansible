@@ -1,0 +1,33 @@
+---
+- hosts: localhost
+  connection: local
+  
+  tasks:
+# http://dl.folkswithhats.org/fedora/{{ansible_distribution_version}}/RPMS/folkswithhats-release.noarch.rpm
+
+#- shell: dnf config-manager --add-repo "{{ item }}"
+#  loop:
+#    - https://download.docker.com/linux/fedora/docker-ce.repo
+
+# wget https://dl.google.com/linux/linux_signing_key.pub
+# sudo rpm --import linux_signing_key.pub
+#
+#            yum:
+#                    name: http://rpm.livna.org/livna-release.rpm
+#                    state: latest          
+#          - name: Adicionando RPM KEY Livna
+#            rpm_key:
+#                    state: present
+#                    key: /etc/pki/rpm-gpg/RPM-GPG-KEY-livna
+#                    validate_certs: no
+  - shell: dnf config-manager --set-enabled "{{ item }}"
+    loop:
+      - docker-ce-nightly
+      - docker-ce-test
+      - fedora
+      - fedora-cisco-openh264
+      - fedora-modular
+      - updates
+      - updates-modular
+      - updates-testing-modular
+...

@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  connection: local
+  
+  tasks:
+  - dnf: 
+      name: "{{ item }}" 
+      state: present
+    loop:
+      - VirtualBox

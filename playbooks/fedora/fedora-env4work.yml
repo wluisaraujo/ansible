@@ -1,0 +1,33 @@
+---
+- hosts: localhost
+  connection: local
+  
+  vars:
+    user: lusar
+  
+  tasks:
+          
+#- replace:
+#    path: /etc/selinux/config
+#    regexp: '^SELINUX=enforcing'
+#    replace: 'SELINUX=permissive'
+    
+#- command: setenforce 0
+
+#- selinux:
+#    state: permissive
+    
+  - timezone:
+      name: America/Sao_Paulo    
+
+  - locale_gen:
+      name: pt_BR.UTF-8
+      state: present
+
+  - command: localectl set-locale LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8    
+...
+
+#echo -e'
+#[device] 
+#wifi.scan-rand-mac-address=0' |tee -a /etc/NetworkManager/NetworkManager.conf
+#echo -e 'send dhcp-client-identifier = hardware;' | tee -a /etc/dhcp/dhclient.conf

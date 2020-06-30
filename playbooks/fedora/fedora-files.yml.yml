@@ -1,0 +1,46 @@
+---
+- hosts: workstation
+  connection: local
+  
+  vars:
+    user: lusar
+  
+  tasks:
+  
+  - lineinfile:
+      dest: /etc/hosts.allow
+      line: "ALL: ALL: spawn /bin/echo "Tentativa de acesso em [$(/bin/date)] - Origem [ %u@%h (%n) ]" &>> /var/log/tcpwrappers.log"
+      state: present
+      backup: yes
+      create: yes
+
+  - replace:
+      path: /etc/logrotate.conf
+      regexp: '^#compress'
+      replace: 'compress'  
+
+  - lineinfile:
+      dest: /etc/environment
+      line: "{{lookup('file', 'templates/etc-environment.j2')}}"
+      state: present
+      backup: yes
+      
+  - lineinfile:
+      dest: /etc/hosts
+      line: "{{lookup('file', 'templates/etc-hosts.j2')}}"
+      state: present
+      backup: yes
+  
+
+  - lineinfile:
+      path: /etc/sudoers
+      state: present
+      line: "{{lookup('file', 'templates/etc-sudoers.j2')}}"
+      backup: yes
+  
+  - lineinfile:
+      path: /tmp/bashrc
+      state: present
+      line: "{{lookup('file', 'templates/etc-sudoers.j2')}}"
+      backup: yes       
+...

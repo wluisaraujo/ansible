@@ -1,0 +1,27 @@
+---
+# tasks file for workstation
+
+- assert:
+    msg: "This role can only be applied to Fedora Environment"
+    that: ansible_distribution == "Fedora"
+      
+#- name: "Important variables {{ ansible_distribution }}"
+#  include_vars: "{{ ansible_distribution }}.yml"
+
+- name: "Managing Files"
+  import_tasks: config-files.yml
+  when: (ansible_system == "Linux") 
+
+- name: "Managing User"
+  import_tasks: config-user.yml
+  when: (ansible_system == "Linux") 
+
+- name:  "Security Tools"
+  import_tasks: config-sectools.yml
+  when: (ansible_system == "Linux")
+
+- name: "Importing Tasks =>> {{ ansible_distribution }}"
+  include_tasks: "{{ ansible_distribution }}/main.yml"
+
+# InTheEnd
+...

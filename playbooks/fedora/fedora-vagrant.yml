@@ -1,0 +1,11 @@
+---
+- hosts: workstation
+  connection: local
+  
+  tasks:
+  - dnf: 
+      name: "{{ item }}" 
+      state: present
+    loop:
+      - vagrant
+...      

@@ -1,0 +1,31 @@
+---
+- hosts: workstation
+  connection: local
+  
+  vars:
+    user: lusar
+  
+  tasks:
+  
+  - systemd:
+      state: started
+      name: "{{ item }}"   
+      enabled: yes
+    loop:
+      - chronyd.service
+      - cockpit.socket
+      - docker.service
+      - ovirt-guest-agent.service
+    
+  - systemd:
+      state: stopped
+      name: "{{ item }}"
+      masked: yes    
+      enabled: no
+    loop:
+      - ModemManager.service
+      - abrtd.service
+      - auditd.service
+      - bluetooth.service
+      - kdump.service
+...
