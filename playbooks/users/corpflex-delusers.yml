@@ -1,0 +1,52 @@
+---
+## w.luis.araujo@gmail.com
+## 19/Fevereiro/2019
+- hosts: "{{ idhost }}"
+  ignore_errors: True
+  tasks:
+  - name: Remove Users
+    user: 
+      state: absent
+      name: "{{ item }}"
+    loop:
+      - "douglas.araujo"
+      - "gilson.souza"
+      - "ec2-user"
+      - "mauricio.alves"
+      - "n3.ricardo"
+      - "rodrigo.palmeiro"
+      - "sysadmin"
+      - "thiago.rizzardo"
+      - "thiago.silva"
+
+  - lineinfile: 
+      dest: /etc/sudoers 
+      state: absent 
+      regexp: '^{{ item }}' 
+    loop:
+      - "douglas.araujo"
+      - "gilson.souza"
+      - "ec2-user"
+      - "mauricio.alves"
+      - "n3.ricardo"
+      - "rodrigo.palmeiro"
+      - "sysadmin"
+      - "thiago.rizzardo"
+      - "thiago.silva"
+  
+  - lineinfile: 
+      dest: /etc/sudoers.d/sudo_cfx 
+      state: absent 
+      regexp: '^{{ item }}' 
+    loop:
+      - "douglas.araujo"
+      - "gilson.souza"
+      - "ec2-user"
+      - "mauricio.alves"
+      - "n3.ricardo"
+      - "rodrigo.palmeiro"
+      - "sysadmin"
+      - "thiago.rizzardo"
+      - "thiago.silva"      
+## END
+...

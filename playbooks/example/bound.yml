@@ -1,0 +1,28 @@
+---
+- hosts: localhost
+  connection: local
+  vars:
+     nic1: eth2
+     nic2: eth3
+
+  tasks:
+  - nmcli:
+      type: bond
+      conn_name: bond3
+      mode: active-backup
+      state: present
+      
+  - nmcli:
+      type: bond-slave 
+      conn_name: "{{ nic1 }}"
+      ifname: "{{ nic1 }}"
+      master: bond3
+      state: present
+      
+  - nmcli:
+      type: bond-slave 
+      conn_name: "{{ nic2 }}"
+      ifname: "{{ nic2 }}"
+      master: bond3
+      state: present
+...

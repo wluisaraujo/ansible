@@ -1,0 +1,11 @@
+---
+- hosts: sv-ocpm-cfx01
+  tasks:
+  - hostname:
+      name: sv-ocpm-cfx01.dexter.com.br
+
+- hosts: sv-ocpm-cfx02
+  tasks:
+  - hostname:
+      name: sv-ocpm-cfx02.dexter.com.br
+...

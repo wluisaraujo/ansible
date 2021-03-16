@@ -1,0 +1,46 @@
+---
+  - name: Adicionando repositório EPEL 7
+    shell: /bin/rpm -Uvh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-9.noarch.rpm
+    when: ansible_distribution == 'RedHat' and ansible_distribution_release == 'Maipo'
+    ignore_errors: yes
+
+  - name: Adicionando repositório EPEL Centos
+    shell: yum install epel-release -y
+    when: ansible_distribution == 'Centos'
+    #ignore_errors: yes
+
+  - name: Adicionando repositório EPEL 6
+    shell: /bin/rpm -Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-6.noarch.rpm
+    when: ansible_distribution == 'RedHat' and ansible_distribution_release == 'Santiago'
+    ignore_errors: yes
+
+  - name: Importando chave do repositório EPEL 6
+    shell: /bin/rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+    when: ansible_distribution == 'RedHat' and ansible_distribution_release == 'Santiago'
+    ignore_errors: yes
+
+  - name: Adcionando repositório zabbix RHEL 5
+    shell: /bin/rpm -Uvh http://repo.zabbix.com/zabbix/3.2/rhel/5/x86_64/zabbix-agent-3.2.3-1.el5.x86_64.rpm
+    when: ansible_distribution == 'RedHat' and ansible_distribution_release == 'Tikanga'
+
+  - name: Adcionando repositório EPEL  RHEL 5
+    shell: /bin/rpm -Uvh http://dl.fedoraproject.org/pub/epel/5/x86_64/epel-release-5-4.noarch.rpm
+    when: ansible_distribution == 'RedHat' and ansible_distribution_release == 'Tikanga'
+#    when: ansible_distribution == 'Centos'
+
+  - name: Importando chave do repositório EPEL 5
+    shell: /bin/rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL
+    when: ansible_distribution == 'RedHat' and ansible_distribution_release == 'Tikanga'
+#    when: ansible_distribution == 'Centos'
+
+  - name: Adicionando repositório Debian
+    shell: wget http://repo.zabbix.com/zabbix/3.0/debian/pool/main/z/zabbix-release/zabbix-release_3.0-1+wheezy_all.deb
+    when: ansible_distribution == 'Debian' and ansible_distribution_release == 'wheezy'
+
+  - name: Instalando repositório Debian
+    shell: dpkg -i zabbix-release_3.0-1+wheezy_all.deb
+    when: ansible_distribution == 'Debian' and ansible_distribution_release == 'wheezy'
+
+  - name: Atualizando repositório Debian
+    shell: apt-get update
+    when: ansible_distribution == 'Debian' and ansible_distribution_release == 'wheezy'

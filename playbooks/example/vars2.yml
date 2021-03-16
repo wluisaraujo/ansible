@@ -1,0 +1,7 @@
+---
+- hosts: testing
+  vars_files:
+    - /root/vars.yml
+  tasks:
+    - name: Instala pacotes atraves de variaveis
+      apt: name={{ pacotes }} state=installed update_cache=true

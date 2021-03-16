@@ -1,0 +1,25 @@
+---
+- systemd:
+    state: started
+    name: "{{ item }}"
+    enabled: yes
+  loop:
+    - chronyd.service
+    - cockpit.socket
+    - ovirt-guest-agent.service
+    - qemu-guest-agent.service
+    - tuned.service
+
+- systemd:
+    state: stopped
+    name: "{{ item }}"
+    masked: yes
+    enabled: no
+  loop:
+#    - ModemManager.service
+    - abrtd.service
+    - auditd.service
+    - bluetooth.service
+    - firewalld.service
+    - kdump.service
+...

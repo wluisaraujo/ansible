@@ -1,0 +1,60 @@
+---
+  - name: Adicionando usuário BACKUP
+    user: name=backup.dexter state=present password=$1$9jGmFv2C$8HcYMGq2eANaVOQ3Z5can1
+
+  - name: Adicionando usuário MONITOR
+    user: name=monitor.dexter state=present password=$1$Dexter$Qbw52vO.ow3U75I.tDlFl0
+
+  - name: Adicionando usuário OPDAT
+    user: name=ec2-user state=present password=$1$Dexter$YflVkj/fmWuGTN9FIO9pO/
+
+  - name: Adicionando usuário Harley
+    user: name=security.admin state=present password=$1$P8FOYcQN$6a7L8EHrFgJK5e84z0POk.
+
+  - name: Adicionando usuário Fernando
+    user: name=ec2-user state=present password=$1$M2uBZgF6$YvoLZj3yuGad6RRu9icq5/
+
+  - name: Adicionando Jackson Ribeiro
+    user: name=jackson.ribeiro state=present password=$1$1WjbNVZa$KarPKidk7rYtJCh2P2gYm/
+
+  - name: Adicionando Urieder Unzueta
+    user: name=urieder.unzueta state=present password=$1$ZUPXxQ7z$Hu/awnrxWez7OXhRVTAaI/
+
+  - name: Adicionando Luis Maciel
+    user: name=luis.maciel state=present password=$1$u9hDDkXi$JgEf2668EraOPEk1Hz7BU1
+
+  - name: Adicionando Thiago Laurito
+    user: name=sysadmin state=present password=$1$ehWo4DbV$EAHGxyKRZ.x4kxHw2ZtMd.
+
+  - name: Criando arquivo para edição do arquivo sudoers
+    command: cp -f /etc/sudoers /etc/sudoers.tmp
+
+  - name: Inserir linha BACKUP no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^backup.dexter' line='backup.dexter ALL=(ALL) ALL'
+
+  - name: Inserir linha MONITOR no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^monitor.dexter' line='monitor.dexter        ALL= /etc/init.d/snmpd *'
+
+  - name: Inserir linha OPDAT no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^ec2-user' line='ec2-user ALL=(ALL) ALL'
+
+  - name: Inserir linha Fernando no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^ec2-user' line='ec2-user ALL=(ALL) ALL'
+
+  - name: Inserir linha Harley no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^security.admin' line='security.admin ALL=(ALL) ALL'
+
+  - name: Inserir linha JACKSON no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^jackson.ribeiro' line='jackson.ribeiro ALL=(ALL) ALL'
+
+  - name: Inserir linha URIEDER no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^urieder.unzueta' line='urieder.unzueta ALL=(ALL) ALL'
+
+  - name: Inserir linha luis.maciel no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^luis.maciel' line='luis.maciel ALL=(ALL) ALL'
+
+  - name: Inserir linha sysadmin no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^sysadmin' line='sysadmin ALL=(ALL) ALL'
+
+  - name: Checa se o arquivo tem erros e copia para o original
+    shell: /usr/sbin/visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers

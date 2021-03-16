@@ -1,0 +1,64 @@
+---
+- hosts: testing
+  tasks:
+    - name: Instala pacotes para suporte a PHP no Apache em Distribuicao Debian - Area de Testes da empresa Dexter Courier
+      apt: name={{item}} state=installed update_cache=true
+      with_items:
+        - apache2
+        - libapache2-mod-php5
+        - php5
+        - php5-curl
+        - php5-gd
+        - php5-intl
+        - php5-xmlrpc
+        - php5-pgsql
+        - php-pear
+        - php5-mcrypt
+        - php5-ldap
+        - php-net-ldap2
+        - php5-imagick
+        - php-fpdf
+        - php5-mysql
+      when: ansible_os_family == "Debian"
+      register: php_packages_debian_installed
+      notify:
+        - Start Apache
+
+    - name: Instala pacotes para suporte a PHP no Apache em Distribuicao CentOS - Area de Testes da empresa Dexter Courier
+      yum: name={{item}} state=installed update_cache=true
+      with_items:
+        - epel-release
+        - httpd
+        - php
+        - php-pgsql
+        - php-gd
+        - php-ldap
+        - php-xmlrpc
+        - php-intl
+        - php-mysql
+      when: ansible_os_family == "RedHat"
+      register: php_packages_centos_installed
+      notify:
+        - Start Httpd
+
+    - name: Define o arquivo de configuração para testar o suporte PHP em Distribuicao Debian/Ubuntu - Area de Testes da empresa Dexter Courier
+      when: (ansible_distribution == "Debian" and php_packages_debian_installed|success)
+      copy: src=/root/webserver/files/index.php dest=/var/www/html/index.php owner=www-data group=www-data mode=0644
+      notify:
+        - Reload Apache
+
+    - name: Define o arquivo de configuração para testar o suporte PHP em Distribuicao CentOS - Area de Testes da empresa Dexter Courier
+      when: (ansible_distribution == "RedHat" and php_packages_centos_installed|success)
+      copy: src=/root/webserver/files/index.php dest=/var/www/html/index.php owner=apache group=apache mode=0644
+      notify:
+        - Reload Httpd
+
+  handlers:
+    - name: Start Apache
+      service: name=apache2 state=started
+    - name: Start Httpd
+      service: name=httpd state=started
+    - name: Reload Apache
+      service: name=apache2 state=reloaded
+    - name: Reload Httpd
+      service: name=httpd state=reloaded

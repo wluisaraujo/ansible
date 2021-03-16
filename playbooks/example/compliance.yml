@@ -1,0 +1,13 @@
+---
+## w.luis.araujo@gmail.com
+## 19/fevereiro/2019
+##
+- hosts: all
+  gather_facts: yes
+  force_handlers: yes
+
+- import_playbook: install-package.yml
+  when: ( ansible_system == "Linux" )  
+  tags: 
+    - guest  
+...  

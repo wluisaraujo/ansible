@@ -1,0 +1,54 @@
+  - name: Bash RHEL/Centos
+    lineinfile:
+      path: /etc/bashrc
+      state: present
+      line: 'export HISTTIMEFORMAT="%d.%m.%y %T  "'
+    when: ansible_os_family == 'RedHat'
+
+  - name: Bash Debian/Ubuntu
+    lineinfile:
+      path: /etc/bash.bashrc
+      state: present
+      line: 'export HISTTIMEFORMAT="%d.%m.%y %T  "'
+    when: ansible_os_family == 'Debian'
+
+  - name: Limitando acesso do root via SSH Debian
+    lineinfile:
+      dest: /etc/ssh/sshd_config
+      regexp: ^#PermitRootLogin
+      line: 'PermitRootLogin no'
+    notify: restart ssh
+    when: ansible_os_family == 'Debian'
+
+  - name: Limitando acesso do root via SSH RedHat
+    lineinfile:
+      dest: /etc/ssh/sshd_config
+      regexp: ^#PermitRootLogin
+      line: 'PermitRootLogin no'
+    notify: restart sshd
+    when: ansible_os_family == 'RedHat'
+
+  - name: Limitando acesso do root via SSH Suse
+    lineinfile:
+      dest: /etc/ssh/sshd_config
+      regexp: ^PermitRootLogin
+      line: 'PermitRootLogin no'
+    notify: restart sshd
+    when: ansible_os_family == 'Suse'
+
+  - name: NTP - Instalando RHEL/Centos
+    yum:
+      name: ntpdate
+      state: present
+    when: ansible_distribution == 'RedHat' and ansible_distribution_release == 'Tikanga'
+
+  - name: NTP - Instalando Debian/Ubuntu
+    apt:
+      name: ntpdate
+      state: present
+    when: ansible_os_family == 'Debian'
+
+  - name: NTP - Adicionando ao Crontab
+    lineinfile:
+      dest: /etc/crontab
+      line: "0 1 * * * root /usr/sbin/ntpdate pool.ntp.br 2>/dev/null"

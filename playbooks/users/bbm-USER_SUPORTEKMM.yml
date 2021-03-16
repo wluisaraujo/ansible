@@ -1,0 +1,40 @@
+---
+## w.luis.araujo@gmail.com
+## 10/10/2018
+##
+
+- hosts: srv-bbm-dbora04
+  become: true
+  tasks:
+            
+  - user: 
+      state: present
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      createhome: true
+      home: "/home/{{ item.name }}"
+      group: wheel
+      groups: wheel
+      shell: /bin/bash
+      update_password: always
+    with_items:
+            - { name: 'suporte.kmm', password: '$1$59AdPhkK$V0iAVjQWeZih6xIAv900y0' }
+    register: result
+
+  - lineinfile: 
+      path: /etc/sudoers
+      state: present 
+      line: "suporte.kmm        ALL=(ALL)       NOPASSWD: ALL"  
+    when: result is success
+
+  - authorized_key:
+      user: suporte.kmm
+      state: present
+      key: "{{ item }}"
+    with_items:  
+            - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDIcp/5mI27josew+Mmnetdxn39e4CoUWtDAIjZ4399/Sstb7DEJBqiwuMn3FKgtM3oEGEkVYRJkPfS5aFQLW7RMRQlfjckr77qKCcP+VRWS556G0ZqQuRPkCP2v6Dg7G/s5L88vsxWACHaDEhEK622VJpAvD7Njom2KaswD6uyVBmUXLWDrq65a3hSixjB8bd421fmDstyqmMXjdw5vj7nOqHKVuezQ37htEY5SzfNhmZj3cLRneL9jYa3KUFJ/1ayq3ZD//McVQxj7fYU/bml7oYvKaQU8NEy+/7Kqw9SJQnUCX3KUYar7G7Fg2d3Lg6SWeta5GAnCxF3Nd6bOfTF Secure Shell Key"
+            - ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAqp72f5Sm6aTAFNfTO+z5t/aamOI4Hqy/yhdJaqnf4ynIyUmB3nXiO1wdp1p99uLowMuiMc5lJ5ahTEzaKYQM80uDLEyjttP0tNCgO//Gdf0DsbtSP6Hd6uQhp3Jge0hylDo861Eo3Pl7g/Oxh3U0tXhs92Rhkhr2wkE01zHaeaxavOJibTZGpWv9clARp4iq5tC9RvUDYy9RG157HgMnpNNXLUvjmVg0kCxh9vY82N+aEvuIg105ArjKi3i+YYdFsRfKfMbvxHwV7479KK3J6tWn3yhnoFB/ojXPkdP4ZsSwXtTLTIDIk/PmQPFX+ZtOpIoySXdgFRr7KtbvjIObZw== oracle@standby.bbmlogistica.com.br"
+    when: result is success
+
+## END
+...

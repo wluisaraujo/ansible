@@ -1,0 +1,27 @@
+---
+- hosts: lb
+  tasks:
+  - hostname:
+      name: lb.dexter.com.br
+  
+  - rhsm_repository:
+        name: "{{ item }}"
+      loop:
+        - "rhel-7-server-rpms"
+        - "rhel-7-server-extras-rpms"
+        - "rhel-7-server-optional-rpms"
+        - "rhel-7-server-ose-3.11-rpms"
+        - "rhel-7-server-ansible-2.8-rpms"      
+
+  - yum:
+      name: "{{ item }}"
+      state: latest
+    register: package
+    loop:
+      - "*"
+      - vim
+      - bash-completion
+      - ansible
+      - openshift-ansible
+
+...

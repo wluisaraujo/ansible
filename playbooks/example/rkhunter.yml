@@ -1,0 +1,15 @@
+---
+- name: Instalação e Configuração do Rkhunter
+  hosts: plano
+  user: root
+
+  tasks:
+
+  - name: Instalando Rkhunter
+    yum: name=rkhunter state=present
+
+  #- name: Copiando arquivo de configuração rkhunter.conf
+  #  copy: src=rkhunter.conf dest=/etc/rkhunter.conf backup=yes mode=0640
+
+  - name: Criando Cron e fazendo backup do antigo
+    copy: src=rkhunter.cron dest=/etc/cron.d/rkhunter

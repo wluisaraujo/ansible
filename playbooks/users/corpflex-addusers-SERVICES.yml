@@ -1,0 +1,41 @@
+---
+## w.luis.araujo@gmail.com
+## 06/Marco/2018
+- hosts: all
+  vars:
+    mydomain: dexter.com.br
+  tasks:
+  - name: "Criando usuarios de SERVICO "
+    user: 
+      state: present
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      createhome: true
+      home: "/home/{{ item.name }}"
+      shell: /bin/bash
+      update_password: always
+      comment: "{{ item.comm }}"
+    with_items:
+      - { name: 'backup.dexter',  password: '$1$Xh26LNXw$uMNxai0q5XWP2PqtyLNxv1', comm: 'suporte@{{mydomain}}' }
+      - { name: 'monitor.dexter', password: '$1$Dexter$Qbw52vO.ow3U75I.tDlFl0', comm: 'suporte@{{mydomain}}' }
+      - { name: 'ec2-user',   password: '$1$Dexter$YflVkj/fmWuGTN9FIO9pO/', comm: 'suporte@{{mydomain}}' }
+      - { name: 'solarwinds.ssh',   password: '$1$IEpqfE.4$ZISVJI9qFWyeo8qKMI5RM.', comm: 'suporte@{{mydomain}}' }
+    register: result
+    when: ( ansible_system == "Linux" )
+      
+  - lineinfile: 
+      path: /etc/sudoers.d/sudo_cfx
+      state: present 
+      line: "{{item.name}} ALL=(ALL) ALL"
+      owner: root
+      group: root
+      mode: 0440
+      create: yes
+      validate: '/usr/sbin/visudo -cf %s'
+    loop:
+      - { name: 'backup.dexter' }
+      - { name: 'ec2-user' }
+    when: 
+      - result is success
+## END
+...

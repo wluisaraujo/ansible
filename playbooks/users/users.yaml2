@@ -1,0 +1,50 @@
+---
+ - name: Install Sudo Debain Version 9.X
+   apt:
+     name: sudo
+     state: latest
+   when: ansible_distribution == "Debian" and ansible_distribution_major_version == "9"
+ 
+ - name: Suse SUDOING
+   lineinfile:
+     dest: /etc/sudoers
+     regexp: "{{ item.regexp }}"
+     line: "{{ item.line }}"
+   with_items:
+     - { regexp: '^Defaults targetpw', line: '#Defaults targetpw' }
+     - { regexp: '^ALL', line: '#ALL   ALL=(ALL) ALL' }
+   when: ansible_os_family == 'Suse'
+
+ - name: Adding all users
+   user:
+     name: "{{ item.name }}"
+     state: present
+     password: "{{ item.password }}"
+   with_items:
+     - { name: 'backup.dexter', password: '$1$Xh26LNXw$uMNxai0q5XWP2PqtyLNxv1' }
+     - { name: 'monitor.dexter', password: '$1$Dexter$Qbw52vO.ow3U75I.tDlFl0' }
+     - { name: 'ec2-user', password: '$1$Dexter$YflVkj/fmWuGTN9FIO9pO/' }
+     - { name: 'security.admin', password: '$1$P8FOYcQN$6a7L8EHrFgJK5e84z0POk.' }
+     - { name: 'jackson.ribeiro', password: '$1$xyz$eN40sEVrKgML4u/BZETxx1' }
+     - { name: 'urieder.unzueta', password: '$1$ZUPXxQ7z$Hu/awnrxWez7OXhRVTAaI/' }
+     - { name: 'luis.maciel', password: '$1$u9hDDkXi$JgEf2668EraOPEk1Hz7BU1' }
+     - { name: 'security.operator', password: '$1$Q5JyJUPb$JcR7aHJqLIR7WztMhwH6l/' }
+     - { name: 'solarwinds.ssh', password: '$1$IEpqfE.4$ZISVJI9qFWyeo8qKMI5RM.' }
+     - { name: 'ec2-user', password: '$1$WWfMbf.V$rnD3CBXsT3RLPRtNWSYOd.' }
+     - { name: 'djalma.correia', password: '$1$ArswaI18$es.Hi1VVedVOe7MbLZc8N0' }
+     - { name: 'davi.oliveira', password: '$1$lnz07SXJ$8cEGA7jtp8zMzLOCrGYD41' }
+     - { name: 'aquarela.admin', password: '$1$apqKTxOn$jgzlrLUYYfEGE6.Pj3zeK.' }
+     - { name: 'heron.francelino', password: '$1$7OZZRgS8$zpWMkuqBgZKEse/i0yfWr0' }
+     - { name: 'luiz.baggio', password: '$1$.r8co/0a$nUd68ommNqVGrHqpG9wW7.' }
+     - { name: 'mauricio.alves', password: '$1$O0CBPN/a$8WFi/fic7VJNvOunKxQpE1' }
+     - { name: 'raphael.vieira', password: '$1$935/xlWg$ukLj6G.iyVXroGtCkbG02/' }
+     - { name: 'renato.bettinassi', password: '$1$/xzGrW0C$sEzOBeaUy8nPaUbYHYSby.' }
+
+ - name: Copying file sudoers file
+   copy:
+      src: /home/haccosta/ansible/playbooks/roles/Linux/files/sudo_cfx
+      dest: /etc/sudoers.d/sudo_cfx
+      owner: root
+      group: root
+      mode: 0440
+      validate: /usr/sbin/visudo -cf %s

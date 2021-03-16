@@ -1,0 +1,12 @@
+---
+- hosts: all
+  become: true
+  tasks:
+
+  - name: restart service snmpd on (red-hat os family)
+    systemd:
+      state: restarted
+      daemon_reload: yes
+      name: snmpd.service
+    when: ( ansible_os_family = RedHat )
+...

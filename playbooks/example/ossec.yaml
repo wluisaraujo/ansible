@@ -1,0 +1,34 @@
+---
+  - name: Adiciona Grupo OSSEC
+    group: name=ossec state=present
+    when: ansible_distribution == 'RedHat'
+
+  - name: RHEL/CENTOS Adiciona usuário ossec
+    user: name=ossec shell=/sbin/nologin group=ossec home=/var/ossec
+    when: ansible_distribution == 'RedHat'
+
+  - name: RHEL/CENTOS Adiciona usuário ossec
+    user: name=ossec shell=/sbin/nologin group=ossec home=/var/ossec
+    when: ansible_distribution == 'RedHat'
+
+  - name: Descompactando ossec.tar.gz para RHEL5 no diretório /var/
+    unarchive: src=ossec_rhel5.tar.gz dest=/var/
+    when: ansible_distribution == 'RedHat' and ansible_distribution_release == 'Tikanga'
+
+  - name: Descompactando ossec.tar.gz para RHEL6 no diretório /var/
+    unarchive: src=ossec_rhel5.tar.gz dest=/var/
+    when: ansible_distribution == 'RedHat' and ansible_distribution_release == 'Santiago'
+
+  - name: Copiando ossec-init.conf
+    copy: src=ossec-init.conf dest=/etc/ossec-init.conf owner=root group=root mode=600
+    when: ansible_distribution == 'RedHat'
+
+  - name: Copiando script de startup
+    copy: src=ossec dest=/etc/init.d/ossec owner=root group=ossec mode=755
+    when: ansible_distribution == 'RedHat'
+
+  - name: Colocando OSSEC no boot
+    service: name=ossec state=started enabled=yes
+    when: ansible_distribution == 'RedHat'
+    ignore_errors: yes
+

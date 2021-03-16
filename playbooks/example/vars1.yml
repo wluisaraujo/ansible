@@ -1,0 +1,7 @@
+---
+- hosts: testing
+  vars:
+    - usuario: linus  
+  tasks:
+    - name: Adicionar usuario atraves de variavel
+      user: name={{ usuario }} state=present shell=/bin/bash password=$6$zf.uecku$WTis4eocjxZYW0TBbVtl3kCKpMAsFhHav8275qF7cvXDUGQ16EvQEW/n/uS4KQsJykTlI0sKRzigWctvO7mc30

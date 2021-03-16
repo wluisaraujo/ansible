@@ -1,0 +1,7 @@
+---
+# tasks file for install-k8s
+- include: install.yml
+# tasks file for create-cluster
+- include: init-cluster.yml
+# tasks file for join-workers
+- include: join-cluster.yml

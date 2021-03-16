@@ -1,0 +1,30 @@
+---
+- hosts: testing
+  tasks:
+    - name: Adicionar usuario Suporte para servidor de Testes da empresa Dexter
+      user: name=suporte state=present shell=/bin/bash comment=suporte@dexter.com.br password=$1$nIgv4UuV$WZ9VanohwXycSFVVEGbq80
+
+    - name: Adicionar usuario HelpDesk para servidor de Testes da empresa Dexter
+      user: name=helpdesk state=present shell=/bin/bash comment=helpdesk@dexter.com.br password=$1$nIgv4UuV$WZ9VanohwXycSFVVEGbq80
+
+    - name: Instalar pacotes bases para servidor de Testes da empresa Dexter
+      apt: name={{item}} state=installed update_cache=true
+      with_items:
+        - bash-completion
+        - bzip2
+        - ccze
+        - dnsutils
+        - htop
+        - mlocate
+        - nfs-common
+        - sudo
+        - scren
+        - tzdata
+        - unzip
+        - vim
+
+    - name: Configurar arquivo /etc/hosts para o servidor de Testes da empresa Dexter
+      copy: src=/etc/ansible/base/files/hosts dest=/etc/hosts owner=root group=root mode=0644
+
+    - name: Configurar arquivo /etc/resolv.conf para o servidor de Testes da empresa Dexter
+      copy: src=/etc/ansible/base/files/resolv.conf dest=/etc/resolv.conf owner=root group=root mode=0644

@@ -1,0 +1,16 @@
+---
+- hosts: docker01
+  remote_user: root
+  vars:
+          - usuario: ec2-user
+          - usuario: admin
+          - usuario: teste
+  tasks:
+  - name: Adiciona o usuario {{ usuario }}
+    user: name={{ usuario }}
+          state=present
+          shell=/bin/bash
+          password="$1$OPnOjj0W$4AAHFYV./sT0o5hxSx1RN."
+          createhome=true
+          home="/home/{{ usuario }}"
+...

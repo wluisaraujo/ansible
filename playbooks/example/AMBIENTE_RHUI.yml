@@ -1,0 +1,147 @@
+---
+##############################################################
+#   [RHUIEQX01]
+#   sv-ocb-eqx01	ansible_host=172.17.2.108   # ocp-balancer
+#   
+##############################################################
+
+- hosts: RHUIEQX01
+  tasks:
+  
+  - lineinfile:
+      path=/etc/hosts
+      state=present
+      line={{ item }}
+    with_items: 
+      - "172.17.2.199   sv-rhui-eqx01    sv-rhui-eqx01.dexter.com.br"
+      - "172.17.2.198   sv-rhui-eqx02    sv-rhui-eqx02.dexter.com.br"
+      - "172.17.2.197   sv-rhui-eqx03    sv-rhui-eqx03.dexter.com.br"
+      - "172.17.2.196   sv-rhui-eqx04    sv-rhui-eqx04.dexter.com.br"
+      - "172.17.2.196   sv-rhui-eqx04    cds4.dexter.com.br"
+
+  - shell: tuned-adm profile throughput-performance
+  
+  - timezone:
+      name: America/Sao_Paulo
+    when: (ansible_system == "Linux")
+  
+  - lineinfile:
+      path=/etc/environment
+      state=present
+      line={{ item }}
+    with_items: 
+      - 'export http_proxy="172.17.2.80:3128" '
+      - 'export https_proxy="172.17.2.80:3128"'
+      - 'export ftp_proxy="172.17.2.80:3128"'
+      - 'export ftps_proxy="172.17.2.80:3128"'
+
+#  - redhat_subscription:
+#      state: present
+#      username: Dexter
+#      password: mysecret
+#      auto_attach: true 
+#      server_proxy_hostname: 172.17.2.80
+#      server_proxy_port: 3128
+
+#  - rhsm_repository:
+#      name: rhel-7-server-rpms
+#      state: enabled
+#    register: rhsmok
+
+  - yum:
+      name={{ item }}
+      state=latest
+    with_items:
+      - tzdata
+      - chrony
+      - bash-completion
+      - cockpit
+#      - bash-completion-exras
+      - lsof
+      - tree
+      - vim
+      - ntpdate
+      - rhevm-guest-agent-common
+    register: PACKAGE
+#    when: ( rhsmok is success )
+
+  - systemd:
+      state: started
+      name:  chronyd.service 
+      enabled: yes
+    when: ( PACKAGE is success )
+    
+  - systemd:
+      state: started
+      name:  ovirt-guest-agent.service     
+      enabled: yes
+#    when: ( guestok is success )
+
+  - systemd:
+      state: started
+      name:  cockpit.service     
+      enabled: yes
+#    when: ( guestok is success )
+    
+  - systemd:
+      state: stopped
+      name:  firewalld.service 
+      enabled: no
+      
+  - sysctl:
+      name: vm.swappiness
+      state: present
+      value: 10
+      sysctl_file: /etc/sysctl.conf
+      sysctl_set: yes 
+      reload: yes   
+      ignoreerrors: yes
+
+  - sysctl:
+      name: net.ipv6.conf.all.disable_ipv6
+      state: present
+      value: 1
+      sysctl_file: /etc/sysctl.conf
+      sysctl_set: yes 
+      reload: yes   
+      ignoreerrors: yes
+
+  - sysctl:
+      name: kernel.nmi_watchdog
+      state: present
+      value: 0
+      sysctl_file: /etc/sysctl.conf
+      sysctl_set: yes 
+      reload: yes   
+      ignoreerrors: yes   
+    
+  - user: 
+      state: present
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      createhome: true
+      home: "/home/{{ item.name }}"
+      shell: /bin/bash
+      update_password: always
+      comment: "{{ item.comm }}"
+      group: wheel
+      groups: wheel
+    with_items:
+      - { name: 'ec2-user', password: '$1$PDn5JteP$eSUxu7M1N3dCUkP9SCuIW0', comm: 'ec2-user@dexter.com.br' }
+      - { name: 'admin', password: '$1$yExZZSmb$3lTBG2NYYaDIq32BZbapW/', comm: 'SysAdmin' }
+
+  - authorized_key:
+      user: ec2-user
+      state: present
+      exclusive: True
+      key: https://github.com/wluisaraujo.keys
+      validate_certs: False
+
+  - authorized_key:
+      user: root
+      state: present
+      key: https://github.com/wluisaraujo.keys
+      validate_certs: False
+   
+## End a playbook
+...

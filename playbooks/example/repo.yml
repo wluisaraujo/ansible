@@ -1,0 +1,14 @@
+---
+- dnf:
+  enablerepo:
+  state: present
+# dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+dnf config-manager --set-enabled docker-ce-nightly
+dnf config-manager --set-enabled fedora-cisco-openh264
+dnf config-manager --set-enabled fedora-modular
+dnf config-manager --set-enabled fedora
+dnf config-manager --set-enabled updates-modular
+dnf config-manager --set-enabled updates
+dnf config-manager --set-enabled updates-testing-modular
+dnf config-manager --set-enabled updates-testing
+...

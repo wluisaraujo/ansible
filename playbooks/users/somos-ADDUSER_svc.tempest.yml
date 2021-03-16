@@ -1,0 +1,17 @@
+---
+- hosts: SOMOS
+  become: yes
+  tasks:
+
+  - user: 
+      name: svc.tempest 
+      state: present 
+      shell: /bin/bash 
+      createhome: yes
+
+  - lineinfile: 
+      path: /etc/sudoers 
+      state: present 
+      regexp: '^svc.tempest'
+      line: 'svc.tempest ALL=(root) NOPASSWD: /usr/bin/ls, /usr/bin/cat, /usr/bin/find, /usr/bin/grep, /usr/bin/yum, /usr/bin/rpm'
+...

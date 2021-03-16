@@ -1,0 +1,25 @@
+---
+- name: Cópia de Chaves
+  hosts: uri
+  user: ec2-user
+
+  tasks:
+
+  - name: Adicionando chaves
+    authorized_key:
+      user: solarwinds.ssh
+      state: present
+      key: "{{ lookup('file', 'teste_chave') }}"
+
+  - name: example copying file with owner and permissions
+    copy:
+      src: sudo_cfx
+      dest: /etc/sudoers.d/sudo_cfx
+      owner: root
+      group: root
+      mode: 0440
+#  - name: Limitando acesso do root via SSH
+#    lineinfile: dest=/etc/ssh/sshd_config regexp=^#PermitRootLogin line='PermitRootLogin without-password'
+
+#  - name: Limitando acesso do root via SSH
+#    service: name=sshd state=restarted

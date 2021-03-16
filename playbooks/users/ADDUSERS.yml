@@ -1,0 +1,25 @@
+---
+## w.luis.araujo@gmail.com
+## 06/Agosto/2019
+##
+- hosts: "{{ idhost }}"
+  gather_facts: no
+  
+  tasks:
+  
+  - assert:
+      msg: "This role can only be applied to Linux Environment"
+      that: ansible_system == "Linux"
+
+- import_playbook: users/dexter-addusers-N3.yml
+  tags: N3
+
+- import_playbook: users/dexter-addusers-N2.yml
+  tags: N2
+
+- import_playbook: users/dexter-addusers-DBA.yml
+  tags: DBA
+
+- import_playbook: users/dexter-addusers-SERVICES.yml
+  tags: SRV
+...

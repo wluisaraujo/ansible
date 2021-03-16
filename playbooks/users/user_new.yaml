@@ -1,0 +1,30 @@
+---
+- name: Sudo Fernando|SecurityTeam
+  hosts: estanplaza
+  gather_facts: no
+#  user: ec2-user
+#  sudo: True
+
+  tasks:
+
+  - name: Adicionando usuário Laurito
+    user: name=sysadmin state=present password=$1$alWLgTq2$zptkbKyw5n4hAixVpX31t1
+
+  - name: Adicionando usuário Thiago Silva
+    user: name=thiago.silva state=present password=$1$z7t39PBs$163O35LjpWJw3mjsNEhGY0
+
+  - name: Adicionando usuário Palmeiro
+    user: name=rodrigo.palmeiro state=present password=$1$UWoNTDta$ZBzyOaXTxKfanMdxSkqXR0 update_password=always
+
+  - name: Inserir linha Laurito no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^sysadmin' line='sysadmin ALL=(ALL) ALL'
+
+  - name: Inserir linha Silva no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^thiago.silva' line='thiago.silva ALL=(ALL) ALL'
+
+  - name: Inserir linha Palmeiro no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^rodrigo.palmeiro' line='rodrigo.palmeiro ALL=(ALL) ALL'
+
+  - name: Checa se o arquivo tem erros e copia para o original
+    shell: /usr/sbin/visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers
+

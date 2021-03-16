@@ -1,0 +1,58 @@
+---
+## w.luis.araujo@gmail.com
+## 06/Marco/2018
+- hosts: all
+  vars:
+    mydomain: dexter.com.br
+  tasks:
+  - name: "Criando usuarios da Operacao N3 "
+    user: 
+      state: present
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      createhome: true
+      home: "/home/{{ item.name }}"
+      shell: /bin/bash
+      update_password: always
+      comment: "{{ item.comm }}"
+    with_items:
+      - { name: 'security.admin', 		  password: '$1$P8FOYcQN$6a7L8EHrFgJK5e84z0POk.', comm: 'harley.costa@{{mydomain}}' }
+      - { name: 'security.operator', 	  password: '$1$Q5JyJUPb$JcR7aHJqLIR7WztMhwH6l/', comm: 'security.operator@{{mydomain}}' }
+      - { name: 'ec2-user',  password: "$1$WWfMbf.V$rnD3CBXsT3RLPRtNWSYOd.", comm: "ec2-user@{{mydomain}}" }
+    register: result
+    when: ( ansible_system == "Linux" )
+      
+  - lineinfile: 
+      path: /etc/sudoers.d/sudo_cfx
+      state: present 
+      line: "{{item.name}} ALL=(ALL) ALL"
+      owner: root
+      group: root
+      mode: 0440
+      create: yes
+      validate: '/usr/sbin/visudo -cf %s'
+    loop:
+      - { name: 'security.admin' }
+      - { name: 'security.operator' }
+      - { name: 'ec2-user' }
+    when: 
+      - result is success
+    register: result
+
+  - authorized_key:
+      user: ec2-user
+      state: present
+      exclusive: True
+      #key: https://github.com/wluisaraujo.keys
+      #validate_certs: False
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDIcp/5mI27josew+Mmnetdxn39e4CoUWtDAIjZ4399/Sstb7DEJBqiwuMn3FKgtM3oEGEkVYRJkPfS5aFQLW7RMRQlfjckr77qKCcP+VRWS556G0ZqQuRPkCP2v6Dg7G/s5L88vsxWACHaDEhEK622VJpAvD7Njom2KaswD6uyVBmUXLWDrq65a3hSixjB8bd421fmDstyqmMXjdw5vj7nOqHKVuezQ37htEY5SzfNhmZj3cLRneL9jYa3KUFJ/1ayq3ZD//McVQxj7fYU/bml7oYvKaQU8NEy+/7Kqw9SJQnUCX3KUYar7G7Fg2d3Lg6SWeta5GAnCxF3Nd6bOfTF Secure Shell Key"
+    when: result is success    
+
+  - authorized_key:
+      user: ec2-user
+      state: present
+      #key: https://github.com/wluisaraujo.keys
+      #validate_certs: False
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDIcp/5mI27josew+Mmnetdxn39e4CoUWtDAIjZ4399/Sstb7DEJBqiwuMn3FKgtM3oEGEkVYRJkPfS5aFQLW7RMRQlfjckr77qKCcP+VRWS556G0ZqQuRPkCP2v6Dg7G/s5L88vsxWACHaDEhEK622VJpAvD7Njom2KaswD6uyVBmUXLWDrq65a3hSixjB8bd421fmDstyqmMXjdw5vj7nOqHKVuezQ37htEY5SzfNhmZj3cLRneL9jYa3KUFJ/1ayq3ZD//McVQxj7fYU/bml7oYvKaQU8NEy+/7Kqw9SJQnUCX3KUYar7G7Fg2d3Lg6SWeta5GAnCxF3Nd6bOfTF Secure Shell Key"
+## END
+...

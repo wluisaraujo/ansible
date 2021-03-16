@@ -1,0 +1,60 @@
+---
+## w.luis.araujo@gmail.com
+## 06/Marco/2018
+- hosts: all
+#  become: true
+  vars:
+    mydomain: dexter.com.br
+  tasks:
+##   
+  - name: "Criando usuarios da Operacao N2 "
+    user: 
+      state: present
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      createhome: true
+      home: "/home/{{ item.name }}"
+      shell: /bin/bash
+      update_password: always
+      comment: "{{ item.comm }}"
+    with_items:
+#      - { name: 'clecio.caires',        password: "$1$ArswaI18$es.Hi1VVedVOe7MbLZc8N0", comm: 'clecio.caires@{{mydomain}}' }
+#      - { name: 'daniel.fontes',    	password: "$1$ArswaI18$es.Hi1VVedVOe7MbLZc8N0", comm: 'daniel.fontes@{{mydomain}}' }
+      - { name: 'davi.oliveira',    	password: "$1$lnz07SXJ$8cEGA7jtp8zMzLOCrGYD41", comm: 'davi.oliveira@{{mydomain}}' }
+      - { name: 'djalma.correia',   	password: "$1$ArswaI18$es.Hi1VVedVOe7MbLZc8N0", comm: 'djalma.correia@{{mydomain}}' }
+#      - { name: 'eduardo.ferreira', 	password: "$1$ArswaI18$es.Hi1VVedVOe7MbLZc8N0", comm: 'eduardo.ferreira@{{mydomain}}' }
+#      - { name: 'emerson.lima',   	    password: "$1$ArswaI18$es.Hi1VVedVOe7MbLZc8N0", comm: 'emerson.lima@{{mydomain}}' }
+#      - { name: 'flavio.rocha',     	password: "$1$ArswaI18$es.Hi1VVedVOe7MbLZc8N0", comm: 'flavio.rocha@{{mydomain}}' }
+#      - { name: 'gabriel.pimentel', 	password: "$1$ArswaI18$es.Hi1VVedVOe7MbLZc8N0", comm: 'gabriel.pimentel@{{mydomain}}' }
+      - { name: 'heron.francelino', 	password: "$1$7OZZRgS8$zpWMkuqBgZKEse/i0yfWr0", comm: 'heron.francelino@{{mydomain}}' }
+#      - { name: 'leandro.brandino', 	password: "$1$ArswaI18$es.Hi1VVedVOe7MbLZc8N0", comm: 'leandro.brandino@{{mydomain}}' }
+#      - { name: 'leandro.ferreira', 	password: "$1$ArswaI18$es.Hi1VVedVOe7MbLZc8N0", comm: 'leandro.ferreira@{{mydomain}}' }
+      - { name: 'luiz.baggio',      	password: "$1$.r8co/0a$nUd68ommNqVGrHqpG9wW7.", comm: "luiz.baggio@{{mydomain}}" }
+      - { name: 'raphael.vieira', 	    password: '$1$935/xlWg$ukLj6G.iyVXroGtCkbG02/', comm: 'raphael.vieira@{{mydomain}}' }
+      - { name: 'renato.bettinassi', 	password: '$1$/xzGrW0C$sEzOBeaUy8nPaUbYHYSby.', comm: 'renato.bettinassi@{{mydomain}}' } 
+#      - { name: 'ricardo.reis',     	password: "$1$ArswaI18$es.Hi1VVedVOe7MbLZc8N0", comm: 'ricardo.reis@{{mydomain}}' }
+#      - { name: 'rodrigo.silva',    	password: "$1$ArswaI18$es.Hi1VVedVOe7MbLZc8N0", comm: 'rodrigo.silva@{{mydomain}}' }
+#      - { name: 'tiago.vilar',      	password: "$1$ArswaI18$es.Hi1VVedVOe7MbLZc8N0", comm: 'tiago.vilar@{{mydomain}}' }
+    register: result
+    when: ( ansible_system == "Linux" )
+
+  - lineinfile: 
+      path: /etc/sudoers.d/sudo_cfx
+      state: present 
+      line: "{{item.name}} ALL=(ALL) ALL"
+      owner: root
+      group: root
+      mode: 0440
+      create: yes
+      validate: '/usr/sbin/visudo -cf %s'
+    loop:
+      - { name: 'davi.oliveira' }
+      - { name: 'djalma.correia' }
+      - { name: 'heron.francelino' }
+      - { name: 'luiz.baggio' }
+      - { name: 'raphael.vieira' }
+      - { name: 'renato.bettinassi' }
+    when: 
+      - result is success
+## END
+...

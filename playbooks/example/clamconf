@@ -1,0 +1,31 @@
+#Clamconf para RHEL Like
+
+LogFile /var/log/clamav/clamd.log
+LogFileMaxSize 0
+LogTime yes
+LogSyslog yes
+LogVerbose yes
+PidFile /var/run/clamav/clamd.pid
+TemporaryDirectory /var/tmp
+DatabaseDirectory /var/lib/clamav
+LocalSocket /var/run/clamav/clamd.sock
+SelfCheck 3600
+FixStaleSocket yes
+TCPSocket 3310
+TCPAddr 127.0.0.1
+MaxConnectionQueueLength 30
+MaxThreads 50
+ReadTimeout 300
+ExcludePath ^/proc/
+ExcludePath ^/sys/
+ExcludePath ^/dev/
+DetectPUA yes
+AlgorithmicDetection yes
+ScanPE yes
+ScanELF yes
+ScanOLE2 yes
+ScanMail yes
+StructuredDataDetection no
+ScanArchive yes
+ArchiveBlockEncrypted no
+OLE2BlockMacros yes

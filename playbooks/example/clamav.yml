@@ -1,0 +1,30 @@
+---
+- name: Instalando e configurando Clamav
+  hosts: homologa
+  user: usuario
+
+  tasks:
+  - name: Adicionando EPEL
+    command: /bin/rpm -Uvh http://mirror.globo.com/epel//6/x86_64/epel-release-6-8.noarch.rpm
+
+  - name: Importando Chave do Repositório EPEL
+    command: /bin/rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-EPEL-6
+
+  - name: Instalando Antivirus
+    yum: name=clamd state=present
+
+  - name: Atualizando Antivirus
+    command: /usr/bin/freshclam
+
+  - name: Copiando Clamconf
+    copy: src=/etc/clamd.conf dest=/etc/clamd.conf force=yes
+
+  - name: Criando Cron
+    copy: src=/etc/cron.d/clamscan dest=/etc/cron.d/clamdscan
+
+  - name: Removendo Cron Antigo
+    shell: rm -rf /etc/cron.d/clamscan
+
+  - name: Inicializando Antivirus
+    shell: /etc/init.d/clamd start
+

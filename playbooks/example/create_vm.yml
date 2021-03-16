@@ -1,0 +1,46 @@
+---
+- name: create vm
+  hosts: all
+  gather_facts: no
+#  user: root
+
+  tasks:
+  - block:
+       - name: Obtain SSO token with using username/password credentials
+         ovirt_auth:
+           url: https://sv-rhev-eqx01.dexter.com.br/ovirt-engine/api
+           username: admin@internal
+           password: '@suporte123'
+
+       - name: nome da vm
+         ovirt_vms:
+           state: present
+           auth: "{{ ovirt_auth }}"
+           name: create_by_ansible_v3
+           template: Centos_BKP
+           cluster: Default
+           memory: 4GiB
+           cpu_cores: 2
+           cpu_sockets: 2
+           cpu_shares: 1024
+           #nics:
+           #- name: VLAN_TESTE
+           cloud_init:
+             host_name: ansible.lab.local
+             user_name: root
+             root_password: jhk1045
+             dns_servers: 9.9.9.9
+
+           cloud_init_nics:
+           - nic_name: eth0
+             nic_boot_protocol: static
+             nic_ip_address: 172.19.19.119
+             nic_netmask: 255.255.255.0
+             nic_gateway: 172.19.19.1
+             nic_on_boot: true
+
+    always:
+      - name: Always revoke the SSO token
+        ovirt_auth:
+          state: absent
+          ovirt_auth: "{{ ovirt_auth }}"

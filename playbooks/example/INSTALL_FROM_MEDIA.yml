@@ -1,0 +1,24 @@
+---
+- hosts: RHV-HOSTS
+  vars:
+    - ISONAME: RHVH-4.2-20190412.0-RHVH-x86_64-dvd1.iso
+    - DESTINO: /media/iso
+  tasks:
+
+subscription-manager repos --disable="*"
+
+  
+rsync ORIGEM:/"{{ ISONAME }}" root@SERVER:/opt/
+mkdir "{{ DESTINO }}"
+mount -o loop "{{ ISONAME }}" "{{ DESTINO }}"
+cp "{{ DESTINO }}"/media.repo /etc/yum.repos.d/media.repo 
+
+echo -e 'enabled=1
+baseurl=file:///"{{ DESTINO }}"/
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-redhat-release' >> /etc/yum.repos.d/media.repo
+
+sed -i 's/gpgcheck=0/gpgcheck=1/g' /etc/yum.repos.d/media.repo
+
+chmod 644 /etc/yum.repos.d/media.repo
+
+...

@@ -1,0 +1,21 @@
+---
+# Playbook para criar usuário
+# 15/01/2018 
+- hosts: ALLIS
+  become: true
+  tasks:
+  - user: 
+      name: admvexia 
+      state: present 
+      shell: /bin/bash 
+      password: "$1$AJvGFA/H$b5AZwJNWn4aTFRMB6lmOK/"
+      createhome: yes
+      groups: wheel
+    register: result
+
+  - lineinfile: 
+      path: /etc/sudoers
+      state: present 
+      line: "admvexia ALL=(ALL) ALL"  
+      when: ( result is success)
+...

@@ -1,0 +1,9 @@
+---
+deb_pkg:
+  - iptables
+  - tcpdump
+  - ccze
+  - squid3
+  - ntp
+  - rsyslog
+  - vim

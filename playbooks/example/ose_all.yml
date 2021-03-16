@@ -1,0 +1,78 @@
+---  
+- hosts: OSEv3
+  tasks:
+
+  - redhat_subscription:
+        state: present
+        username: Dexter
+        password: mysecret
+        auto_attach: true
+        
+    - rhsm_repository:
+        name: "{{ item }}"
+      loop:
+        - "rhel-7-server-rpms"
+        - "rhel-7-server-extras-rpms"
+        - "rhel-7-server-optional-rpms"
+        - "rhel-7-server-ose-3.11-rpms"
+
+  - timezone:
+      name: America/Sao_Paulo  
+#
+  - systemd:
+      state: stopped
+      name:  firewalld.service     
+      enabled: no
+#            
+  - lineinfile:
+      path=/etc/hosts
+      state=present
+      line={{ item }}
+    with_items: 
+      - "10.100.10.4    lb.dexter.com.br              lb"
+      - "10.100.10.21   sv-ocpm-cfx01.dexter.com.br   sv-ocpm-cfx01"
+      - "10.100.10.25   sv-ocpm-cfx02.dexter.com.br   sv-ocpm-cfx02"
+      - "10.100.10.26   sv-ocpn-cfx01.dexter.com.br   sv-ocpn-cfx01"
+      - "10.100.10.32   sv-ocpn-cfx02.dexter.com.br   sv-ocpn-cfx02"
+      - "10.100.10.44   sv-ocpn-cfx03.dexter.com.br   sv-ocpn-cfx03"
+      - "10.100.10.45   sv-ocpi-cfx01.dexter.com.br   sv-ocpi-cfx01"
+      - "10.100.10.46   sv-ocpi-cfx02.dexter.com.br   sv-ocpi-cfx02"
+      - "10.100.10.48   sv-ocpi-cfx03.dexter.com.br   sv-ocpi-cfx03"
+
+  - lineinfile:
+      path=/etc/environment
+      state=present
+      line={{ item }}
+    with_items: 
+      - export no_proxy="127.0.0.1, 172.27.2.134, localhost, dexter.com.br, lb.dexter.com.br, sv-ocpm-cfx01.dexter.com.br, sv-ocpm-cfx02.dexter.com.br, sv-ocpn-cfx01.dexter.com.br, sv-ocpn-cfx02.dexter.com.br, sv-ocpn-cfx03.dexter.com.br, sv-ocpi-cfx01.dexter.com.br,sv-ocpi-cfx02.dexter.com.br, sv-ocpi-cfx03.dexter.com.br"
+      
+
+  - yum:
+      name: "{{ item }}"
+      state: latest
+    register: package
+    loop:
+      - "*"
+      - "atomic-openshift-clients"
+      - "chrony"
+      - "ntpdate"
+      - "qemu-guest-agent"
+      - "tzdata"
+
+  - systemd:
+      state: started
+      name: "{{ item }}"
+      enabled: yes
+    loop:
+    - "qemu-guest-agent.service"
+    - "chronyd.service"
+   
+  - shell: ntpdate a.ntp.br  2> /dev/null
+  - shell: chronyc -a sources  2> /dev/null   
+  - shell: timedatectl set-ntp true 2> /dev/null
+    
+  - systemd:
+      state: restarted
+      name: chronyd.service
+## End a playbook
+...

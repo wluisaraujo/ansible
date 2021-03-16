@@ -1,0 +1,36 @@
+  - name: Clamav - Instalando RHEL
+    shell: yum install clamd -y
+    when: ansible_distribution == 'RedHat' or 'Centos'
+    ignore_errors: yes
+
+  - name: Clamav - Instalando Debian
+    shell: apt-get install clamav -y
+    when: ansible_os_family == 'Debian'
+
+  - name: Clamav - RHEL 7 - Instalando
+    yum: name=clamav-scanner state=present
+    when: ansible_distribution == 'RedHat' and ansible_distribution_release == 'Maipo'
+    ignore_errors: yes
+
+  - name: Clamav - Adicionando no boot
+    service: name=clamd enabled=yes
+    when: ansible_distribution == 'RedHat'
+    ignore_errors: yes
+
+  - name: Clamav - Atualizando
+    command: /usr/bin/freshclam
+    when: ansible_distribution == 'RedHat'
+    ignore_errors: yes
+
+  - name: Clamav - Copiando Clamconf
+    copy: src=clamconf dest=/etc/clamd.conf force=yes
+    when: ansible_distribution == 'RedHat'
+
+  - name: Clamav - Criando cron
+    copy: src=clamdscan dest=/etc/cron.d/clamdscan
+    when: ansible_distribution == 'RedHat'
+
+  - name: Clamav - Inicializando
+    shell: /etc/init.d/clamd restart
+    when: ansible_distribution == 'RedHat'
+    ignore_errors: yes

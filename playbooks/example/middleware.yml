@@ -1,0 +1,20 @@
+---
+- hosts: middleware01
+  remote_user: root
+  tasks:
+          - name: "Instalando Pacotes"
+            apt: name={{ item }} state=present
+            with_items:
+                    - bind9
+                    - bind9utils
+                    - tcpdump
+                    - isc-dhcp-server
+
+          - name: "Iniciando Serviço"
+            service: name={{ item }} state=started enable=yes
+            with_items:
+                    - bind9
+                    - isc-dhcp-server
+
+
+## FTP

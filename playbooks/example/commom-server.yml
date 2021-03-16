@@ -1,0 +1,59 @@
+---
+- hosts: all
+  tasks:
+  - redhat_subscription:
+      state: present
+      username: Dexter
+      password: XPTO
+      auto_attach: true
+    when: (ansible_distribution == "RedHat")
+    register: rhelsubs
+
+  - yum:
+      name: tzdata
+      state: latest
+    when: (ansible_os_family == "RedHat")
+
+  - apt:
+      name: tzdata
+      update_cache: yes
+      state: latest
+    when: (ansible_os_family == "Debian")
+
+#  - redhat_subscription:
+#      state: absent
+#      username: Dexter
+#      password: XPTO
+#      auto_attach: true
+#    when: 
+#      - rhelsubs | success
+#      - ansible_distribution == "RedHat"
+            
+  - user: 
+      state: present
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      createhome: true
+      home: "/home/{{ item.name }}"
+      shell: /bin/bash
+      update_password: always
+      comment: "{{ item.comm }}"
+    with_items:
+            - { name: 'ec2-user', password: '$1$jl5o9JAh$56zYeWrEia4LDCdtx4l981', comm: 'ec2-user@dexter.com.br' }
+    register: result
+
+  - lineinfile: 
+      path: /etc/sudoers
+      state: present
+      line: "ec2-user ALL=(ALL) ALL"
+    when: result is success
+
+  - authorized_key:
+      user: ec2-user
+      state: present
+      exclusive: True
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDIcp/5mI27josew+Mmnetdxn39e4CoUWtDAIjZ4399/Sstb7DEJBqiwuMn3FKgtM3oEGEkVYRJkPfS5aFQLW7RMRQlfjckr77qKCcP+VRWS556G0ZqQuRPkCP2v6Dg7G/s5L88vsxWACHaDEhEK622VJpAvD7Njom2KaswD6uyVBmUXLWDrq65a3hSixjB8bd421fmDstyqmMXjdw5vj7nOqHKVuezQ37htEY5SzfNhmZj3cLRneL9jYa3KUFJ/1ayq3ZD//McVQxj7fYU/bml7oYvKaQU8NEy+/7Kqw9SJQnUCX3KUYar7G7Fg2d3Lg6SWeta5GAnCxF3Nd6bOfTF Secure Shell Key"
+    when: result is success
+
+## END
+...

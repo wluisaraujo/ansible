@@ -1,0 +1,7 @@
+---
+- hosts: "{{ idhost }}"
+  tasks: 
+  force_handlers: yes
+  roles:
+    - ../roles/dexter-users-linux
+...

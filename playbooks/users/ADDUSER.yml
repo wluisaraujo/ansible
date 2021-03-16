@@ -1,0 +1,72 @@
+---
+## w.luis.araujo@gmail.com
+## 13/12/2018
+##
+- hosts: all
+  gather_facts: no
+  become: true
+  tasks:
+            
+  - user: 
+      state: present
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      createhome: true
+      home: "/home/{{ item.name }}"
+      shell: /bin/bash
+      update_password: always
+      comment: "{{ item.comm }}"
+    with_items:
+      - { name: 'ec2-user', password: "$1$WWfMbf.V$rnD3CBXsT3RLPRtNWSYOd.", comm: "ec2-user@dexter.com.br" }
+      - { name: 'heron.francelino', password: "$1$7OZZRgS8$zpWMkuqBgZKEse/i0yfWr0", comm: 'heron.francelino@dexter.com.br' }
+      - { name: 'davi.oliveira', password: "$1$lnz07SXJ$8cEGA7jtp8zMzLOCrGYD41", comm: 'davi.oliveira@dexter.com.br' }
+      - { name: 'djalma.correia', password: "$1$ArswaI18$es.Hi1VVedVOe7MbLZc8N0", comm: 'djalma.correia@dexter.com.br' }
+    register: result
+
+  - authorized_key:
+      user: "{{ item }}"
+      state: present
+      exclusive: True
+#      key: https://github.com/wluisaraujo.keys
+      validate_certs: False
+      key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDIcp/5mI27josew+Mmnetdxn39e4CoUWtDAIjZ4399/Sstb7DEJBqiwuMn3FKgtM3oEGEkVYRJkPfS5aFQLW7RMRQlfjckr77qKCcP+VRWS556G0ZqQuRPkCP2v6Dg7G/s5L88vsxWACHaDEhEK622VJpAvD7Njom2KaswD6uyVBmUXLWDrq65a3hSixjB8bd421fmDstyqmMXjdw5vj7nOqHKVuezQ37htEY5SzfNhmZj3cLRneL9jYa3KUFJ/1ayq3ZD//McVQxj7fYU/bml7oYvKaQU8NEy+/7Kqw9SJQnUCX3KUYar7G7Fg2d3Lg6SWeta5GAnCxF3Nd6bOfTF Secure Shell Key"
+    with_items:
+      - ec2-user
+      
+    when: result is success    
+    
+  - lineinfile: 
+      path: /etc/sudoers
+      state: present 
+      line: "{{item.name}} ALL=(ALL) ALL"
+      owner: root
+      group: root
+      mode: 0440
+      validate: '/usr/sbin/visudo -cf %s'
+    with_items:
+      - { name: 'ec2-user' }
+      - { name: 'heron.francelino' }
+      - { name: 'davi.oliveira' }
+      - { name: 'djalma.correia' }
+    when: ( result is success )
+    register: resultsudo
+    
+ # - user: 
+ #     state: absent
+ #     name: "{{ item }}"
+ #     ignore_errors: True
+ #   with_items:
+ #     - "sysadmin"
+ #     - "ec2-user"
+
+  #- lineinfile: 
+  #    dest: /etc/sudoers 
+  #    state: absent 
+  #    regexp='^{{ item }}' 
+  #    line='{{ item }} ALL=(ALL) ALL'
+  #  with_items:
+  #    - "sysadmin"
+  #    - "ec2-user"
+    
+## END
+...

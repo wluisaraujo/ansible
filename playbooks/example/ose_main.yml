@@ -1,0 +1,8 @@
+---
+- hosts: all
+  tasks:
+  - import_playbook: ose_all.yml
+  - import_playbook: ose_lb.yml
+  - import_playbook: ose_master.yml
+  - import_playbook: ose_infra.yml
+  - import_playbook: node.yml

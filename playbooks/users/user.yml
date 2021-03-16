@@ -1,0 +1,38 @@
+---
+- name: Compliance SecurityTeam Adicionar Usuarios
+  hosts: all
+  sudo: True
+  user: gseg.dexter
+  #user: root
+ 
+  tasks:
+
+  - name: Adicionando usuario Eduardo Aguiar
+    user: name=gseg.eduardo state=present password=$1$Dexter$QuYeZeQLeofNIDrCf85Xp1
+
+  - name: Adicionando usuario Fernando Santos
+    user: name=ec2-user state=present password=$1$Dexter$VqBOnJ86Uw5kH6LeMgzpl.
+
+  - name: Adicionando usuario Harley Costa
+    user: name=security.admin state=present password=$1$Dexter$.D/mCVJTV53Brz4kpnXw3/
+
+  - name: Remover gseg.dexter1
+    user: name=gseg.dexter1 state=absent force=yes
+
+  - name: Criando arquivo para edição do arquivo sudoers
+    command: cp -f /etc/sudoers /etc/sudoers.tmp
+
+  - name: Inserir linha Fernando no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^ec2-user' line='ec2-user ALL=(ALL) ALL'
+
+  - name: Inserir linha Eduardo no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^gseg.eduardo' line='gseg.eduardo ALL=(ALL) ALL'
+
+  - name: Inserir linha Harley no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^security.admin' line='security.admin ALL=(ALL) ALL'
+
+  - name: Remover linha gseg.dexter1 no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=absent regexp='^gseg.dexter1' line='gseg.dexter1 ALL=(ALL) ALL'
+
+  - name: Checa se o arquivo tem erros e copia para o original
+    shell: /usr/sbin/visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers

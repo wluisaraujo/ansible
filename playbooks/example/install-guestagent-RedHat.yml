@@ -1,0 +1,122 @@
+---
+## ec2-user@dexter.com.br
+## 24/01/2018
+##
+- hosts: all
+  gather_facts: yes
+  force_handlers: yes
+  tasks:
+# 
+
+  - yum:
+      name: ovirt-guest-agent-common
+      state: latest
+    when: 
+      - ansible_distribution == "RedHat"
+      - RCSUBSCRIPION is success
+      - RCREPOSITORY is success
+      - ansible_virtualization_role == "guest"
+      - ansible_virtualization_type == "RHEV"
+    register: RCGUEST
+    notify:
+      - Start Guest
+#########################################################################################################
+#  - yum:
+#      name: "{{ item }}"
+#      state: latest
+#      disable_gpg_check: yes
+#    loop:
+#      - http://resources.ovirt.org/pub/yum-repo/ovirt-release43.rpm
+#    when:
+#       - ansible_distribution == "OracleLinux"
+#       - ansible_virtualization_role == "guest"
+#       - ansible_virtualization_type == "RHEV"
+#    register: RCREPOSITORY
+#########################################################################################################
+#- name: Install when system CentOS
+#  - yum:
+#      name: http://resources.ovirt.org/pub/yum-repo/ovirt-release43.rpm
+#      state: present
+#      disable_gpg_check: yes
+#    when: 
+#       - ansible_distribution == "CentOS"
+#       - ansible_virtualization_role == "guest"
+#       - ansible_virtualization_type == "RHEV"
+#
+#  - yum:
+#      name: "{{ item }}"
+#      state: latest
+#      disable_gpg_check: yes
+#    loop:
+#      - epel-release
+#      - http://resources.ovirt.org/pub/yum-repo/ovirt-release43.rpm
+#      - centos-release-ovirt43
+#    when: 
+#       - ansible_distribution == "CentOS"
+#       - ansible_distribution == "OracleLinux"
+#       - ansible_virtualization_role == "guest"
+#       - ansible_virtualization_type == "RHEV"
+#    register: RCREPOSITORY
+
+#  - yum:
+#      name: ovirt-guest-agent-common
+#      state: latest
+#    when: 
+#      - ansible_distribution == "CentOS"
+#      - ansible_distribution == "OracleLinux"
+#      - ansible_virtualization_role == "guest"
+#      - ansible_virtualization_type == "RHEV"
+#      - RCREPOSITORY is success
+#    register: RCGUEST
+#    notify:
+#      - Start Guest
+#########################################################################################################    
+##- name: Install when system Debian
+#  - apt_repository:
+#      repo: deb http://download.opensuse.org/repositories/home:/evilissimo:/deb/Debian_7.0/ ./
+#      state: present
+#    when: 
+#      - ansible_distribution == "Debian"
+#      - ansible_virtualization_role == "guest"
+#      - ansible_virtualization_type == "RHEV"
+#    register: RCREPOSITORY
+  
+#  - shell: gpg -v -a --keyserver http://download.opensuse.org/repositories/home:/evilissimo:/deb/Debian_7.0/Release.key --recv-keys D5C7F7C373A1A299
+#  - apt_key:
+#      keyserver: http://download.opensuse.org/repositories/home:/evilissimo:/deb/Debian_7.0/Release.key
+#      id: D5C7F7C373A1A299
+#    when: 
+#      - ansible_distribution == "Debian"
+#      - ansible_virtualization_role == "guest"
+#      - ansible_virtualization_type == "RHEV"
+#      - RCREPOSITORY is success
+
+#  - apt:
+#      name: ovirt-guest-agent
+#      state: latest
+#    when: 
+#      - ansible_distribution == "Debian"
+#      - RCREPOSITORY is success
+#      - ansible_virtualization_role == "guest"
+#      - ansible_virtualization_type == "RHEV"
+#    register: RCGUEST
+#    notify:
+#      - Start Guest
+#########################################################################################################
+##- name: Install when system Suse
+
+#########################################################################################################
+
+## Start Service
+  handlers:
+  - name: Start Guest
+    systemd:
+      state: started
+      name:  ovirt-guest-agent.service     
+      enabled: yes
+    when: 
+      - RCGUEST is success
+      - ansible_service_mgr == "systemd"
+
+## END PLAYBOOK
+...

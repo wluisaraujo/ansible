@@ -1,0 +1,4 @@
+MAILTO=root
+SHELL=/bin/sh
+PATH=/bin:/sbin:/usr/bin:/usr/sbin
+00 3 * * * root /usr/bin/clamdscan --fdpass -i /

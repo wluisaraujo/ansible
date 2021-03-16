@@ -1,0 +1,12 @@
+---
+# Playbook para executar shell
+# 15/01/2018
+- hosts: localhost
+  become: true
+  remote_user: root
+
+  tasks:
+  - replace:
+      dest: /etc/logrotate.conf
+      regexp: '^#compress'
+      replace: 'compress'

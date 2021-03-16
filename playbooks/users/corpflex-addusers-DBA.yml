@@ -1,0 +1,41 @@
+---
+## w.luis.araujo@gmail.com
+## 06/Marco/2018
+- hosts: all
+  vars:
+    mydomain: dexter.com.br
+  tasks:
+  - name: "Criando usuarios DBA "
+    user: 
+      state: present
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      createhome: true
+      home: "/home/{{ item.name }}"
+      shell: /bin/bash
+      update_password: always
+      comment: "{{ item.comm }}"
+    with_items:
+      - { name: 'jackson.ribeiro', 	password: '$1$xyz$eN40sEVrKgML4u/BZETxx1', 		comm: 'jackson.ribeiro@{{mydomain}}' }
+      - { name: 'luis.maciel', 		password: '$1$u9hDDkXi$JgEf2668EraOPEk1Hz7BU1', comm: 'luis.maciel@{{mydomain}}' }
+      - { name: 'urieder.unzueta', 	password: '$1$ZUPXxQ7z$Hu/awnrxWez7OXhRVTAaI/', comm: 'urieder.unzueta@{{mydomain}}' }
+    register: result
+    when: ( ansible_system == "Linux" )
+      
+  - lineinfile: 
+      path: /etc/sudoers.d/sudo_cfx
+      state: present 
+      line: "{{item.name}} ALL=(ALL) ALL"
+      owner: root
+      group: root
+      mode: 0440
+      create: yes
+      validate: '/usr/sbin/visudo -cf %s'
+    loop:
+      - { name: 'jackson.ribeiro' }
+      - { name: 'luis.maciel' }
+      - { name: 'urieder.unzueta' }
+    when: 
+      - result is success
+## END
+...

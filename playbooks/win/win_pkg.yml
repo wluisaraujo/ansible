@@ -1,9 +1,0 @@
----
-- hosts: windows
-  remote_user: Administrator
-  tasks:
-    win_package:  
-      path: \\fileserver\repo\windows\7zip.exe
-      state: present
-...
-

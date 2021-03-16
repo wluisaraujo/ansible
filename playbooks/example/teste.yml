@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+  - name: Identify nbdkit SRPM
+    find:
+      paths: "/tmp/"
+      patterns: "nbdkit-[0-9]*.src.rpm"
+      recurse: "no"
+      use_regex: "no"
+    register: nbdkit_srpm

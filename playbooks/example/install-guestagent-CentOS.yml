@@ -1,0 +1,49 @@
+---
+## ec2-user@dexter.com.br
+## 24/01/2018
+##
+- hosts: all
+  gather_facts: yes
+  force_handlers: yes
+  tasks:
+
+  - name: Install when system "{{ ansible_distribution }}"
+    yum:
+      name: "{{ item }}"
+      state: latest
+      disable_gpg_check: yes
+    loop:
+      - http://resources.ovirt.org/pub/yum-repo/ovirt-release43.rpm
+      - epel-release
+      #- centos-release-ovirt43
+    when:
+       - ansible_distribution == "CentOS"
+       - ansible_virtualization_role == "guest"
+       - ansible_virtualization_type == "RHEV"
+    register: RCREPOSITORY
+
+  - yum:
+      name: ovirt-guest-agent-common
+      state: latest
+    when: 
+      - ansible_distribution == "CentOS"
+      - RCREPOSITORY is success
+      - ansible_virtualization_role == "guest"
+      - ansible_virtualization_type == "RHEV"
+    register: RCGUEST
+    notify:
+      - Start Guest
+
+## Start Service
+  handlers:
+  - name: Start Guest
+    systemd:
+      state: started
+      name:  ovirt-guest-agent.service     
+      enabled: yes
+    when: 
+      - RCGUEST is success
+      - ansible_service_mgr == "systemd"
+
+## END PLAYBOOK
+...

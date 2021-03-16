@@ -1,0 +1,16 @@
+---
+- name: Playbook RHEVM
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  tasks:
+
+  - rhevm:
+      name: "centos"
+      user: "fernando.cardoso"
+      password: "Teste123"
+      server: "sf-kvm-eqx02"
+      state: "info"
+#      insecure_api: yes
+

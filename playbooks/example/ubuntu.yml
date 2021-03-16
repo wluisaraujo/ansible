@@ -1,0 +1,155 @@
+---
+- name: Compliance SecurityTeam Seta
+  hosts: ubuntu
+  sudo: True
+  user: gseg.dexter
+
+  tasks:
+
+#  - name: Adicionando repositório EPEL 7
+#    shell: /bin/rpm -Uvh http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-2.noarch.rpm
+#    ignore_errors: yes
+#    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+  - name: Copiando arquivo de configuração cpu_per_core_stat.sh
+    copy: src=cpu_per_core_stat.sh dest=/usr/local/bin/cpu_per_core_stat.sh mode=0644
+
+  - name: Copiando arquivo de configuração discovery_cpu_cores.sh
+    copy: src=discovery_disks.perl dest=/usr/local/bin/discovery_cpu_cores.sh mode=0644
+
+  - name: Copiando arquivo de configuração discovery_disks.perl
+    copy: src=discovery_disks.perl dest=/usr/local/bin/discovery_disks.perl mode=0644
+
+  - name: Copiando arquivo de configuração discovery_processes.perl
+    copy: src=discovery_disks.perl dest=/usr/local/bin/discovery_processes.perl mode=0644
+
+  - name: Copiando arquivo de configuração discovery_tcp_services.perl
+    copy: src=discovery_disks.perl dest=/usr/local/bin/discovery_tcp_services.perl mode=0644
+
+  - name: Copiando arquivo de configuração discovery_tcp_services.perl
+    copy: src=discovery_disks.perl dest=/usr/local/bin/discovery_tcp_services.perl mode=0644
+
+  - name: Adicionando usuário BACKUP
+    user: name=backup.dexter state=present password=$1$Dexter$zaxwlULSgkaiZzAx6n9F81
+
+  - name: Adicionando usuário MONITOR
+    user: name=monitor.dexter state=present password=$1$Dexter$Qbw52vO.ow3U75I.tDlFl0
+
+  - name: Adicionando usuário N3
+    user: name=n3.ricardo state=present password=$1$Dexter$tUBQZSFpBsZRS47V5ScyR.
+
+  - name: Adicionando usuário OPDAT
+    user: name=ec2-user state=present password=$1$Dexter$YflVkj/fmWuGTN9FIO9pO/
+
+  - name: Adicionando usuário SecurityTeam
+    user: name=gseg.dexter state=present password=$1$StrongPa$YTm10/2Kanx3f1VJIt/.a/
+
+  - name: Adicionando usuário Eduardo
+    user: name=gseg.eduardo state=present password=$1$Dexter$MWQR2VzajbLmDvU6epbSD.
+
+  - name: Adicionando usuário Fernando
+    user: name=ec2-user state=present password=$1$StrongPa$YTm10/2Kanx3f1VJIt/.a/
+
+  - name: Adicionando usuário Harley
+    user: name=security.admin state=present password=$1$Dexter$.D/mCVJTV53Brz4kpnXw3/
+
+  - name: Adicionando Carlos Eduardo
+    user: name=carlos.eduardo state=present password=$1$Dexter$A1WsPoiLUR/wU31Eq3dCA1
+
+  - name: Adicionando Jackson Ribeiro
+    user: name=jackson.ribeiro state=present password=$1$Dexter$R6n.fpbnDM4GNVwX0ZSJM.
+
+  - name: Adicionando Urieder Unzueta
+    user: name=urieder.unzueta state=present password=$1$Dexter$l7ur4tKQwSoP1EBzFeLXr0
+
+  - name: Adicionando Seta
+    user: name=seta.admin state=present password=$1$Dexter$RI9EFtDB/QuFqcDJXk.j71
+
+  - name: Criando arquivo para edição do arquivo sudoers
+    command: cp -f /etc/sudoers /etc/sudoers.tmp
+
+  - name: Inserir linha BACKUP no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^backup.dexter' line='backup.dexter ALL=(ALL) ALL'
+
+  - name: Inserir linha MONITOR no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^monitor.dexter' line='monitor.dexter        ALL= /etc/init.d/snmpd *'
+
+  - name: Inserir linha N3 no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^n3.ricardo' line='n3.ricardo ALL=(ALL) ALL'
+
+  - name: Inserir linha OPDAT no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^ec2-user' line='ec2-user ALL=(ALL) ALL'
+
+  - name: Inserir linha SecurityTeam no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^gseg.dexter' line='gseg.dexter ALL=(ALL) ALL'
+
+  - name: Inserir linha Eduargo no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^gseg.eduardo' line='eduardo.dexter ALL=(ALL) ALL'
+
+  - name: Inserir linha Fernando no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^ec2-user' line='fernando.dexter ALL=(ALL) ALL'
+
+  - name: Inserir linha Harley no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^security.admin' line='gseg.dexter ALL=(ALL) ALL'
+
+  - name: Inserir linha CARLOS no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^carlos.eduardo' line='carlos.eduardo ALL=(ALL) ALL'
+
+  - name: Inserir linha JACKSON no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^jackson.ribeiro' line='jackson.ribeiro ALL=(ALL) ALL'
+
+  - name: Inserir linha URIEDER no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^urieder.unzueta' line='urieder.unzueta ALL=(ALL) ALL'
+
+  - name: Inserir linha seta.admin no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^seta.admin' line='seta.admin ALL=(ALL) ALL'
+
+  - name: Checa se o arquivo tem erros e copia para o original
+    shell: /usr/sbin/visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers
+
+  - name: Adicionando linhas no RSYSLOG
+    lineinfile: dest=/etc/rsyslog.conf line="{{ item }}"
+
+    with_items:
+     - $ModLoadimtcp
+     - $InputTCPServerRun 514
+     - '*.* @@10.100.30.23:10514'
+
+  - name: Adicionando linhas no RSYSLOG
+    lineinfile: dest=/etc/sysctl.conf line="{{ item }}"
+
+    with_items:
+      - net.ipv4.conf.all.send_redirects = 0
+      - net.ipv4.conf.default.send_redirects = 0
+      - net.ipv4.conf.all.accept_source_route = 0
+      - net.ipv4.conf.all.accept_redirects = 0
+      - net.ipv4.conf.all.secure_redirects = 0
+      - net.ipv4.conf.default.accept_redirects = 0
+      - net.ipv4.conf.default.secure_redirects = 0
+      - net.ipv4.icmp_echo_ignore_broadcasts = 1
+      - net.ipv4.icmp_ignore_bogus_error_messages = 1
+      - net.ipv4.conf.all.rp_filter = 1
+      - net.ipv4.icmp_echo_ignore_broadcasts = 1
+      - net.ipv4.icmp_ignore_bogus_error_responses = 1
+      - net.ipv4.tcp_syncookies = 1
+
+  - name: Desativando SELinux
+    lineinfile: dest=/etc/selinux/config regexp=^SELINUX= line=SELINUX=disabled
+
+  - name: Limitando acesso do root via SSH
+    lineinfile: dest=/etc/ssh/sshd_config regexp=^#PermitRootLogin line='PermitRootLogin no'
+
+  - name: Configurando NTP
+    lineinfile: dest=/etc/crontab line="0 1 * * * root /usr/sbin/ntpdate pool.ntp.br 2>/dev/null"
+
+  - name: Bash Ubuntu/Debian
+    lineinfile: dest=/etc/bash.bashrc state=present line="export HISTTIMEFORMAT='%F %T '\nexport HISTSIZE=2000"
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+  - name: Profile Ubuntu/Debian
+    lineinfile: dest=/etc/profile state=present line="export HISTTIMEFORMAT='%F %T '\nexport HISTSIZE=2000"
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+  - name: Bash RHEL/Centos
+    lineinfile: dest=/etc/profile state=present line="export HISTTIMEFORMAT='%F %T '" insertbefore="export HISTSIZE=2000"
+    when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'

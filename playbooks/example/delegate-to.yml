@@ -1,0 +1,11 @@
+---
+- hosts: all
+  gather_facts: yes
+  tasks:
+  - name: executando shell
+    command: date
+  
+  - name: execute to other host
+    shell: date > /tmp/date.txt
+    delegate_to: sv-prx-eqx01
+...

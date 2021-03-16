@@ -1,0 +1,20 @@
+---
+- name: adding users
+  hosts: all
+  gather_facts: no
+#  user: ec2-user
+#  sudo: True
+
+  tasks:
+
+#  - name: add washington
+#    user: name=ec2-user state=present password=$1$/djnKHD5$5ZkKu7IQ.SE1pL2up43eV.
+
+  - name: add washington sudo
+    lineinfile: dest=/etc/sudoers state=present regexp='^ec2-user' line='ec2-user ALL=(ALL) ALL'
+
+#  - name: Checa se o arquivo tem erros e copia para o original
+#    shell: /usr/sbin/visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers
+
+#  - name: Remove sudo do tmp
+#    shell: rm -f /tmp/sudo.dexter

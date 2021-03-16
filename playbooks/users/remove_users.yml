@@ -1,0 +1,12 @@
+---
+- name: Removendo Usuários
+  hosts: homologa
+  user: gseg.dexter
+
+  tasks:
+
+  - name: Removendo usuário teste
+    user: name=teste state=absent remove=yes
+
+  - name: Removendo usuário teste 1
+    user: name=teste1 state=absent remove=yes

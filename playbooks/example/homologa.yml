@@ -1,0 +1,15 @@
+---
+- name: Compliance SecurityTeam
+  hosts: localhost
+  user: root
+
+  tasks:
+
+  - name: Desativando SELinux
+    lineinfile: dest=/etc/selinux/config regexp=^SELINUX= line=SELINUX=disabled
+
+  - name: SSHd conf
+    lineinfile: dest=/etc/ssh/sshd_config regexp=^#PermitRootLogin line='PermitRootLogin yes'
+
+  - name: Desativando serviços
+    shell: "for i in anacron apmd autofs avahi-daemon bluetooth cups firstboot gpm haldaemon hidd hplip isdn iptables ip6tables kdump kudzu mcstrans mdmonitor messagebus microcode_ctl netfs nfsclock pcscd portmap readhead_early readhead_later rhnsd rpcgssd rpcidmapd setroubleshoot xfs yum-updatesd; do service $i stop; /sbin/chkconfig --level 12345 $i off; done"

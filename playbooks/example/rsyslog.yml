@@ -1,0 +1,21 @@
+---
+- hosts: security
+  remote_user: root
+  tasks:
+    - name: Instala servidor de Logs da empresa Dexter Courier
+      apt: pkg=rsyslog state=installed update_cache=true
+      register: rsyslog_installed
+      notify:
+        - Start Rsyslog
+
+    - name: Define o arquivo de configuracao do servidor Rsyslog
+      when: rsyslog_installed|success
+      copy: src=/root/rsyslog/files/rsyslog.conf dest=/etc/rsyslog.conf owner=root group=root mode=0644
+      notify:
+        - Reload Rsyslog
+
+  handlers:
+    - name: Start Rsyslog
+      service: name=rsyslog state=started
+    - name: Reload Rsyslog
+      service: name=rsyslog state=reload

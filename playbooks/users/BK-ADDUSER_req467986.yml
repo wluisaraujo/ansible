@@ -1,0 +1,37 @@
+---
+# REQ-467986
+# 11/10/2018
+
+- hosts: BK
+  become: true
+  tasks:
+ 
+  - name: "Adiciona o usuarios com permissão de sudo"
+    user: 
+      state: present
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      createhome: true
+      home: "/home/{{ item.name }}"
+      shell: /bin/bash
+      group: wheel
+      groups: wheel
+      update_password: always
+      comment: "{{ item.comm }}"
+    with_items:
+            - { name: 'ec2-user', password: '$1$icNIQyJd$KoP0DXCBtInJUVRlE8l9g/', comm: 'ec2-user@dexter.com.br' }
+            - { name: 'bkadmin', password: '$1$B6FhLmDY$5eYjY2TgVV1FC5rjQYZbf0', comm: 'Admin Burguer King' }
+
+  - lineinfile: 
+      path: /etc/sudoers
+      state: present 
+      line: "ec2-user ALL=(ALL) ALL"  
+
+  - lineinfile: 
+      path: /etc/sudoers
+      state: present 
+      line: "bkadmin ALL=(ALL) ALL"  
+## END
+
+...
+

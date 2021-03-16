@@ -1,0 +1,120 @@
+---
+# Playbook para criar usuários a partir de variavel
+# 10/10/2018
+- hosts: all
+  become: true
+  tasks:
+ 
+  - name: "Criando grupos administrativos"
+    group: 
+      name: "{{ item }}"
+      state: present
+      system: yes
+    with_items: 
+            - "backup.dexter"
+            - "dba.dexter"
+            - "monitoramento.dexter"
+            - "operacao.dexter"
+            - "sudo"
+            - "suporte1.dexter"
+            - "suporte2.dexter"
+            - "wheel"
+            
+  - name: "Adiciona o usuarios da Operacao N3"
+    user: 
+      state: present
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      createhome: true
+      home: "/home/{{ item.name }}"
+      shell: /bin/bash
+      group: operacao.dexter
+      groups: operacao.dexter,wheel,sudo
+      update_password: always
+      comment: "{{ item.comm }}"
+    with_items:
+            - { name: 'ec2-user', password: '$1$Nt2uIZyX$4czbdFckudsDQqs3WvXXs1', comm: 'ec2-user@dexter.com.br' }
+            - { name: 'admin.dexter', password: '$1$nfVurj1S$huqgz4cfpTdSlerRo7Ofa0', comm: 'rundeck@dexter.com.br' }
+            - { name: 'security.admin', password: '$1$nfVurj1S$huqgz4cfpTdSlerRo7Ofa0', comm: 'harley.costa@dexter.com.br' }
+            - { name: 'security.operator', password: '$1$nfVurj1S$huqgz4cfpTdSlerRo7Ofa0', comm: 'security.operator@dexter.com.br' }
+
+            
+  - name: "Adiciona o usuarios do Suporte N2"
+    user: 
+      state: present
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      createhome: true
+      home: "/home/{{ item.name }}"
+      shell: /bin/bash
+      group: suporte2.dexter
+      groups: suporte2.dexter
+      update_password: always
+      comment: "{{ item.comm }}"
+    with_items:
+            - { name: 'heron.francelino', password: '$1$iu8fF8nc$tZBNmvxI79ljeRbbUi47d0', comm: 'heron.francelino@dexter.com.br' }
+
+  - name: "Adiciona o usuarios do Suporte N1"
+    user: 
+      state: present
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      createhome: true
+      home: "/home/{{ item.name }}"
+      shell: /bin/bash
+      group: suporte1.dexter
+      groups: suporte1.dexter
+      update_password: always
+      comment: "{{ item.comm }}"
+    with_items:
+            - { name: 'monitor.dexter', password: '$1$iu8fF8nc$tZBNmvxI79ljeRbbUi47d0', comm: 'suporte@dexter.com.br' }
+            - { name: 'ec2-user', password: '$1$iu8fF8nc$tZBNmvxI79ljeRbbUi47d0', comm: 'suporte@dexter.com.br' }
+  
+  - name: "Adiciona o usuarios do Monitoramento"
+    user: 
+      state: present
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      createhome: true
+      home: "/home/{{ item.name }}"
+      shell: /bin/bash
+      group: monitoramento.dexter
+      groups: monitoramento.dexter
+      update_password: always
+      comment: "{{ item.comm }}"
+    with_items:
+            - { name: 'solarwinds.ssh', password: '$1$iu8fF8nc$tZBNmvxI79ljeRbbUi47d0', comm: 'monitoramento@dexter.com.br' }
+
+  - name: "Adiciona o usuarios DBA"
+    user: 
+      state: present
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      createhome: true
+      home: "/home/{{ item.name }}"
+      shell: /bin/bash
+      group: dba.dexter
+      groups: dba.dexter,wheel,sudo
+      update_password: always
+      comment: "{{ item.comm }}"
+    with_items:
+            - { name: 'luis.maciel', password: '$1$iu8fF8nc$tZBNmvxI79ljeRbbUi47d0', comm: 'luis.maciel@dexter.com.br' }
+            - { name: 'urieder.unzueta', password: '$1$iu8fF8nc$tZBNmvxI79ljeRbbUi47d0', comm: 'urieder.unzueta@dexter.com.br' }
+
+  - name: "Adiciona o usuarios Backup"
+    user: 
+      state: present
+      name: "{{ item.name }}"
+      password: "{{ item.password }}"
+      createhome: true
+      home: "/home/{{ item.name }}"
+      shell: /bin/bash
+      group: backup.dexter
+      groups: backup.dexter,wheel,sudo
+      update_password: always
+      comment: "{{ item.comm }}"
+    with_items:
+            - { name: 'douglas.araujo', password: '$1$iu8fF8nc$tZBNmvxI79ljeRbbUi47d0', comm: 'douglas.araujo@dexter.com.br' }
+
+## END
+...

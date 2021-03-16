@@ -1,0 +1,39 @@
+---
+- name: BashRC Timestamp
+  hosts: brcap
+  sudo: True
+  user: gseg.dexter
+
+  tasks:
+
+  - name: 1Bash Ubuntu/Debian
+    lineinfile: dest=/etc/bash.bashrc state=present line="export HISTTIMEFORMAT='%F %T '"
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+  - name: 1Profile Ubuntu/Debian
+    lineinfile: dest=/etc/profile state=present line="export HISTTIMEFORMAT='%F %T '"
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+  - name: 1HISTSIZE Ubuntu/Debian
+    lineinfile: dest=/etc/bashrc.bashrc state=present line="export HISTSIZE=10000"
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+  - name: 1Profile HISTSIZE Ubuntu/Debian
+    lineinfile: dest=/etc/profile state=present line="export HISTSIZE=10000"
+    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+  - name: 2HIST PROF RHEL/Centos
+    lineinfile: dest=/etc/profile state=present line="export HISTTIMEFORMAT='%F %T '"
+    when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'
+
+  - name: 2HIST BASH RHEL/Centos
+    lineinfile: dest=/etc/bashrc state=present line="export HISTTIMEFORMAT='%F %T '"
+    when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'
+
+  - name: 2HISTSIZE RHEL/Centos
+    lineinfile: dest=/etc/bashrc state=present line="export HISTSIZE=10000"
+    when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'
+
+  - name: 2Profile HISTSIZE RHEL/Centos
+    lineinfile: dest=/etc/profile state=present line="export HISTSIZE=10000"
+    when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'

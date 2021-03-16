@@ -1,0 +1,17 @@
+---
+- name: Looking for Oracle process
+  hosts: teste
+  sudo: True
+  user: ec2-user
+#  user: root
+
+  tasks:
+
+  - name: Running ps -ef
+    shell:: ps -ef | grep ssj | grep -v grep
+    register: ps_result
+    failed_when:
+
+  - debug:
+     msg="Oracle is running on {{ inventory_hostname }}"
+    when: ps_result.err > 0

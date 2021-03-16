@@ -1,0 +1,36 @@
+---
+- name: Playbook GrupoBem
+  hosts: grupobem
+#  sudo: True
+#  user: ec2-user
+#  user: root
+
+  tasks:
+
+  - include: handlers/repos.yaml
+#  - include: handlers/clamav.yaml
+#  - include: handlers/zabbix.yaml
+  - include: handlers/users.yaml
+  - include: handlers/rsyslog.yaml
+#  - include: handlers/ossec.yaml
+
+
+tasks:
+
+- name: Clone Repo
+- git:
+    repo: 'https://minhasparadas/repo.git'
+    dest: /sei/la/
+    clone: yes
+
+- name: comando mvn
+    shell: mvn package
+
+- name: comandos do fpm
+    shell: rodar comandos fpm no shell
+
+- name: instalar rpms
+  yum:
+    name: /sei/la/meupacote.rpm
+    state: present
+

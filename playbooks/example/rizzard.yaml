@@ -1,0 +1,12 @@
+---
+  - name: Adicionando Seta
+    user: name=thiago.rizzardo state=present password=$1$ELoflkFZ$T12lDd3NxSUrCaSLLLhrQ0
+
+  - name: Criando arquivo para edição do arquivo sudoers
+    command: cp -f /etc/sudoers /etc/sudoers.tmp
+
+  - name: Inserir linha seta.admin no arquivo sudoers
+    lineinfile: dest=/etc/sudoers.tmp state=present regexp='^thiago.rizzardo' line='thiago.rizzardo ALL=(ALL) ALL'
+
+  - name: Checa se o arquivo tem erros e copia para o original
+    shell: /usr/sbin/visudo -q -c -f /etc/sudoers.tmp && cp -f /etc/sudoers.tmp /etc/sudoers

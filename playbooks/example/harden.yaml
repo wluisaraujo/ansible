@@ -1,0 +1,17 @@
+---
+- name: Playbook Best Practices
+  hosts: SANTACLARA 
+#  gather_facts: no 
+  roles:
+#    - Cliente
+#    - Dexter
+#    - Devops
+#    - Devops2
+#    - FSM
+#    - Linux
+#    - ManagerUsers
+#    - Somos
+    - Windows
+#    - Propay
+#    - Gafor
+#    - Corredor

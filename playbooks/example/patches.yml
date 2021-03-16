@@ -1,0 +1,26 @@
+---
+- name: Yum Security
+  hosts: fertilizantes
+  #gather_facts: no
+  user: ec2-user
+  sudo: True
+
+  tasks:
+
+  - name: Patching Security
+#    shell: ls -lh
+    shell: yum --security update -y
+#    shell: yum --security check-update
+
+  - name: Sending an e-mail
+    mail:
+      host: 192.168.0.9
+      port: 25
+    #username: username@gmail.com
+    #password: mysecret
+      from: ansible@dexter.com.br
+      to: SecurityTeam <gseg@dexter.com.br>
+      subject: Ansible Security Patch
+      body: System {{ ansible_hostname }} has been updated. {{ ansible_all_ipv4_addresses }}
+    delegate_to: localhost
+

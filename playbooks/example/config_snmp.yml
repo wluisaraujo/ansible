@@ -1,0 +1,49 @@
+---
+- hosts: all
+  tasks:
+    - name: Instalando SNMP
+      yum:
+        state: present
+        name: "{{ item }}"
+ #       environment: "{{proxy_env}}"
+      loop:
+        - net-snmp
+        - net-snmp-utils
+        - net-snmp-libs
+      register: PACKAGE
+      
+    - systemd:
+        state: stopped
+        name:  snmpd.service     
+      when: 
+        - ansible_service_mgr == "systemd"
+        - PACKAGE is success
+      register: SNMPSTOP
+    
+    - shell: net-snmp-create-v3-user -ro -A Monit0r@ -a MD5 -X Monit0r@ -x DES monitoramento 2>/dev/null
+      when: SNMPSTOP
+      register: CONFIG
+    
+    - systemd:
+        state: started
+        name:  snmpd.service    
+        enabled: yes
+      when: 
+      - CONFIG is success
+      - ansible_service_mgr == "systemd"
+    
+    - firewalld:
+        service: snmp
+        permanent: yes
+        state: enabled
+       
+    - firewalld:
+        port: 161-162/udp
+        permanent: yes
+        state: enabled
+
+    - firewalld:
+        port: 161-162/tcp
+        permanent: yes
+        state: enabled
+

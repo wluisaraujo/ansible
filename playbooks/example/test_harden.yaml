@@ -1,0 +1,9 @@
+---
+- name: Playbook SO Verions 
+  hosts: SOMOSLINUX 
+
+- name: OVIRT 
+  include_tasks: ovirt-agent-{{ ansible_distribution }}.yaml
+  
+- name: SNMP
+  include_tasks: snmp-agent-{{ ansible_distribution }}.yaml

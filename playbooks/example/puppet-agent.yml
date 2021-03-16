@@ -1,0 +1,17 @@
+---
+- hosts: puppet
+  user: root
+  vars:
+    master_name: agile
+    master_name_domain: agile.localdomain
+  tasks:
+  - name: Configuring hostname
+    hostname: name=agile.localdomain
+  - name: Installing puppet
+    apt: name=puppet state=latest
+  - name: Deleting certificates
+    file: path=/var/lib/puppet/ssl state=absent
+  - name: Copying template file
+    template: src=puppet.conf.tpl dest=/etc/puppet/puppet.conf
+  - name: Generating Cert
+    shell: puppet master --verbose

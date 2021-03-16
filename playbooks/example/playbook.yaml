@@ -1,0 +1,43 @@
+---
+- name: Playbook GrupoBem
+  hosts: grupobem
+#  sudo: True
+#  user: ec2-user
+#  user: root
+
+  tasks:
+
+  - include: handlers/repos.yaml
+#  - include: handlers/clamav.yaml
+#  - include: handlers/zabbix.yaml
+  - include: handlers/users.yaml
+  - include: handlers/rsyslog.yaml
+#  - include: handlers/ossec.yaml
+
+  - name: Limitando acesso do root via SSH
+    lineinfile: dest=/etc/ssh/sshd_config regexp=^#PermitRootLogin line='PermitRootLogin no'
+
+  - name: NTP - Instalando
+    yum: name=ntp state=present
+#    when: ansible_distribution == 'RedHat' and ansible_distribution_release == 'Tikanga'
+#    ignore_errors: yes
+
+  - name: NTP - Instalando
+    yum: name=ntpdate state=present
+#   when: ansible_distribution == 'RedHat' and ansible_distribution_release == 'Tikanga'
+    ignore_errors: yes
+
+  - name: NTP - Adicionando ao Crontab
+    lineinfile: dest=/etc/crontab line="0 1 * * * root /usr/sbin/ntpdate pool.ntp.br 2>/dev/null"
+
+#  - name: Bash Ubuntu/Debian
+#    lineinfile: dest=/etc/bash.bashrc state=present line="export HISTTIMEFORMAT='%F %T ' \nexport HISTSIZE=2000"
+#    when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+#  - name: Profile Ubuntu/Debian
+#    lineinfile: dest=/etc/profile state=present line="export HISTTIMEFORMAT='%F %T ' \nexport HISTSIZE=2000"
+#   when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+  - name: Bash RHEL/Centos
+    lineinfile: dest=/etc/profile state=present line="export HISTTIMEFORMAT='%F %T '" insertbefore="export HISTSIZE=2000"
+#    when: ansible_distribution == 'CentOS' or ansible_distribution == 'RedHat'

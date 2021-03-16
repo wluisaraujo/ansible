@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  vars_files:
+    - /etc/ansible/playbooks/apt_pkg.yml
+    - /etc/ansible/playbooks/yum_pkg.yml
+  tasks:
+  - name: "instala pacotes DEB"
+    apt: name={{ aptpkg }} state=installed update_cache=true
+    when: ansible_os_family == "Debian"
+
+  - name: "instala pacotes RPM"
+    yum: name={{ yumpkg }} state=installed
+    when: ansible_os_family == "RedHat"

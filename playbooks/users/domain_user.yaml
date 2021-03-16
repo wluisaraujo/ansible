@@ -1,0 +1,28 @@
+---
+- name: teste wind_domain_user module | NM
+  hosts: windows
+  gather_facts: False
+  tasks:
+   - name: Ensure USERS* are present
+     win_domain_user:
+       upn: "{{ item.upn}}"
+       name: "{{ item.name }}"
+       firstname: "{{ item.firstname}}"
+       surname: "{{ item.surname}}"
+       email: "{{ item.email}}"
+       state: present
+       password: "{{ item.password}}"
+       path: ou=Service Desk,ou=Usuarios,ou=Dexter,dc=nm,dc=local
+       groups:
+         - Domain Admins
+         - suporte.n1
+         - GG_FCR
+         - SDESK_WRITE
+         - SG_SMA
+
+     with_items:
+      - { upn: 'user1@nm.local', name: 'user1', firstname: Nome1, surname: Sobrenome1, email: user1@dexter.com.br, password: 'hash_pass1' }
+      - { upn: 'user2@nm.local', name: 'user2', firstname: Nome2, surname: Sobrenome2, email: user2@dexter.com.br, password: 'hash_pass2' }
+      - { upn: 'user3@nm.local', name: 'user3', firstname: Nome3, surname: Sobrenome3, email: user3@dexter.com.br, password: 'hash_pass3' }
+      - { upn: 'user4@nm.local', name: 'user4', firstname: Nome4, surname: Sobrenome4, email: user4@dexter.com.br, password: 'hash_pass4' }
+      - { upn: 'user5@nm.local', name: 'user5', firstname: Nome5, surname: Sobrenome5, email: user5@dexter.com.br, password: 'hash_pass5' }

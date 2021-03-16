@@ -1,0 +1,15 @@
+---
+
+# Fonte: http://docs.ansible.com/ansible/latest/pam_limits_module.html
+# Playbook com parametros para limitis.conf
+# 24/01/2018
+#
+- hosts: localhost
+  remote_user: root
+
+- pam_limits:
+    domain: @rundeck
+    limit_type: soft
+    limit_item: nproc
+    value: 1000
+...

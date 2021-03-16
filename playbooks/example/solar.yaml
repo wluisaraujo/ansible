@@ -1,0 +1,11 @@
+---
+- name: uer solarwinds
+  hosts: all
+  gather_facts: no
+  user: ec2-user
+#  sudo: True
+
+  tasks:
+
+  - name: Trocando senha Solarwinds
+    user: name=solarwinds.ssh state=present password=$1$IEpqfE.4$ZISVJI9qFWyeo8qKMI5RM.

@@ -1,0 +1,30 @@
+---
+- name: Yum Check Patches
+  hosts: site
+  #gather_facts: no
+  remote_user: ec2-user
+  sudo: True
+
+  tasks:
+
+#  - name: Patching Security
+#    shell: ls -lah
+#    shell: yum update subversion-libs-1.7.14-11.el7_4.i686 -y
+#    shell: yum --security update -y
+  - name: List ansible packages and register result to print with debug later.
+    yum:
+      list: updates
+      security: yes
+    register: result
+
+
+
+ - name: Sending an e-mail
+    mail:
+      host: 192.168.0.9
+      port: 25
+      from: ansible@dexter.com.br
+      to: SecurityTeam <gseg@dexter.com.br>
+      subject: Ansible Security Patch
+      body: System {{ ansible_hostname }} has been updated. {{ ansible_all_ipv4_addresses }}
+    delegate_to: localhost

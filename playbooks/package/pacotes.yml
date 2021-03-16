@@ -1,0 +1,10 @@
+---
+- name: Garantir pacotes basicos do sistema
+  apt: name={{ item }} update_cache=yes state=present
+  with_items:
+    - vim
+    - nano
+    - sl
+    - ccze
+    - dnsutils
+...

@@ -1,0 +1,14 @@
+---
+# Playbook para executar shell
+# 15/01/2018 
+- hosts: sv-api-eqx01
+  become: true
+  remote_user: root
+  
+  tasks:
+
+  - systemd:
+      state: started
+      name:  ovirt-guest-agent.service     
+      enabled: yes
+    when: ( "ansible_service_mgr" == "systemd" )
